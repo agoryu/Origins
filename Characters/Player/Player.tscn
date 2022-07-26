@@ -1,0 +1,91 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Characters/Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://Characters/Player/PlayerShip.png" type="Texture" id=2]
+[ext_resource path="res://Characters/Lifebar.tres" type="Theme" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 24.3311
+
+[sub_resource type="Animation" id=3]
+resource_name = "impact"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Life:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Life:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[node name="Player" type="RigidBody2D"]
+collision_mask = 2
+mode = 2
+gravity_scale = 0.0
+contacts_reported = 1
+contact_monitor = true
+linear_damp = 7.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 4 )
+shape = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Life" type="ProgressBar" parent="."]
+visible = false
+margin_left = -24.0
+margin_top = -56.0
+margin_right = 24.0
+margin_bottom = -42.0
+theme = ExtResource( 3 )
+max_value = 3.0
+step = 1.0
+value = 3.0
+percent_visible = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/impact = SubResource( 3 )
+
+[node name="Weapons" type="Node2D" parent="."]
+
+[node name="Weapon1" type="Position2D" parent="Weapons"]
+position = Vector2( -6, -14 )
+
+[node name="Weapon2" type="Position2D" parent="Weapons"]
+position = Vector2( 6, -14 )
+
+[node name="ShootTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]

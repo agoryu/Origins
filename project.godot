@@ -1,0 +1,72 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "RigidBody2D",
+"class": "Character",
+"language": "GDScript",
+"path": "res://Characters/Character.gd"
+}, {
+"base": "Character",
+"class": "Enemy",
+"language": "GDScript",
+"path": "res://Characters/Enemies/Enemy.gd"
+}, {
+"base": "Weapon",
+"class": "LaserShoot",
+"language": "GDScript",
+"path": "res://Weapons/LaserShoot/LaserShoot.gd"
+}, {
+"base": "Character",
+"class": "Player",
+"language": "GDScript",
+"path": "res://Characters/Player/Player.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Weapon",
+"language": "GDScript",
+"path": "res://Weapons/Weapon.gd"
+} ]
+_global_script_class_icons={
+"Character": "",
+"Enemy": "",
+"LaserShoot": "",
+"Player": "",
+"Weapon": ""
+}
+
+[application]
+
+config/name="Origins"
+run/main_scene="res://Origins.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+Game="*res://Game.gd"
+
+[display]
+
+window/size/width=1440
+window/size/height=920
+
+[layer_names]
+
+2d_physics/layer_1="ally"
+2d_physics/layer_2="enemy"
+2d_physics/layer_3="weapon"
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"
