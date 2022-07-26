@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/spaceship.png-ee2f29655d419b1884d3afda9eb27478.stex"
+path="res://.import/Surround.png-65c506aca129cb628a763d18bbcdf4d4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Characters/Player/spaceship.png"
-dest_files=[ "res://.import/spaceship.png-ee2f29655d419b1884d3afda9eb27478.stex" ]
+source_file="res://UI/Menu/Surround.png"
+dest_files=[ "res://.import/Surround.png-65c506aca129cb628a763d18bbcdf4d4.stex" ]
 
 [params]
 
@@ -31,5 +31,5 @@ process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

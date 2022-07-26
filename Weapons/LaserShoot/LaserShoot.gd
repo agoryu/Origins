@@ -2,6 +2,9 @@ extends Weapon
 
 class_name LaserShoot
 
+func _ready():
+	$AudioStreamPlayer2D.play()
+
 func _physics_process(delta):
 	var direction = Vector2(sin(rotation), -cos(rotation))
 	move_and_collide(direction.normalized() * speed * delta)

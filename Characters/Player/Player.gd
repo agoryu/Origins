@@ -7,6 +7,7 @@ export var move_force_amplitude := 1000.0
 onready var laser_shoot_constructore = preload("res://Weapons/LaserShoot/LaserShoot.tscn")
 onready var _sprite = $Sprite
 onready var _weapons = $Weapons
+onready var _audiostream_player = $AudioStreamPlayer2D
 
 var weapon_uses : int = 1
 
@@ -24,6 +25,11 @@ func _physics_process(delta: float) -> void:
 	applied_force = direction * move_force_amplitude
 	_sprite.rotation = linear_velocity.angle() + PI / 2
 	_weapons.rotation = _sprite.rotation
+	
+	if direction != Vector2.ZERO and not _audiostream_player.playing:
+		_audiostream_player.play()
+	elif direction == Vector2.ZERO and _audiostream_player.playing: 
+		_audiostream_player.stop()
 
 func _on_Player_body_entered(body):
 	self._on_Character_body_entered(body)

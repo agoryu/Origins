@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Characters/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Characters/Player/PlayerShip.png" type="Texture" id=2]
 [ext_resource path="res://Characters/Lifebar.tres" type="Theme" id=3]
+[ext_resource path="res://Characters/Player/engine.wav" type="AudioStream" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 24.3311
@@ -34,6 +35,9 @@ tracks/1/keys = {
 "update": 1,
 "values": [ true ]
 }
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 72.0
 
 [node name="Player" type="RigidBody2D"]
 collision_mask = 2
@@ -86,6 +90,16 @@ position = Vector2( 6, -14 )
 
 [node name="ShootTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="ObjectArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectArea"]
+modulate = Color( 1, 0.0431373, 0.0431373, 1 )
+shape = SubResource( 4 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+attenuation = 0.707107
 
 [connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]
