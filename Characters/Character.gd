@@ -6,3 +6,6 @@ onready var life = $Life
 
 func _on_Character_body_entered(body):
 	life.value -= 1
+	
+func impact_damage(damage: int):
+	life.value -= damage

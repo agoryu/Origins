@@ -6,7 +6,7 @@
 [ext_resource path="res://Characters/Player/engine.wav" type="AudioStream" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 24.3311
+radius = 32.249
 
 [sub_resource type="Animation" id=3]
 resource_name = "impact"
@@ -40,7 +40,7 @@ tracks/1/keys = {
 radius = 72.0
 
 [node name="Player" type="RigidBody2D"]
-collision_mask = 2
+collision_mask = 3
 mode = 2
 gravity_scale = 0.0
 contacts_reported = 1
@@ -50,6 +50,8 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="Fleet" type="Node2D" parent="."]
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.2, 0.2 )
@@ -66,7 +68,6 @@ __meta__ = {
 }
 
 [node name="Life" type="ProgressBar" parent="."]
-visible = false
 margin_left = -24.0
 margin_top = -56.0
 margin_right = 24.0
@@ -100,6 +101,65 @@ shape = SubResource( 4 )
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )
 attenuation = 0.707107
+
+[node name="FleetPoint" type="Node2D" parent="."]
+visible = false
+
+[node name="Position2D" type="Position2D" parent="FleetPoint"]
+position = Vector2( 0, -128 )
+
+[node name="ColorRect" type="ColorRect" parent="FleetPoint/Position2D"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Position2D2" type="Position2D" parent="FleetPoint"]
+position = Vector2( 128, -128 )
+
+[node name="ColorRect2" type="ColorRect" parent="FleetPoint/Position2D2"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Position2D3" type="Position2D" parent="FleetPoint"]
+position = Vector2( 128, 0 )
+
+[node name="ColorRect3" type="ColorRect" parent="FleetPoint/Position2D3"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Position2D4" type="Position2D" parent="FleetPoint"]
+position = Vector2( 128, 128 )
+
+[node name="ColorRect4" type="ColorRect" parent="FleetPoint/Position2D4"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Position2D5" type="Position2D" parent="FleetPoint"]
+position = Vector2( 0, 128 )
+
+[node name="ColorRect5" type="ColorRect" parent="FleetPoint/Position2D5"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Position2D6" type="Position2D" parent="FleetPoint"]
+position = Vector2( -128, 128 )
+
+[node name="ColorRect6" type="ColorRect" parent="FleetPoint/Position2D6"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Position2D7" type="Position2D" parent="FleetPoint"]
+position = Vector2( -128, 0 )
+
+[node name="ColorRect7" type="ColorRect" parent="FleetPoint/Position2D7"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Position2D8" type="Position2D" parent="FleetPoint"]
+position = Vector2( -128, -128 )
+
+[node name="ColorRect8" type="ColorRect" parent="FleetPoint/Position2D8"]
+margin_right = 40.0
+margin_bottom = 40.0
 
 [connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]

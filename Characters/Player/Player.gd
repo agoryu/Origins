@@ -5,16 +5,18 @@ class_name Player
 export var move_force_amplitude := 1000.0
 
 onready var laser_shoot_constructore = preload("res://Weapons/LaserShoot/LaserShoot.tscn")
-onready var _sprite = $Sprite
+onready var sprite = $Sprite
 onready var _weapons = $Weapons
 onready var _audiostream_player = $AudioStreamPlayer2D
+
+onready var _fleet_points = $FleetPoint
+onready var _fleet = $Fleet
+onready var _fleet_tab = []
 
 var weapon_uses : int = 1
 
 func _ready():
 	Game.player = self
-	life.max_value = 3
-	life.value = 3
 
 func _physics_process(delta: float) -> void:
 	var direction = Vector2(
@@ -23,8 +25,8 @@ func _physics_process(delta: float) -> void:
 	).normalized()
 
 	applied_force = direction * move_force_amplitude
-	_sprite.rotation = linear_velocity.angle() + PI / 2
-	_weapons.rotation = _sprite.rotation
+	sprite.rotation = linear_velocity.angle() + PI / 2
+	_weapons.rotation = sprite.rotation
 	
 	if direction != Vector2.ZERO and not _audiostream_player.playing:
 		_audiostream_player.play()
@@ -32,15 +34,36 @@ func _physics_process(delta: float) -> void:
 		_audiostream_player.stop()
 
 func _on_Player_body_entered(body):
-	self._on_Character_body_entered(body)
-	$AnimationPlayer.play("impact")
-	if life.value <= 0:
-		Game.game_over()
+	if body.collision_layer != 1:
+		self._on_Character_body_entered(body)
+		$AnimationPlayer.play("impact")
+		if life.value <= 0:
+			Game.game_over()
 
 func _on_ShootTimer_timeout():
 	var laser_shoot = laser_shoot_constructore.instance()
 	laser_shoot.global_position = _weapons.get_child(weapon_uses).global_position
-	laser_shoot.rotation = _sprite.rotation
+	laser_shoot.rotation = sprite.rotation
 	add_child(laser_shoot)
 	laser_shoot.set_as_toplevel(true)
 	weapon_uses = (weapon_uses + 1) % 2
+
+func add_ally(ally : Character):
+	var num_circle = _fleet.get_child_count() / _fleet_points.get_child_count()
+	var pos_index = find_old_position()
+	if pos_index != -1:
+		_fleet_tab[pos_index] = ally
+	else:
+		pos_index = fmod(_fleet.get_child_count(), _fleet_points.get_child_count())
+	
+	ally.position = _fleet_points.get_child(pos_index).position * (num_circle + 1)
+	_fleet.add_child(ally)
+	_fleet_tab.push_front(ally)
+	print(_fleet_tab)
+	
+func find_old_position() -> int:
+	for i in len(_fleet_tab):
+		if is_instance_valid(_fleet_tab[i]):
+			return i
+	return -1
+	

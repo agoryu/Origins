@@ -7,21 +7,22 @@ signal close_menu
 signal make_pause
 
 onready var tree = get_tree()
+onready var ally1_constructor = preload("res://Characters/Allies/Ally1.tscn")
 
 var player : Player
 
 # XP management
 var xp : int = 0
-var max_xp_value : int = 5
+var max_xp_value : int = 1
 var xp_next_step : int = 1
 var warning_level : int = 0
 
 # Energy management
 var max_energy : int = 100
 	
-func _init():
+func init():
 	xp = 0
-	max_xp_value = 5
+	max_xp_value = 1
 	xp_next_step = 1
 	warning_level = 0
 	max_energy = 100
@@ -38,6 +39,7 @@ func add_xp(value : int):
 		emit_signal("level_up", xp, max_xp_value, warning_level)
 		max_xp_value += xp_next_step
 		xp_next_step += 1
+		player.add_ally(ally1_constructor.instance())
 	else:
 		emit_signal("update_xp", xp)
 		
@@ -51,6 +53,7 @@ func make_pause():
 
 func restart():
 	stop_pause()
+	init()
 	tree.change_scene("res://Origins.tscn")
 	
 func exit():
