@@ -7,7 +7,7 @@ signal close_menu
 signal make_pause
 
 onready var tree = get_tree()
-onready var ally1_constructor = preload("res://Characters/Allies/Ally1.tscn")
+onready var ally1_constructor = preload("res://Characters/Allies/Enterprise.tscn")
 
 var player : Player
 

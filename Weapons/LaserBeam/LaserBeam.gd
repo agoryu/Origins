@@ -8,6 +8,7 @@ onready var casting_particles = $CastingParticle
 onready var beam_particles = $BeamParticle
 onready var collision_particles = $CollisionParticle
 onready var timer = $Timer
+onready var audiostream = $AudioStreamPlayer2D
 
 onready var line_width: float = fill.width
 
@@ -49,6 +50,8 @@ func appear():
 		tween.stop_all()
 	tween.interpolate_property(fill, "width", 0, line_width, growth_time * 2)
 	tween.start()
+	audiostream.play()
+	timer.start()
 	
 func disappear():
 	if tween.is_active():
@@ -62,7 +65,6 @@ func set_is_casting(cast: bool):
 		cast_to = Vector2.ZERO
 		fill.points[1] = cast_to
 		appear()
-		timer.start()
 	else:
 		collision_particles.emitting = false
 		disappear()
