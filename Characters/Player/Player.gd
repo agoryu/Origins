@@ -59,7 +59,7 @@ func add_ally(ally : Character):
 	ally.position = _fleet_points.get_child(pos_index).position * (num_circle + 1)
 	_fleet.add_child(ally)
 	_fleet_tab.push_front(ally)
-	print(_fleet_tab)
+	Game.energy_consume += ally.energy_consume
 	
 func find_old_position() -> int:
 	for i in len(_fleet_tab):

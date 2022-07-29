@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://UI/EnergyLevel/EnergyLevel.gd" type="Script" id=1]
 [ext_resource path="res://UI/background_progressbass_style.tres" type="StyleBox" id=2]
 [ext_resource path="res://UI/EnergyLevel/forground_progressbar_style.tres" type="StyleBox" id=3]
+[ext_resource path="res://UI/label_theme_size_18.tres" type="Theme" id=4]
 
 [sub_resource type="Theme" id=2]
 ProgressBar/colors/font_color = Color( 0.94, 0.94, 0.94, 1 )
@@ -23,12 +24,21 @@ margin_bottom = -58.0
 rect_rotation = 270.0
 theme = SubResource( 2 )
 step = 1.0
-value = 80.0
 percent_visible = false
 script = ExtResource( 1 )
 
 [node name="EnergyTimer" type="Timer" parent="."]
-wait_time = 100.0
 autostart = true
+
+[node name="Label" type="Label" parent="."]
+margin_left = -24.0
+margin_top = -28.0
+margin_right = 73.0
+margin_bottom = 2.0
+rect_rotation = 90.0
+theme = ExtResource( 4 )
+text = "Energy"
+align = 1
+valign = 1
 
 [connection signal="timeout" from="EnergyTimer" to="." method="_on_EnergyTimer_timeout"]

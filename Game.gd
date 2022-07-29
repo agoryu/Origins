@@ -5,6 +5,7 @@ signal level_up
 signal game_over
 signal close_menu
 signal make_pause
+signal add_energy
 
 onready var tree = get_tree()
 onready var ally1_constructor = preload("res://Characters/Allies/Enterprise.tscn")
@@ -19,6 +20,7 @@ var warning_level : int = 0
 
 # Energy management
 var max_energy : int = 100
+var energy_consume : int = 1
 	
 func init():
 	xp = 0
@@ -31,7 +33,7 @@ func game_over():
 	tree.paused = true
 	emit_signal("game_over")
 
-func add_xp(value : int):
+func add_xp(value: int):
 	xp += value
 	if xp >= max_xp_value:
 		warning_level += 1
@@ -42,6 +44,9 @@ func add_xp(value : int):
 		player.add_ally(ally1_constructor.instance())
 	else:
 		emit_signal("update_xp", xp)
+
+func add_energy(value: int):
+	emit_signal("add_energy", value)
 		
 func stop_pause():
 	tree.paused = false
