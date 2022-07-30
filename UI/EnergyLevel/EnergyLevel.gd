@@ -2,8 +2,7 @@ extends ProgressBar
 
 func _ready():
 	Game.connect("add_energy", self, "add_energy")
-	max_value = Game.max_energy
-	value = max_value
+	Game.connect("update_max_energy", self, "update_max_energy")
 
 func _on_EnergyTimer_timeout():
 	value -= Game.energy_consume
@@ -12,3 +11,7 @@ func _on_EnergyTimer_timeout():
 		
 func add_energy(energy: int):
 	value += energy
+	
+func update_max_energy(max_energy: int):
+	max_value += max_energy
+	value += max_energy

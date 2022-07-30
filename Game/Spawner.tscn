@@ -17,7 +17,7 @@ curve = SubResource( 1 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="SpawnerPath"]
 position = Vector2( 185.714, -72 )
-rotation = 0.0281393
+rotation = 0.0281392
 
 [node name="AsteroidTimer" type="Timer" parent="."]
 autostart = true

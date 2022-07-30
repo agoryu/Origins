@@ -9,7 +9,7 @@
 [ext_resource path="res://UI/Menu/Menu.tscn" type="PackedScene" id=7]
 [ext_resource path="res://UI/Timer/GameTimer.tscn" type="PackedScene" id=8]
 [ext_resource path="res://UI/label_theme_size_18.tres" type="Theme" id=9]
-[ext_resource path="res://UI/PowerUp/PowerUpScreen.tscn" type="PackedScene" id=10]
+[ext_resource path="res://UI/PowerUp/PowerUpMenu.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Theme" id=1]
 ProgressBar/colors/font_color = Color( 0.94, 0.94, 0.94, 1 )

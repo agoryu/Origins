@@ -17,6 +17,7 @@ var weapon_uses : int = 1
 
 func _ready():
 	Game.player = self
+	sprite_texture = sprite.texture
 
 func _physics_process(delta: float) -> void:
 	var direction = Vector2(
@@ -61,6 +62,7 @@ func add_ally(ally : Character):
 	_fleet.add_child(ally)
 	_fleet_tab.push_front(ally)
 	Game.energy_consume += ally.energy_consume
+	Game.add_max_energy(ally.energy_reserve)
 	
 func find_old_position() -> int:
 	for i in len(_fleet_tab):

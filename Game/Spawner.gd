@@ -10,7 +10,7 @@ func _on_AsteroidTimer_timeout():
 	spawn_location.offset = randi()
 	asteroid.position = spawn_location.position
 	
-	var direction = Game.player.position.angle_to_point(spawn_location.position)
+	var direction = Game.player.global_position.angle_to_point(spawn_location.global_position)
 	var velocity = Vector2(rand_range(250.0, 350.0), 0.0)
 	asteroid.linear_velocity = velocity.rotated(direction)
 	

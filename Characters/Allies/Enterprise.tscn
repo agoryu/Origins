@@ -39,7 +39,7 @@ tracks/1/keys = {
 [sub_resource type="CircleShape2D" id=4]
 radius = 256.125
 
-[node name="Ally1" type="RigidBody2D"]
+[node name="Enterprise" type="RigidBody2D"]
 collision_mask = 3
 mode = 2
 gravity_scale = 0.0

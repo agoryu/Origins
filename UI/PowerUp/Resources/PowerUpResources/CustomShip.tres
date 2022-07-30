@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource( 1 )
-rarity = 3
-powerup_type = "CustomShip"
+rarity = 1
+powerup_type = 1
 text = ""

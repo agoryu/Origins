@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://UI/PowerUp/Resources/CustomShipResources/SpecCustomShipResource.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+rarity = 2
+custom_ship_type = 2
+text = "Add shield with %s power"
+min_value = 3
+max_value = 8

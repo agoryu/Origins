@@ -12,7 +12,7 @@ glow_enabled = true
 glow_blend_mode = 0
 glow_bicubic_upscale = true
 
-[node name="EnergyCharge" type="Area2D"]
+[node name="EnergyCharge" type="Area2D" groups=["object"]]
 collision_layer = 8
 script = ExtResource( 2 )
 

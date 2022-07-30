@@ -10,6 +10,8 @@ var is_too_far : bool = false
 
 func _ready():
 	player = Game.player
+	energy_reserve = 20
+	sprite_texture = _sprite.texture
 	
 func _physics_process(delta):
 	follow_player(delta)
