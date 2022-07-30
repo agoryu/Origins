@@ -2,6 +2,7 @@ extends CanvasLayer
 
 onready var _xp_level = $XPLevel
 onready var _warning_level_value = $WarningLevel/WarningLevelValue
+onready var _power_up_screen = $PowerUpScreen
 
 func _ready():
 	Game.connect("update_xp", self, "update_xp")
@@ -15,6 +16,8 @@ func level_up(value : int, max_value : int, warning_level : int):
 	update_xp(value)
 	_xp_level.max_value = max_value
 	_warning_level_value.text = String(warning_level)
+	_power_up_screen.visible = true
+	_power_up_screen.level_up()
 	
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):

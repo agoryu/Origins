@@ -29,6 +29,7 @@ func _on_Ally1_body_entered(body):
 		self._on_Character_body_entered(body)
 		$AnimationPlayer.play("impact")
 		if life.value <= 0:
+			Game.add_energy(-energy_consume)
 			queue_free()
 
 func _on_MaximalDistance_area_entered(area):
@@ -41,3 +42,6 @@ func _on_MaximalDistance_area_exited(area):
 
 func _on_LaserBeamTimer_timeout():
 	_laser_beam.set_is_casting(true)
+	
+func add_damage(value: int):
+	_laser_beam.damage += value

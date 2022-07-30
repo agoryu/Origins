@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://UI/PowerUp/Resources/PowerUpResources/SpecPowerUpResource.gd" type="Script" id=1]
+[ext_resource path="res://Objects/EnergyCharge/EnergyCharge.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+rarity = 3
+powerup_type = "EnergyUp"
+text = "+50 capacity energy"
+image = ExtResource( 2 )

@@ -46,6 +46,7 @@ func _on_ShootTimer_timeout():
 	laser_shoot.rotation = sprite.rotation
 	add_child(laser_shoot)
 	laser_shoot.set_as_toplevel(true)
+	laser_shoot.damage += damage_added
 	weapon_uses = (weapon_uses + 1) % 2
 
 func add_ally(ally : Character):

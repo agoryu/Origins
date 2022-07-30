@@ -38,10 +38,10 @@ func add_xp(value: int):
 	if xp >= max_xp_value:
 		warning_level += 1
 		xp -= max_xp_value
+		tree.paused = true
 		emit_signal("level_up", xp, max_xp_value, warning_level)
 		max_xp_value += xp_next_step
 		xp_next_step += 1
-		player.add_ally(ally1_constructor.instance())
 	else:
 		emit_signal("update_xp", xp)
 
