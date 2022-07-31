@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://UI/PowerUp/Resources/ShipResources/Enterprise.tres" type="Resource" id=1]
 [ext_resource path="res://UI/PowerUp/Resources/PowerUpResources/AddShip.tres" type="Resource" id=2]
@@ -11,6 +11,9 @@
 [ext_resource path="res://UI/PowerUp/Resources/CustomShipResources/BoostLife.tres" type="Resource" id=9]
 [ext_resource path="res://UI/PowerUp/Resources/CustomShipResources/AddShield.tres" type="Resource" id=10]
 
+[sub_resource type="Theme" id=1]
+VBoxContainer/constants/separation = 50
+
 [node name="PowerUpScreen" type="Control"]
 pause_mode = 2
 anchor_right = 1.0
@@ -20,30 +23,44 @@ powerup_resources = [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 2 ) ]
 ship_resources = [ ExtResource( 1 ) ]
 custom_ship_resources = [ ExtResource( 10 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 7 ) ]
 
-[node name="CardBox" type="VBoxContainer" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -352.0
+color = Color( 0, 0, 0, 0.392157 )
+
+[node name="CardBox" type="VBoxContainer" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -320.0
+margin_top = 86.0
+margin_right = 32.0
+margin_bottom = -88.0
 size_flags_vertical = 5
+theme = SubResource( 1 )
 
 [node name="PowerUpCard" parent="CardBox" instance=ExtResource( 5 )]
 margin_right = 352.0
-margin_bottom = 304.0
+margin_bottom = 215.0
+rect_pivot_offset = Vector2( -1240, 58 )
 size_flags_vertical = 3
 
 [node name="PowerUpCard2" parent="CardBox" instance=ExtResource( 5 )]
-margin_top = 308.0
+margin_top = 265.0
 margin_right = 352.0
-margin_bottom = 612.0
+margin_bottom = 480.0
+rect_pivot_offset = Vector2( -1240, 58 )
 size_flags_vertical = 3
 
 [node name="PowerUpCard3" parent="CardBox" instance=ExtResource( 5 )]
-margin_top = 616.0
+margin_top = 530.0
 margin_right = 352.0
-margin_bottom = 920.0
+margin_bottom = 746.0
+rect_pivot_offset = Vector2( -1240, 58 )
 size_flags_vertical = 3
 
-[connection signal="button_up" from="CardBox/PowerUpCard" to="." method="_on_PowerUpCard_button_up"]
-[connection signal="button_up" from="CardBox/PowerUpCard2" to="." method="_on_PowerUpCard_button_up"]
-[connection signal="button_up" from="CardBox/PowerUpCard3" to="." method="_on_PowerUpCard_button_up"]
+[connection signal="close_menu" from="CardBox/PowerUpCard" to="." method="_on_PowerUpCard_close_menu"]
+[connection signal="close_menu" from="CardBox/PowerUpCard2" to="." method="_on_PowerUpCard_close_menu"]
+[connection signal="close_menu" from="CardBox/PowerUpCard3" to="." method="_on_PowerUpCard_close_menu"]

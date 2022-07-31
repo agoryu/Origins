@@ -16,3 +16,6 @@ func impact_damage(damage_impact: int):
 	
 func add_damage(value: int):
 	damage_added += value
+	
+func reduce_energy_consume(value: int):
+	energy_consume = energy_consume - value if energy_consume - value > 0 else 1

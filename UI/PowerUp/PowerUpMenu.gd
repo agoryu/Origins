@@ -47,15 +47,11 @@ func level_up():
 			custom_ship(card, powerup, fleet)
 		else:
 			add_ship(card, powerup)
-	card_box.get_child(0).grab_focus()
-
-func _on_PowerUpCard_button_up():
-	visible = false
-	Game.stop_pause()
+	card_box.get_child(0).get_node("PowerUpCardButton").grab_focus()
 
 func energy_up(card: PowerUpCard, powerup: Resource):
 	card.picture.texture = powerup.image
-	var energy_value = randi() % 51 + 20
+	var energy_value = randi() % 31 + 20
 	powerup.text = String(energy_value)
 	card.description.text = powerup.text + " energy added"
 
@@ -69,6 +65,9 @@ func custom_ship(card: PowerUpCard, powerup: Resource, fleet: Array):
 	card.picture.texture = ship.sprite_texture
 	var custom_value = randi() % custom_ship.max_value + custom_ship.min_value
 	card.description.text = custom_ship.text % [custom_value]
+	
+	card.powerups.push_back(custom_ship)
+	custom_ship.ship = ship
 
 func add_ship(card: PowerUpCard, powerup: Resource):
 	var ship_index = randi() % nb_ship_elements
@@ -76,3 +75,7 @@ func add_ship(card: PowerUpCard, powerup: Resource):
 	card.powerups.push_back(ship)
 	card.picture.texture = ship.image
 	card.description.text = ship.name
+
+func _on_PowerUpCard_close_menu():
+	visible = false
+	Game.stop_pause()
