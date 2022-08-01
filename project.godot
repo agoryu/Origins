@@ -81,7 +81,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Origins"
-run/main_scene="res://Origins.tscn"
+run/main_scene="res://UI/StartMenu/StartMenu.tscn"
 config/icon="res://icon.png"
 
 [autoload]

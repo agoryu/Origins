@@ -42,20 +42,20 @@ func level_up():
 		card.powerups.clear()
 		card.powerups.push_back(powerup)
 		if powerup.powerup_type == SpecPowerUpResource.POWERUP_TYPE.ENERGY_UP:
-			energy_up(card, powerup)
+			manage_energy_up(card, powerup)
 		elif powerup.powerup_type == SpecPowerUpResource.POWERUP_TYPE.CUSTOM_SHIP:
-			custom_ship(card, powerup, fleet)
+			manage_custom_ship(card, powerup, fleet)
 		else:
-			add_ship(card, powerup)
+			manage_add_ship(card, powerup)
 	card_box.get_child(0).get_node("PowerUpCardButton").grab_focus()
 
-func energy_up(card: PowerUpCard, powerup: Resource):
+func manage_energy_up(card: PowerUpCard, powerup: Resource):
 	card.picture.texture = powerup.image
 	var energy_value = randi() % 31 + 20
 	powerup.text = String(energy_value)
 	card.description.text = powerup.text + " energy added"
 
-func custom_ship(card: PowerUpCard, powerup: Resource, fleet: Array):
+func manage_custom_ship(card: PowerUpCard, powerup: Resource, fleet: Array):
 	var ship_index = randi() % fleet.size()
 	var ship = fleet[ship_index] as Character
 	
@@ -65,11 +65,12 @@ func custom_ship(card: PowerUpCard, powerup: Resource, fleet: Array):
 	card.picture.texture = ship.sprite_texture
 	var custom_value = randi() % custom_ship.max_value + custom_ship.min_value
 	card.description.text = custom_ship.text % [custom_value]
+	custom_ship.value = custom_value
 	
 	card.powerups.push_back(custom_ship)
 	custom_ship.ship = ship
 
-func add_ship(card: PowerUpCard, powerup: Resource):
+func manage_add_ship(card: PowerUpCard, powerup: Resource):
 	var ship_index = randi() % nb_ship_elements
 	var ship = ship_tab[ship_index]
 	card.powerups.push_back(ship)

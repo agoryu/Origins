@@ -7,6 +7,7 @@ signal close_menu
 signal make_pause
 signal add_energy
 signal update_max_energy
+signal shake_screen
 
 onready var tree = get_tree()
 onready var ally1_constructor = preload("res://Characters/Allies/Enterprise.tscn")
@@ -27,6 +28,7 @@ func init():
 	max_xp_value = 1
 	xp_next_step = 1
 	warning_level = 0
+	energy_consume = 1
 
 func game_over():
 	tree.paused = true
@@ -57,6 +59,7 @@ func make_pause():
 
 func restart():
 	stop_pause()
+	init()
 	for object in tree.get_nodes_in_group("object"):
 		object.queue_free()
 	tree.reload_current_scene()
@@ -66,3 +69,6 @@ func exit():
 
 func add_max_energy(value: int):
 	emit_signal("update_max_energy", value)
+	
+func shake_screen():
+	emit_signal("shake_screen")

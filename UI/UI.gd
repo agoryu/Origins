@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 onready var _xp_level = $XPLevel
-onready var _warning_level_value = $WarningLevel/WarningLevelValue
+onready var _warning_level_value = $VBoxContainer/WarningLevel/WarningLevelValue
 onready var _power_up_screen = $PowerUpScreen
 
 func _ready():

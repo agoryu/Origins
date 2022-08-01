@@ -1,22 +1,13 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://UI/UI.png" type="Texture" id=1]
 [ext_resource path="res://UI/UI.gd" type="Script" id=2]
 [ext_resource path="res://UI/EnergyLevel/EnergyLevel.tscn" type="PackedScene" id=3]
-[ext_resource path="res://UI/forground_progressbar_style_energy.tres" type="StyleBox" id=4]
-[ext_resource path="res://UI/background_progressbass_style.tres" type="StyleBox" id=5]
+[ext_resource path="res://UI/XP/XPLevel.tscn" type="PackedScene" id=4]
 [ext_resource path="res://UI/label_theme.tres" type="Theme" id=6]
 [ext_resource path="res://UI/Menu/Menu.tscn" type="PackedScene" id=7]
 [ext_resource path="res://UI/Timer/GameTimer.tscn" type="PackedScene" id=8]
-[ext_resource path="res://UI/label_theme_size_18.tres" type="Theme" id=9]
 [ext_resource path="res://UI/PowerUp/PowerUpMenu.tscn" type="PackedScene" id=10]
-
-[sub_resource type="Theme" id=1]
-ProgressBar/colors/font_color = Color( 0.94, 0.94, 0.94, 1 )
-ProgressBar/colors/font_color_shadow = Color( 0, 0, 0, 1 )
-ProgressBar/fonts/font = null
-ProgressBar/styles/bg = ExtResource( 5 )
-ProgressBar/styles/fg = ExtResource( 4 )
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource( 2 )
@@ -26,67 +17,57 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 1 )
 
-[node name="EnergyLevel" parent="." instance=ExtResource( 3 )]
-
-[node name="XPLevel" type="ProgressBar" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_left = 1.0
-anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -152.0
-margin_top = -96.0
-margin_right = 276.0
-margin_bottom = -59.0
-rect_rotation = 270.0
-theme = SubResource( 1 )
-step = 1.0
-percent_visible = false
+margin_left = -352.0
+margin_bottom = -731.0
 
-[node name="Label" type="Label" parent="XPLevel"]
-margin_left = -24.0
-margin_right = 16.0
-margin_bottom = 23.0
-rect_rotation = 90.0
-theme = ExtResource( 9 )
-text = "Exp"
-align = 1
-valign = 1
+[node name="GameTimer" parent="VBoxContainer" instance=ExtResource( 8 )]
+margin_left = 51.0
+margin_right = 301.0
+margin_bottom = 106.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
 
-[node name="GameTimer" parent="." instance=ExtResource( 8 )]
-margin_left = 1088.0
-margin_top = 88.0
-margin_right = 1338.0
-margin_bottom = 194.0
+[node name="WarningLevel" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 110.0
+margin_right = 352.0
+margin_bottom = 189.0
+size_flags_vertical = 3
 
-[node name="WarningLevel" type="HBoxContainer" parent="."]
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = -336.0
-margin_top = -140.0
-margin_right = -103.0
-margin_bottom = -100.0
-
-[node name="WarningLevelLabel" type="Label" parent="WarningLevel"]
-margin_top = 5.0
+[node name="WarningLevelLabel" type="Label" parent="VBoxContainer/WarningLevel"]
+margin_top = 24.0
 margin_right = 195.0
-margin_bottom = 35.0
+margin_bottom = 54.0
 size_flags_horizontal = 3
 theme = ExtResource( 6 )
 text = "Warning level :"
 align = 1
 valign = 1
 
-[node name="WarningLevelValue" type="Label" parent="WarningLevel"]
+[node name="WarningLevelValue" type="Label" parent="VBoxContainer/WarningLevel"]
 margin_left = 199.0
-margin_top = 5.0
-margin_right = 233.0
-margin_bottom = 35.0
+margin_top = 24.0
+margin_right = 352.0
+margin_bottom = 54.0
 size_flags_horizontal = 3
 theme = ExtResource( 6 )
 text = "0"
-align = 2
+align = 1
+
+[node name="XPLevel" parent="." instance=ExtResource( 4 )]
+margin_left = 1296.0
+margin_top = 864.0
+margin_right = 1896.0
+margin_bottom = 884.0
+
+[node name="EnergyLevel" parent="." instance=ExtResource( 3 )]
+margin_left = 1176.0
+margin_top = 864.0
+margin_right = 1776.0
+margin_bottom = 884.0
 
 [node name="Menu" parent="." instance=ExtResource( 7 )]
 visible = false
@@ -94,4 +75,4 @@ visible = false
 [node name="PowerUpScreen" parent="." instance=ExtResource( 10 )]
 visible = false
 
-[connection signal="time_over" from="GameTimer" to="Menu" method="_on_GameTimer_time_over"]
+[connection signal="time_over" from="VBoxContainer/GameTimer" to="Menu" method="_on_GameTimer_time_over"]

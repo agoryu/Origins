@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://UI/background_progressbass_style.tres" type="StyleBox" id=1]
+[ext_resource path="res://UI/label_theme_size_18.tres" type="Theme" id=2]
+[ext_resource path="res://UI/forground_progressbar_style_energy.tres" type="StyleBox" id=3]
+
+[sub_resource type="Theme" id=1]
+ProgressBar/colors/font_color = Color( 0.94, 0.94, 0.94, 1 )
+ProgressBar/colors/font_color_shadow = Color( 0, 0, 0, 1 )
+ProgressBar/fonts/font = null
+ProgressBar/styles/bg = ExtResource( 1 )
+ProgressBar/styles/fg = ExtResource( 3 )
+
+[node name="XPLevel" type="ProgressBar"]
+margin_top = 600.0
+margin_right = 600.0
+margin_bottom = 620.0
+rect_rotation = -90.0
+size_flags_vertical = 1
+theme = SubResource( 1 )
+step = 1.0
+percent_visible = false
+
+[node name="Label" type="Label" parent="."]
+margin_right = 33.0
+margin_bottom = 23.0
+theme = ExtResource( 2 )
+text = "Exp"
+align = 1
+valign = 1

@@ -12,6 +12,7 @@ func _ready():
 	player = Game.player
 	energy_reserve = 20
 	sprite_texture = _sprite.texture
+	life = $Life
 	
 func _physics_process(delta):
 	follow_player(delta)
@@ -32,6 +33,7 @@ func _on_Ally1_body_entered(body):
 		$AnimationPlayer.play("impact")
 		if life.value <= 0:
 			Game.add_energy(-energy_consume)
+			Game.player._fleet_tab.erase(self)
 			queue_free()
 
 func _on_MaximalDistance_area_entered(area):

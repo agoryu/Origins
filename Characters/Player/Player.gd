@@ -18,6 +18,7 @@ var weapon_uses : int = 1
 func _ready():
 	Game.player = self
 	sprite_texture = sprite.texture
+	life = $Life
 
 func _physics_process(delta: float) -> void:
 	var direction = Vector2(

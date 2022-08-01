@@ -13,15 +13,11 @@ ProgressBar/styles/bg = ExtResource( 2 )
 ProgressBar/styles/fg = ExtResource( 3 )
 
 [node name="EnergyLevel" type="ProgressBar"]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -340.0
-margin_top = -96.0
-margin_right = 88.0
-margin_bottom = -58.0
-rect_rotation = 270.0
+margin_top = 600.0
+margin_right = 600.0
+margin_bottom = 620.0
+rect_rotation = -90.0
+size_flags_vertical = 9
 theme = SubResource( 2 )
 step = 1.0
 value = 100.0
@@ -32,11 +28,9 @@ script = ExtResource( 1 )
 autostart = true
 
 [node name="Label" type="Label" parent="."]
-margin_left = -24.0
-margin_top = -28.0
-margin_right = 73.0
-margin_bottom = 2.0
-rect_rotation = 90.0
+margin_right = 67.0
+margin_bottom = 23.0
+size_flags_vertical = 0
 theme = ExtResource( 4 )
 text = "Energy"
 align = 1
