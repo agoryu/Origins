@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Characters/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Characters/Player/PlayerShip.png" type="Texture" id=2]
 [ext_resource path="res://Characters/Lifebar.tres" type="Theme" id=3]
 [ext_resource path="res://Characters/Player/engine.wav" type="AudioStream" id=4]
+[ext_resource path="res://Effects/Shield/Shield.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 32.249
@@ -50,6 +51,12 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
+energy_consume = 5
+energy_reserve = 0
+
+[node name="Shield" parent="." instance=ExtResource( 5 )]
+visible = false
+position = Vector2( 0, 4 )
 
 [node name="Fleet" type="Node2D" parent="."]
 

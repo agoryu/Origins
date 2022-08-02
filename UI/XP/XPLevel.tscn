@@ -12,10 +12,8 @@ ProgressBar/styles/bg = ExtResource( 1 )
 ProgressBar/styles/fg = ExtResource( 3 )
 
 [node name="XPLevel" type="ProgressBar"]
-margin_top = 600.0
 margin_right = 600.0
-margin_bottom = 620.0
-rect_rotation = -90.0
+margin_bottom = 20.0
 size_flags_vertical = 1
 theme = SubResource( 1 )
 step = 1.0

@@ -7,5 +7,5 @@
 script = ExtResource( 1 )
 rarity = 0
 powerup_type = 2
-text = "+50 capacity energy"
+text = "+%s capacity energy"
 image = ExtResource( 2 )

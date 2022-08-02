@@ -1,4 +1,4 @@
-extends Character
+extends "res://Characters/Allies/Ally.gd"
 
 onready var _laser_beam_timer = $LaserBeamTimer
 onready var _laser_beam = $Sprite/LaserBeam
@@ -10,9 +10,9 @@ var is_too_far : bool = false
 
 func _ready():
 	player = Game.player
-	energy_reserve = 20
 	sprite_texture = _sprite.texture
 	life = $Life
+	shield = $Shield
 	
 func _physics_process(delta):
 	follow_player(delta)

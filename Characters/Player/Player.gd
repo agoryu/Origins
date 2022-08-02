@@ -1,4 +1,4 @@
-extends Character
+extends "res://Characters/Allies/Ally.gd"
 
 class_name Player
 
@@ -19,6 +19,8 @@ func _ready():
 	Game.player = self
 	sprite_texture = sprite.texture
 	life = $Life
+	shield = $Shield
+	print(String(life.value) + " / " + String(life.max_value))
 
 func _physics_process(delta: float) -> void:
 	var direction = Vector2(

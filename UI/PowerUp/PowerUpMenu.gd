@@ -51,9 +51,9 @@ func level_up():
 
 func manage_energy_up(card: PowerUpCard, powerup: Resource):
 	card.picture.texture = powerup.image
-	var energy_value = randi() % 31 + 20
-	powerup.text = String(energy_value)
-	card.description.text = powerup.text + " energy added"
+	var energy_value = randi() % 51 + 50
+	powerup.value = energy_value
+	card.description.text = powerup.text % [energy_value]
 
 func manage_custom_ship(card: PowerUpCard, powerup: Resource, fleet: Array):
 	var ship_index = randi() % fleet.size()

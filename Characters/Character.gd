@@ -2,21 +2,20 @@ extends RigidBody2D
 
 class_name Character
 
-onready var sprite_texture
 onready var life: ProgressBar = null
-onready var energy_consume = 1
-onready var energy_reserve = 1
-onready var damage_added = 0
+onready var shield: Shield = null
+var damage_added = 0
 
 func _on_Character_body_entered(body):
-	life.value -= 1
+	var shield_value = shield.shield_bar.value
+	if shield_value != 0:
+		shield_value -= body.damaged_caused
+		if shield_value <= 0:
+			life.value -= shield_value
+			shield.set_values(0, 0)
+		else:
+			shield.shield_bar.value = shield_value
+			shield.show_shield_bar()
+	else:
+		life.value -= body.damaged_caused
 	Game.shake_screen()
-	
-func impact_damage(damage_impact: int):
-	life.value -= damage_impact
-	
-func add_damage(value: int):
-	damage_added += value
-	
-func reduce_energy_consume(value: int):
-	energy_consume = energy_consume - value if energy_consume - value > 0 else 1

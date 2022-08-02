@@ -11,6 +11,7 @@ background_mode = 4
 glow_enabled = true
 glow_blend_mode = 0
 glow_bicubic_upscale = true
+adjustment_enabled = true
 
 [node name="XP" type="Area2D" groups=["object"]]
 collision_layer = 8

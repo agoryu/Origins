@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-onready var _xp_level = $XPLevel
+onready var _xp_level = $Bar/XPLevel
 onready var _warning_level_value = $VBoxContainer/WarningLevel/WarningLevelValue
 onready var _power_up_screen = $PowerUpScreen
 
