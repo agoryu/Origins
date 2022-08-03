@@ -10,7 +10,6 @@ signal update_max_energy
 signal shake_screen
 
 onready var tree = get_tree()
-onready var ally1_constructor = preload("res://Characters/Allies/Enterprise.tscn")
 
 var player : Player
 

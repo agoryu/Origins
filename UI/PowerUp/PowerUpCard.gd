@@ -22,8 +22,8 @@ func _on_PowerUpCardButton_button_up():
 				SpecCustomShipResource.CUSTOM_SHIP_TYPE.ADD_SHIELD:
 					powerups[1].ship.add_shield_value(powerups[1].value)
 				SpecCustomShipResource.CUSTOM_SHIP_TYPE.BOOST_LIFE:
-					powerups[1].ship.life.max_value += powerups[1].value
-					powerups[1].ship.life.value += powerups[1].value
+					powerups[1].ship._life.max_value += powerups[1].value
+					powerups[1].ship._life.value += powerups[1].value
 				SpecCustomShipResource.CUSTOM_SHIP_TYPE.BOOST_WEAPON:
 					powerups[1].ship.add_damage(powerups[1].value)
 				SpecCustomShipResource.CUSTOM_SHIP_TYPE.REDUCE_ENERGY_CONSUME:

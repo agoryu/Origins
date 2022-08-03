@@ -1,6 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Game/Spawner.gd" type="Script" id=1]
+[ext_resource path="res://SpaceElements/Characters/Enemies/Cylon/CylonTimer.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Bonus/EnergyCharge/EnergyChargeTimer.tscn" type="PackedScene" id=3]
+[ext_resource path="res://SpaceElements/Characters/Enemies/Asteroid/AsteroidTimer.tscn" type="PackedScene" id=4]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -19,12 +22,12 @@ curve = SubResource( 1 )
 position = Vector2( 185.714, -72 )
 rotation = 0.0281392
 
-[node name="AsteroidTimer" type="Timer" parent="."]
-autostart = true
+[node name="AsteroidTimer" parent="." instance=ExtResource( 4 )]
 
-[node name="EnergyChargeTimer" type="Timer" parent="."]
-wait_time = 5.0
-autostart = true
+[node name="EnergyChargeTimer" parent="." instance=ExtResource( 3 )]
+
+[node name="CylonTimer" parent="." instance=ExtResource( 2 )]
 
 [connection signal="timeout" from="AsteroidTimer" to="." method="_on_AsteroidTimer_timeout"]
 [connection signal="timeout" from="EnergyChargeTimer" to="." method="_on_EnergyChargeTimer_timeout"]
+[connection signal="timeout" from="CylonTimer" to="." method="_on_CylonTimer_timeout"]

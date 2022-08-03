@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://UI/ProgressBar/SpaceProgressBar.tscn" type="PackedScene" id=1]
+[ext_resource path="res://SpaceElements/Characters/Enemies/Cylon/Cylon.gd" type="Script" id=2]
+[ext_resource path="res://SpaceElements/Characters/Enemies/Cylon/Cylon.png" type="Texture" id=3]
+[ext_resource path="res://Effects/Shield/Shield.tscn" type="PackedScene" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 88.0
+
+[node name="Cylon" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.15, 0.15 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Weapons" type="Node2D" parent="."]
+
+[node name="Position2D" type="Position2D" parent="Weapons"]
+position = Vector2( -32, -32 )
+
+[node name="Position2D2" type="Position2D" parent="Weapons"]
+position = Vector2( 32, -32 )
+
+[node name="MissileTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="Shield" parent="." instance=ExtResource( 4 )]
+visible = false
+position = Vector2( 3.8147e-06, 3.8147e-06 )
+scale = Vector2( 1.25, 1.25 )
+
+[node name="Life" parent="." instance=ExtResource( 1 )]
+margin_top = -128.0
+margin_bottom = -114.0
+
+[connection signal="timeout" from="MissileTimer" to="." method="_on_MissileTimer_timeout"]

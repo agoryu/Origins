@@ -20,5 +20,5 @@ export (CUSTOM_SHIP_TYPE) var custom_ship_type: int = 0
 export var text: String = ""
 export var min_value: int = 0
 export var max_value: int = 0
-var ship: Character = null
+var ship: Ally = null
 var value: int = 0

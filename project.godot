@@ -9,35 +9,40 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Enemy",
+"base": "Character",
+"class": "Ally",
+"language": "GDScript",
+"path": "res://SpaceElements/Characters/Allies/Ally.gd"
+}, {
+"base": "Weapon",
 "class": "Asteroid",
 "language": "GDScript",
-"path": "res://Characters/Enemies/Asteroid/Asteroid.gd"
+"path": "res://SpaceElements/Characters/Enemies/Asteroid/Asteroid.gd"
 }, {
-"base": "RigidBody2D",
+"base": "KinematicBody2D",
 "class": "Character",
 "language": "GDScript",
-"path": "res://Characters/Character.gd"
+"path": "res://SpaceElements/Characters/Character.gd"
 }, {
 "base": "Character",
 "class": "Enemy",
 "language": "GDScript",
-"path": "res://Characters/Enemies/Enemy.gd"
+"path": "res://SpaceElements/Characters/Enemies/Enemy.gd"
 }, {
-"base": "RayCast2D",
-"class": "LaserBeam2D",
+"base": "Weapon",
+"class": "LaserBeam",
 "language": "GDScript",
-"path": "res://Weapons/LaserBeam/LaserBeam.gd"
+"path": "res://SpaceElements/Weapons/LaserBeam/LaserBeam.gd"
 }, {
 "base": "Weapon",
 "class": "LaserShoot",
 "language": "GDScript",
-"path": "res://Weapons/LaserShoot/LaserShoot.gd"
+"path": "res://SpaceElements/Weapons/LaserShoot/LaserShoot.gd"
 }, {
-"base": "Character",
+"base": "Ally",
 "class": "Player",
 "language": "GDScript",
-"path": "res://Characters/Player/Player.gd"
+"path": "res://SpaceElements/Characters/Player/Player.gd"
 }, {
 "base": "Control",
 "class": "PowerUpCard",
@@ -48,6 +53,16 @@ _global_script_classes=[ {
 "class": "Shield",
 "language": "GDScript",
 "path": "res://Effects/Shield/Shield.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "SpaceElement",
+"language": "GDScript",
+"path": "res://SpaceElements/SpaceElement.gd"
+}, {
+"base": "ProgressBar",
+"class": "SpaceProgressBar",
+"language": "GDScript",
+"path": "res://UI/ProgressBar/SpaceProgressBar.gd"
 }, {
 "base": "Resource",
 "class": "SpecCustomShipResource",
@@ -64,20 +79,23 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://UI/PowerUp/Resources/ShipResources/SpecShipResource.gd"
 }, {
-"base": "KinematicBody2D",
+"base": "SpaceElement",
 "class": "Weapon",
 "language": "GDScript",
-"path": "res://Weapons/Weapon.gd"
+"path": "res://SpaceElements/Weapons/Weapon.gd"
 } ]
 _global_script_class_icons={
+"Ally": "",
 "Asteroid": "",
 "Character": "",
 "Enemy": "",
-"LaserBeam2D": "",
+"LaserBeam": "",
 "LaserShoot": "",
 "Player": "",
 "PowerUpCard": "",
 "Shield": "",
+"SpaceElement": "",
+"SpaceProgressBar": "",
 "SpecCustomShipResource": "",
 "SpecPowerUpResource": "",
 "SpecShipResources": "",
@@ -105,6 +123,8 @@ window/size/height=920
 2d_physics/layer_2="enemy"
 2d_physics/layer_3="weapon"
 2d_physics/layer_4="object"
+2d_physics/layer_5="asteroid"
+2d_physics/layer_6="enemy_weapon"
 
 [physics]
 

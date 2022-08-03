@@ -1,8 +1,8 @@
 [gd_resource type="Resource" load_steps=4 format=2]
 
 [ext_resource path="res://UI/PowerUp/Resources/ShipResources/SpecShipResource.gd" type="Script" id=1]
-[ext_resource path="res://Characters/Allies/Enterprise.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Characters/Allies/Enterprise.png" type="Texture" id=3]
+[ext_resource path="res://SpaceElements/Characters/Allies/Enterprise.tscn" type="PackedScene" id=2]
+[ext_resource path="res://SpaceElements/Characters/Allies/Enterprise.png" type="Texture" id=3]
 
 [resource]
 script = ExtResource( 1 )

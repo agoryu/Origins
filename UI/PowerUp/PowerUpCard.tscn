@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://Characters/Player/PlayerShip.png" type="Texture" id=1]
+[ext_resource path="res://SpaceElements/Characters/Player/PlayerShip.png" type="Texture" id=1]
 [ext_resource path="res://UI/PowerUp/PowerUpCard.gd" type="Script" id=2]
 [ext_resource path="res://UI/Modern Machine.otf" type="DynamicFontData" id=3]
 

@@ -1,0 +1,124 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://SpaceElements/Weapons/LaserBeam/LaserBeam.gd" type="Script" id=1]
+[ext_resource path="res://SpaceElements/Weapons/LaserBeam/glowing_circle.png" type="Texture" id=2]
+[ext_resource path="res://SpaceElements/Weapons/LaserBeam/laser_beam.wav" type="AudioStream" id=3]
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0.00355872, 0.622776 )
+colors = PoolColorArray( 0.776471, 0.776471, 0.776471, 1, 1, 0.996078, 0.996078, 0.588235 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0.503289, 0.996591 ), 0.0, 0.0, 0, 0, Vector2( 0.993421, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=6]
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 100.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.5
+scale_curve = SubResource( 5 )
+color_ramp = SubResource( 3 )
+
+[sub_resource type="Curve" id=8]
+_data = [ Vector2( 0.00328947, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.519737, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.983553, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=9]
+curve = SubResource( 8 )
+
+[sub_resource type="ParticlesMaterial" id=7]
+emission_shape = 2
+emission_box_extents = Vector3( 60, 20, 1 )
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = -100.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+tangential_accel = 100.0
+tangential_accel_random = 1.0
+scale = 0.3
+scale_curve = SubResource( 9 )
+
+[sub_resource type="ParticlesMaterial" id=10]
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 100.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.5
+scale_curve = SubResource( 5 )
+color_ramp = SubResource( 3 )
+
+[sub_resource type="Environment" id=1]
+background_mode = 4
+glow_enabled = true
+glow_blend_mode = 0
+glow_bicubic_upscale = true
+
+[sub_resource type="RectangleShape2D" id=11]
+
+[node name="LaserBeam" type="KinematicBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource( 1 )
+speed = 7000.0
+
+[node name="LaserBeam" type="RayCast2D" parent="." groups=["weapon"]]
+collision_mask = 50
+
+[node name="FillLine" type="Line2D" parent="LaserBeam"]
+modulate = Color( 1.5, 1.5, 1.5, 1 )
+points = PoolVector2Array( 0, 0, 320, 0 )
+width = 30.0
+default_color = Color( 0.4, 0.678431, 1, 1 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="CastingParticle" type="Particles2D" parent="LaserBeam"]
+modulate = Color( 1.5, 1.5, 1.5, 1 )
+emitting = false
+process_material = SubResource( 6 )
+texture = ExtResource( 2 )
+
+[node name="BeamParticle" type="Particles2D" parent="LaserBeam"]
+modulate = Color( 1.5, 1.5, 1.5, 1 )
+emitting = false
+amount = 50
+lifetime = 0.5
+visibility_rect = Rect2( -2500, -2500, 5000, 5000 )
+local_coords = false
+draw_order = 1
+process_material = SubResource( 7 )
+texture = ExtResource( 2 )
+
+[node name="CollisionParticle" type="Particles2D" parent="LaserBeam"]
+modulate = Color( 1.5, 1.5, 1.5, 1 )
+emitting = false
+amount = 16
+lifetime = 0.3
+process_material = SubResource( 10 )
+texture = ExtResource( 2 )
+
+[node name="Tween" type="Tween" parent="LaserBeam"]
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 11 )
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

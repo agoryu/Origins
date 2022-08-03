@@ -62,7 +62,7 @@ func manage_custom_ship(card: PowerUpCard, powerup: Resource, fleet: Array):
 	var custom_ship_index = randi() % nb_custom_ship_elements
 	var custom_ship = custom_ship_tab[custom_ship_index] as SpecCustomShipResource
 	
-	card.picture.texture = ship.sprite_texture
+	card.picture.texture = ship._sprite_texture
 	var custom_value = randi() % custom_ship.max_value + custom_ship.min_value
 	card.description.text = custom_ship.text % [custom_value]
 	custom_ship.value = custom_value
