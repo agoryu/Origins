@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource( 1 )
-rarity = 2
+rarity = 0
 powerup_type = 1
 text = ""

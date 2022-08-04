@@ -1,13 +1,6 @@
-extends Resource
-class_name SpecShipResources
+extends GlobalSpecResource
 
-enum RARITY {
-	LEGENDARY,
-	SUPER_RARE,
-	EXTRAORDINARY,
-	RARE,
-	COMMON
-}
+class_name SpecShipResources
 
 export (RARITY) var rarity = 0
 export var ship_scene: Resource = null

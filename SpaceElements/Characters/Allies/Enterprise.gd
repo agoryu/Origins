@@ -16,4 +16,5 @@ func _on_LaserBeamTimer_timeout():
 	_laser_beam.set_is_casting(true)
 
 func add_damage(value: int):
+	damage_added += value
 	_laser_beam.damage_caused += value

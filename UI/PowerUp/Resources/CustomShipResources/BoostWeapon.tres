@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
-rarity = 0
+rarity = 2
 custom_ship_type = 1
 text = "Add %s power"
 min_value = 1

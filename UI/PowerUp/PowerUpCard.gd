@@ -7,27 +7,31 @@ class_name PowerUpCard
 onready var picture: NinePatchRect = $PowerUpCardButton/HBoxContainer/Picture
 onready var description: Label = $PowerUpCardButton/HBoxContainer/Text
 onready var animation_player = $PowerUpCardButton/AnimationPlayer
+onready var rarity = $PowerUpCardButton/Rarity
 
-var powerups: Array = []
+var powerup: GlobalSpecResource = null
+var sub_powerup: GlobalSpecResource = null
+var value: int = 0
+var ship: Ally = null
 
 func _on_PowerUpCardButton_button_up():
-	match powerups[0].powerup_type:
+	match powerup.powerup_type:
 		SpecPowerUpResource.POWERUP_TYPE.ADD_SHIP:
-			var ship = powerups[1].ship_scene.instance()
+			var ship = sub_powerup.ship_scene.instance()
 			Game.player.add_ally(ship)
 		SpecPowerUpResource.POWERUP_TYPE.ENERGY_UP:
-			Game.add_max_energy(powerups[0].value)
+			Game.add_max_energy(value)
 		SpecPowerUpResource.POWERUP_TYPE.CUSTOM_SHIP:
-			match powerups[1].custom_ship_type:
+			match sub_powerup.custom_ship_type:
 				SpecCustomShipResource.CUSTOM_SHIP_TYPE.ADD_SHIELD:
-					powerups[1].ship.add_shield_value(powerups[1].value)
+					ship.add_shield_value(value)
 				SpecCustomShipResource.CUSTOM_SHIP_TYPE.BOOST_LIFE:
-					powerups[1].ship._life.max_value += powerups[1].value
-					powerups[1].ship._life.value += powerups[1].value
+					ship._life.max_value += value
+					ship._life.value += value
 				SpecCustomShipResource.CUSTOM_SHIP_TYPE.BOOST_WEAPON:
-					powerups[1].ship.add_damage(powerups[1].value)
+					ship.add_damage(value)
 				SpecCustomShipResource.CUSTOM_SHIP_TYPE.REDUCE_ENERGY_CONSUME:
-					powerups[1].ship.reduce_energy_consume(powerups[1].value)
+					ship.reduce_energy_consume(value)
 	emit_signal("close_menu")
 
 func _on_PowerUpCardButton_focus_entered():
