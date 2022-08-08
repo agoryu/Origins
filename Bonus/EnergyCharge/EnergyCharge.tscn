@@ -16,7 +16,7 @@ adjustment_enabled = true
 [node name="EnergyCharge" type="Area2D" groups=["object"]]
 collision_layer = 8
 script = ExtResource( 1 )
-value = 25
+value = 50
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 2, 1.5, 1.5, 1 )

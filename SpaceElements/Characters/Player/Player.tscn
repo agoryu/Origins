@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://SpaceElements/Characters/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://UI/ProgressBar/SpaceProgressBar.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Effects/Shield/Shield.tscn" type="PackedScene" id=3]
 [ext_resource path="res://SpaceElements/Characters/Player/PlayerShip.png" type="Texture" id=4]
 [ext_resource path="res://SpaceElements/Characters/Player/engine.wav" type="AudioStream" id=5]
+[ext_resource path="res://UI/EnergyIndicator/EnergyIndicator.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 32.249
@@ -16,6 +17,8 @@ radius = 72.0
 collision_mask = 0
 script = ExtResource( 1 )
 speed = 300.0
+damage_caused = 3
+energy_consume = 5
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.2, 0.2 )
@@ -120,7 +123,13 @@ margin_bottom = 40.0
 [node name="Life" parent="." instance=ExtResource( 2 )]
 margin_top = -60.0
 margin_bottom = -46.0
-max_value = 5.0
-value = 5.0
+max_value = 10.0
+value = 10.0
+
+[node name="EnergyIndicator" parent="." instance=ExtResource( 6 )]
+margin_left = -12.0
+margin_top = 48.0
+margin_right = 4948.0
+margin_bottom = 5168.0
 
 [connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]

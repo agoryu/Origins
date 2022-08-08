@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://SpaceElements/Characters/Allies/Enterprise.gd" type="Script" id=1]
-[ext_resource path="res://SpaceElements/Characters/Allies/Enterprise.png" type="Texture" id=2]
-[ext_resource path="res://Effects/Shield/Shield.tscn" type="PackedScene" id=3]
-[ext_resource path="res://SpaceElements/Weapons/LaserBeam/LaserBeam.tscn" type="PackedScene" id=4]
-[ext_resource path="res://UI/ProgressBar/SpaceProgressBar.tscn" type="PackedScene" id=5]
+[ext_resource path="res://SpaceElements/Characters/Allies/Enterprise/Enterprise.gd" type="Script" id=1]
+[ext_resource path="res://Effects/Shield/Shield.tscn" type="PackedScene" id=2]
+[ext_resource path="res://UI/ProgressBar/SpaceProgressBar.tscn" type="PackedScene" id=3]
+[ext_resource path="res://SpaceElements/Characters/Allies/Enterprise/Enterprise.png" type="Texture" id=4]
+[ext_resource path="res://SpaceElements/Weapons/LaserBeam/LaserBeam.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 43.0813
@@ -13,17 +13,20 @@ radius = 43.0813
 collision_mask = 0
 script = ExtResource( 1 )
 speed = 250.0
+damage_caused = 2
+energy_consume = 8
+energy_reserve = 40
 limit_distance = 200
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.2, 0.2 )
-texture = ExtResource( 2 )
+texture = ExtResource( 4 )
 
-[node name="LaserBeam" parent="Sprite" instance=ExtResource( 4 )]
+[node name="LaserBeam" parent="Sprite" instance=ExtResource( 5 )]
 position = Vector2( 3.05176e-05, -240 )
 rotation = -1.5708
 
-[node name="Shield" parent="." instance=ExtResource( 3 )]
+[node name="Shield" parent="." instance=ExtResource( 2 )]
 visible = false
 position = Vector2( 3.8147e-06, 3.8147e-06 )
 scale = Vector2( 1.25, 1.25 )
@@ -34,9 +37,11 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Life" parent="." instance=ExtResource( 5 )]
+[node name="Life" parent="." instance=ExtResource( 3 )]
 margin_top = -80.0
 margin_bottom = -66.0
+max_value = 8.0
+value = 8.0
 
 [node name="LaserBeamTimer" type="Timer" parent="."]
 wait_time = 5.0

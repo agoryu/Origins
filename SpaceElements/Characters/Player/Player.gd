@@ -15,7 +15,6 @@ func _ready():
 	Game.player = self
 	_weapon = $Weapons
 	is_player = true
-	_life.display()
 
 func _physics_process(delta: float) -> void:
 	direction = get_gamepad_direction()

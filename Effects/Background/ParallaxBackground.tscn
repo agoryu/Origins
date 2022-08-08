@@ -5,14 +5,14 @@
 [node name="ParallaxBackground" type="ParallaxBackground"]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="."]
-motion_mirroring = Vector2( 1040, 912 )
+motion_mirroring = Vector2( 1440, 920 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="ColorRect" type="ColorRect" parent="ParallaxLayer"]
-margin_right = 1040.0
-margin_bottom = 912.0
+margin_right = 1440.0
+margin_bottom = 920.0
 color = Color( 0.0666667, 0.0941176, 0.168627, 1 )
 script = ExtResource( 1 )
 

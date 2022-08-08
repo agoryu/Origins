@@ -4,11 +4,11 @@
 [ext_resource path="res://UI/Timer/GameTimer.gd" type="Script" id=2]
 
 [sub_resource type="DynamicFont" id=1]
-size = 80
+size = 50
 font_data = ExtResource( 1 )
 
 [sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0, 0, 0, 1 )
+bg_color = Color( 0, 0, 0, 0.392157 )
 border_width_left = 8
 border_width_top = 8
 border_width_right = 8
@@ -28,8 +28,8 @@ Label/fonts/font = SubResource( 1 )
 Label/styles/normal = SubResource( 2 )
 
 [node name="Label" type="Label"]
-margin_right = 234.0
-margin_bottom = 96.0
+margin_right = 160.0
+margin_bottom = 73.0
 theme = SubResource( 3 )
 text = "00:00:00"
 script = ExtResource( 2 )

@@ -1,4 +1,4 @@
-extends ProgressBar
+extends TextureProgress
 
 func _ready():
 	Game.connect("add_energy", self, "add_energy")

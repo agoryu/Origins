@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://UI/EnergyIndicator/EnergyIndicator.png" type="Texture" id=1]
+[ext_resource path="res://UI/EnergyIndicator/EnergyIndicator.gd" type="Script" id=2]
+
+[node name="EnergyIndicator" type="TextureProgress"]
+margin_right = 4960.0
+margin_bottom = 5120.0
+rect_scale = Vector2( 0.005, 0.005 )
+max_value = 500.0
+value = 500.0
+texture_under = ExtResource( 1 )
+texture_progress = ExtResource( 1 )
+fill_mode = 4
+tint_under = Color( 0.243137, 0.243137, 0.243137, 1 )
+tint_progress = Color( 0.980392, 0.392157, 0.392157, 1 )
+script = ExtResource( 2 )
+
+[node name="EnergyTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="EnergyTimer" to="." method="_on_EnergyTimer_timeout"]

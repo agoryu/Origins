@@ -12,7 +12,6 @@ var damage_added = 0
 
 func impact_damage(value: int):
 	collision_body(value)
-	_life.display()
 
 func collision_body(value_of_damage: int):
 	var shield_value = _shield.shield_bar.value

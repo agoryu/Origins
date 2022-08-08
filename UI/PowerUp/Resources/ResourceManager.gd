@@ -7,7 +7,8 @@ var powerup_resources: Array = [
 ]
 
 var ship_resources: Array = [
-	preload("res://UI/PowerUp/Resources/ShipResources/Enterprise.tres")
+	preload("res://UI/PowerUp/Resources/ShipResources/Enterprise.tres"),
+	preload("res://UI/PowerUp/Resources/ShipResources/XWing.tres")
 ]
 
 var custom_ship_resources: Array = [
@@ -68,11 +69,21 @@ func randomize_add_ship(card: PowerUpCard):
 	card.rarity.color = calculate_color_rarity(ship.rarity)
 	
 func randomize_custom_ship(card: PowerUpCard, fleet: Array):
-	var ship_index = randi() % fleet.size()
-	var ship = fleet[ship_index] as Character
+	var is_valid_ship = false
+	var ship: Ally = null
+	while not is_valid_ship:
+		var ship_index = randi() % fleet.size()
+		if is_instance_valid(fleet[ship_index]):
+			ship = fleet[ship_index] as Character
+			is_valid_ship = true
+		else:
+			fleet.remove(ship_index)
 	
 	var custom_ship_index = randi() % custom_ship_tab.size()
 	var custom_ship = custom_ship_tab[custom_ship_index] as SpecCustomShipResource
+	
+	if custom_ship.custom_ship_type == SpecCustomShipResource.CUSTOM_SHIP_TYPE.REDUCE_ENERGY_CONSUME:
+		pass
 	
 	var custom_value = randi() % custom_ship.max_value + custom_ship.min_value
 	#TODO relance action if maximum reach
@@ -105,7 +116,7 @@ func calculate_score_value(value_bonus: float, min_value: float, max_value: floa
 		print("Bonus : " + String(value_bonus) + " > " + String(min_value + ((nb_rarity - i - 1) * step)))
 		if value_bonus >= min_value + ((nb_rarity - i) * step):
 			print("Score value : " + String(i))
-			return i
+			return nb_rarity - i - 1
 	print("Score value 0")
 	return 0
 			

@@ -6,7 +6,6 @@ var weapon_used = 0
 
 func _ready():
 	_weapon = $Weapons
-	_life.display()
 
 func _physics_process(delta):
 	var direction_angle = Game.player.global_position.direction_to(self.global_position).angle() - PI / 2
