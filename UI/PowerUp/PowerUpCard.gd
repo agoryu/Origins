@@ -1,20 +1,19 @@
-extends Control
-
-signal close_menu
+extends Button
 
 class_name PowerUpCard
 
-onready var picture: NinePatchRect = $PowerUpCardButton/HBoxContainer/Picture
-onready var description: Label = $PowerUpCardButton/HBoxContainer/Text
-onready var animation_player = $PowerUpCardButton/AnimationPlayer
-onready var rarity = $PowerUpCardButton/Rarity
+signal close_menu
+
+onready var picture: NinePatchRect = $HBoxContainer/Picture
+onready var description: Label = $HBoxContainer/Text
 
 var powerup: GlobalSpecResource = null
 var sub_powerup: GlobalSpecResource = null
 var value: int = 0
 var ship: Ally = null
 
-func _on_PowerUpCardButton_button_up():
+func _on_PowerUpCard_button_up():
+	print(powerup.powerup_type)
 	match powerup.powerup_type:
 		SpecPowerUpResource.POWERUP_TYPE.ADD_SHIP:
 			var ship = sub_powerup.ship_scene.instance()
@@ -34,8 +33,7 @@ func _on_PowerUpCardButton_button_up():
 					ship.reduce_energy_consume(value)
 	emit_signal("close_menu")
 
-func _on_PowerUpCardButton_focus_entered():
-	animation_player.play("selected")
-
-func _on_PowerUpCardButton_focus_exited():
-	animation_player.play("deselected")
+func set_rarity(color: Color):
+	pass
+#	get_stylebox("normal").border_color = color
+#	get_stylebox("focus").border_color = color

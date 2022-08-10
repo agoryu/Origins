@@ -7,7 +7,7 @@
 [ext_resource path="res://SpaceElements/Weapons/LaserBeam/LaserBeam.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 43.0813
+radius = 64.0
 
 [node name="Enterprise" type="KinematicBody2D" groups=["ally"]]
 collision_mask = 0
@@ -19,11 +19,11 @@ energy_reserve = 40
 limit_distance = 200
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 0.2, 0.2 )
+scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 4 )
 
 [node name="LaserBeam" parent="Sprite" instance=ExtResource( 5 )]
-position = Vector2( 3.05176e-05, -240 )
+position = Vector2( 0, -240 )
 rotation = -1.5708
 
 [node name="Shield" parent="." instance=ExtResource( 2 )]
@@ -38,8 +38,8 @@ __meta__ = {
 }
 
 [node name="Life" parent="." instance=ExtResource( 3 )]
-margin_top = -80.0
-margin_bottom = -66.0
+margin_top = -112.0
+margin_bottom = -98.0
 max_value = 8.0
 value = 8.0
 

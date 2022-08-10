@@ -2,6 +2,9 @@ extends Weapon
 
 var _target: SpaceElement = null
 
+func _ready():
+	$AudioStreamPlayer2D.play()
+
 func _physics_process(delta):
 	if _target == null:
 		return

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icon.png-adf6f5c4053260b4ba2c68f666f66cdd.stex"
+path="res://.import/EnergyCapacity.png-0cc2eaada5dcf3cad550d0ce40816f4b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/radial_progress/icon.png"
-dest_files=[ "res://.import/icon.png-adf6f5c4053260b4ba2c68f666f66cdd.stex" ]
+source_file="res://UI/PowerUp/EnergyCapacity.png"
+dest_files=[ "res://.import/EnergyCapacity.png-0cc2eaada5dcf3cad550d0ce40816f4b.stex" ]
 
 [params]
 

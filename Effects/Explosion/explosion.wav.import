@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/laser_beam.wav-6ac8e32e7d77501e491d770a2865f540.sample"
+path="res://.import/explosion.wav-ed757329f02e10213849927ae69df5d2.sample"
 
 [deps]
 
-source_file="res://SpaceElements/Weapons/LaserBeam/laser_beam.wav"
-dest_files=[ "res://.import/laser_beam.wav-6ac8e32e7d77501e491d770a2865f540.sample" ]
+source_file="res://Effects/Explosion/explosion.wav"
+dest_files=[ "res://.import/explosion.wav-ed757329f02e10213849927ae69df5d2.sample" ]
 
 [params]
 

@@ -4,7 +4,7 @@ class_name Player
 
 onready var laser_shoot_constructore = preload("res://SpaceElements/Weapons/LaserShoot/LaserShoot.tscn")
 
-onready var _audiostream_player = $AudioStreamPlayer2D
+onready var _engine_audio = $EnginePlayer
 onready var _fleet_points = $FleetPoint
 onready var _fleet = $Fleet
 
@@ -21,10 +21,10 @@ func _physics_process(delta: float) -> void:
 	
 	move_in_direction(direction)
 	
-	if direction != Vector2.ZERO and not _audiostream_player.playing:
-		_audiostream_player.play()
-	elif direction == Vector2.ZERO and _audiostream_player.playing: 
-		_audiostream_player.stop()
+	if direction != Vector2.ZERO and not _engine_audio.playing:
+		_engine_audio.play()
+	elif direction == Vector2.ZERO and _engine_audio.playing: 
+		_engine_audio.stop()
 
 func _on_ShootTimer_timeout():
 	var laser_shoot = laser_shoot_constructore.instance()
