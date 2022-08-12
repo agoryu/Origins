@@ -19,6 +19,8 @@ func _process(delta):
 		offset.x += 5
 	if Input.is_action_pressed("ui_left") and offset.x > -50:
 		offset.x -= 5
+		
+	global_position = Game.player.global_position
 
 func begin_shake():
 	timer.start()

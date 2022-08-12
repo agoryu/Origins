@@ -7,7 +7,7 @@ func _physics_process(delta):
 	move_and_collide(direction.normalized() * speed * delta)
 
 func _on_VisibilityNotifier2D_screen_exited():
-	queue_free()
+	$Timer.start()
 
 func _on_Asteroid_body_entered(body: SpaceElement):
 	body.impact_damage(damage_caused)
@@ -15,3 +15,7 @@ func _on_Asteroid_body_entered(body: SpaceElement):
 
 func impact_damage(damage: int):
 	dead()
+
+func _on_Timer_timeout():
+	if not $VisibilityNotifier2D.is_on_screen():
+		queue_free()

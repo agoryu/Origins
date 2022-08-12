@@ -11,7 +11,7 @@ signal shake_screen
 
 onready var tree = get_tree()
 
-var player : Player
+var player : Ally
 
 # XP management
 var xp : int = 0
@@ -21,6 +21,11 @@ var warning_level : int = 0
 
 # Energy management
 var energy_consume : int = 1
+
+# Fleet
+var _fleet_tab = []
+var fleet_points : Node2D= null
+var player_nodes : Node2D= null
 	
 func init():
 	xp = 0
@@ -70,3 +75,25 @@ func add_max_energy(value: int):
 	
 func shake_screen():
 	emit_signal("shake_screen")
+	
+func add_ally(ally):
+	var pos_index = find_position()
+	
+	ally.global_position = fleet_points.get_child(pos_index).global_position
+	add_child(ally)
+	_fleet_tab.push_front(ally)
+	ally.set_as_toplevel(true)
+	Game.energy_consume += ally.energy_consume
+	Game.add_max_energy(ally.energy_reserve)
+	
+func find_position() -> int:
+	return 0
+	
+func switch_ship(direction: int):
+	if _fleet_tab.size() > 0:
+		var index = (_fleet_tab.find(player) + direction) % (_fleet_tab.size() - 1)
+		player.set_is_player(false)
+		player.remove_child(player_nodes)
+		player = _fleet_tab[index]
+		player.set_is_player(true)
+		player.add_child(player_nodes)

@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://SpaceElements/Characters/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://UI/ProgressBar/SpaceProgressBar.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Effects/Shield/Shield.tscn" type="PackedScene" id=3]
 [ext_resource path="res://SpaceElements/Characters/Player/PlayerShip.png" type="Texture" id=4]
 [ext_resource path="res://SpaceElements/Characters/Player/engine.wav" type="AudioStream" id=5]
-[ext_resource path="res://UI/EnergyIndicator/EnergyIndicator.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 32.249
@@ -63,64 +62,64 @@ autostart = true
 stream = ExtResource( 5 )
 attenuation = 0.707107
 
-[node name="Fleet" type="Node2D" parent="."]
+[node name="PlayerNodes" type="Node2D" parent="."]
 
-[node name="FleetPoint" type="Node2D" parent="."]
+[node name="FleetPoints" type="Node2D" parent="PlayerNodes"]
 visible = false
 
-[node name="Position2D" type="Position2D" parent="FleetPoint"]
+[node name="Position2D" type="Position2D" parent="PlayerNodes/FleetPoints"]
 position = Vector2( 0, -128 )
 
-[node name="ColorRect" type="ColorRect" parent="FleetPoint/Position2D"]
+[node name="ColorRect" type="ColorRect" parent="PlayerNodes/FleetPoints/Position2D"]
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="Position2D2" type="Position2D" parent="FleetPoint"]
+[node name="Position2D2" type="Position2D" parent="PlayerNodes/FleetPoints"]
 position = Vector2( 128, -128 )
 
-[node name="ColorRect2" type="ColorRect" parent="FleetPoint/Position2D2"]
+[node name="ColorRect2" type="ColorRect" parent="PlayerNodes/FleetPoints/Position2D2"]
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="Position2D3" type="Position2D" parent="FleetPoint"]
+[node name="Position2D3" type="Position2D" parent="PlayerNodes/FleetPoints"]
 position = Vector2( 128, 0 )
 
-[node name="ColorRect3" type="ColorRect" parent="FleetPoint/Position2D3"]
+[node name="ColorRect3" type="ColorRect" parent="PlayerNodes/FleetPoints/Position2D3"]
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="Position2D4" type="Position2D" parent="FleetPoint"]
+[node name="Position2D4" type="Position2D" parent="PlayerNodes/FleetPoints"]
 position = Vector2( 128, 128 )
 
-[node name="ColorRect4" type="ColorRect" parent="FleetPoint/Position2D4"]
+[node name="ColorRect4" type="ColorRect" parent="PlayerNodes/FleetPoints/Position2D4"]
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="Position2D5" type="Position2D" parent="FleetPoint"]
+[node name="Position2D5" type="Position2D" parent="PlayerNodes/FleetPoints"]
 position = Vector2( 0, 128 )
 
-[node name="ColorRect5" type="ColorRect" parent="FleetPoint/Position2D5"]
+[node name="ColorRect5" type="ColorRect" parent="PlayerNodes/FleetPoints/Position2D5"]
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="Position2D6" type="Position2D" parent="FleetPoint"]
+[node name="Position2D6" type="Position2D" parent="PlayerNodes/FleetPoints"]
 position = Vector2( -128, 128 )
 
-[node name="ColorRect6" type="ColorRect" parent="FleetPoint/Position2D6"]
+[node name="ColorRect6" type="ColorRect" parent="PlayerNodes/FleetPoints/Position2D6"]
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="Position2D7" type="Position2D" parent="FleetPoint"]
+[node name="Position2D7" type="Position2D" parent="PlayerNodes/FleetPoints"]
 position = Vector2( -128, 0 )
 
-[node name="ColorRect7" type="ColorRect" parent="FleetPoint/Position2D7"]
+[node name="ColorRect7" type="ColorRect" parent="PlayerNodes/FleetPoints/Position2D7"]
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="Position2D8" type="Position2D" parent="FleetPoint"]
+[node name="Position2D8" type="Position2D" parent="PlayerNodes/FleetPoints"]
 position = Vector2( -128, -128 )
 
-[node name="ColorRect8" type="ColorRect" parent="FleetPoint/Position2D8"]
+[node name="ColorRect8" type="ColorRect" parent="PlayerNodes/FleetPoints/Position2D8"]
 margin_right = 40.0
 margin_bottom = 40.0
 
@@ -129,11 +128,5 @@ margin_top = -60.0
 margin_bottom = -46.0
 max_value = 10.0
 value = 10.0
-
-[node name="EnergyIndicator" parent="." instance=ExtResource( 6 )]
-margin_left = -12.0
-margin_top = 48.0
-margin_right = 4948.0
-margin_bottom = 5168.0
 
 [connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]

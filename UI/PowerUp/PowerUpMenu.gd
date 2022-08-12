@@ -8,7 +8,7 @@ var resource_manager = preload("res://UI/PowerUp/Resources/ResourceManager.gd").
 
 func level_up():
 	$AudioStreamPlayer2D.play()
-	var fleet = Game.player._fleet_tab + [Game.player]
+	var fleet = Game._fleet_tab + [Game.player]
 	for i in range(3):
 		var card: PowerUpCard = card_box.get_child(i) as PowerUpCard
 		resource_manager.update_card(card, fleet)

@@ -6,7 +6,7 @@ func _ready():
 	$AudioStreamPlayer2D.play()
 
 func _physics_process(delta):
-	if _target == null:
+	if _target == null or not is_instance_valid(self):
 		return
 		
 	var direction = global_position.direction_to(_target.global_position)

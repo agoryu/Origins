@@ -9,10 +9,10 @@
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 
-[node name="Camera" parent="Player" instance=ExtResource( 2 )]
+[node name="ParallaxBackground" parent="." instance=ExtResource( 4 )]
+
+[node name="Camera" parent="." instance=ExtResource( 2 )]
 offset_h = 0.0
 
-[node name="Spawner" parent="Player" instance=ExtResource( 3 )]
+[node name="Spawner" parent="Camera" instance=ExtResource( 3 )]
 position = Vector2( -816, -472 )
-
-[node name="ParallaxBackground" parent="." instance=ExtResource( 4 )]

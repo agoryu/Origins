@@ -13,7 +13,7 @@ export var min_energy_consume = 4
 export var max_life = 20
 
 var direction = Vector2.ZERO
-var is_player = false
+var is_player = false setget set_is_player
 
 func add_damage(value: int):
 	damage_added += value
@@ -59,9 +59,12 @@ func move_ally(delta: float, player):
 	
 func loose_ally():
 	Game.add_energy(-energy_consume)
-	Game.player._fleet_tab.erase(self)
+	Game._fleet_tab.erase(self)
 	queue_free()
 	
 func player_move():
 		direction = get_gamepad_direction()
 		move_in_direction(direction)
+
+func set_is_player(value: bool):
+	is_player = value

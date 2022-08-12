@@ -16,7 +16,10 @@ func _ready():
 	_on_FireTimer_timeout()
 
 func _physics_process(delta):
-	move(delta)
+	if is_player:
+		player_move()
+	else:
+		move(delta)
 
 func move(delta: float):
 	if not is_valid_target():
@@ -34,6 +37,10 @@ func move(delta: float):
 			_sprite.global_rotation = (_target.global_position - global_position).angle() + PI/2.0 
 		
 func _on_FollowTimer_timeout():
+	if is_player:
+		_on_FireTimer_timeout()
+		return
+		
 	var collision_bodies = detection_zone.get_overlapping_bodies()
 	var distance_tmp = -1
 	for body in collision_bodies:
@@ -70,3 +77,10 @@ func fire():
 			laser_shoot.set_as_toplevel(true)
 			laser_shoot.damage_caused += damage_added
 			laser_shoot.scale /= 2.0
+			
+func set_is_player(value: bool):
+	.set_is_player(value)
+	if value:
+		follow_timer.one_shot = false
+	else:
+		follow_timer.one_shot = true

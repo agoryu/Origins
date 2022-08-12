@@ -21,6 +21,10 @@ func level_up(value : int, max_value : int, warning_level : int):
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
 		Game.make_pause()
+	elif event.is_action_released("switch_left"):
+		Game.switch_ship(-1)
+	elif event.is_action_released("switch_right"):
+		Game.switch_ship(1)
 		
 func anim_menu(start_position: int, end_position: int):
 	_tween.interpolate_property(

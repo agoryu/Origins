@@ -23,7 +23,7 @@ func _on_PowerUpCard_button_up():
 	match powerup.powerup_type:
 		SpecPowerUpResource.POWERUP_TYPE.ADD_SHIP:
 			var ship = sub_powerup.ship_scene.instance()
-			Game.player.add_ally(ship)
+			Game.add_ally(ship)
 		SpecPowerUpResource.POWERUP_TYPE.ENERGY_UP:
 			Game.add_max_energy(value)
 		SpecPowerUpResource.POWERUP_TYPE.CUSTOM_SHIP:
