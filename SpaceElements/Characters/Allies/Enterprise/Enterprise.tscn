@@ -13,10 +13,14 @@ radius = 64.0
 collision_mask = 0
 script = ExtResource( 1 )
 speed = 250.0
+drag = 20.0
 damage_caused = 2
 energy_consume = 8
 energy_reserve = 40
 limit_distance = 200
+max_damage = 15
+min_energy_consume = 2
+max_life = 40
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.3, 0.3 )
@@ -28,8 +32,8 @@ rotation = -1.5708
 
 [node name="Shield" parent="." instance=ExtResource( 2 )]
 visible = false
-position = Vector2( 3.8147e-06, 3.8147e-06 )
-scale = Vector2( 1.25, 1.25 )
+position = Vector2( 2.38419e-06, 4.00001 )
+scale = Vector2( 1.75, 1.6875 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -37,14 +41,14 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Life" parent="." instance=ExtResource( 3 )]
-margin_top = -112.0
-margin_bottom = -98.0
-max_value = 8.0
-value = 8.0
-
 [node name="LaserBeamTimer" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
+
+[node name="Life" parent="." instance=ExtResource( 3 )]
+margin_top = -104.0
+margin_bottom = -90.0
+max_value = 8.0
+value = 8.0
 
 [connection signal="timeout" from="LaserBeamTimer" to="." method="_on_LaserBeamTimer_timeout"]

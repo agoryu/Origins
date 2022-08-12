@@ -16,6 +16,9 @@ func _ready():
 	_on_FireTimer_timeout()
 
 func _physics_process(delta):
+	move(delta)
+
+func move(delta: float):
 	if not is_valid_target():
 		move_ally(delta, Game.player)
 		if global_position.distance_to(Game.player.global_position) < limit_distance and collision_shape.disabled:
@@ -29,7 +32,7 @@ func _physics_process(delta):
 		elif fire_timer.is_stopped() and fire_timer.is_stopped():
 			_on_FireTimer_timeout()
 			_sprite.global_rotation = (_target.global_position - global_position).angle() + PI/2.0 
-
+		
 func _on_FollowTimer_timeout():
 	var collision_bodies = detection_zone.get_overlapping_bodies()
 	var distance_tmp = -1

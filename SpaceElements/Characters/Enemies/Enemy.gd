@@ -7,7 +7,6 @@ onready var explosion_constructor = preload("res://Effects/Explosion/Explosion.t
 	
 func impact_damage(damage_impact: int):
 	.impact_damage(damage_impact)
-	_life.display()
 	if _life.value <= 0:
 		dead()
 	

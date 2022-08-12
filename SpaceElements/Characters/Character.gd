@@ -22,7 +22,6 @@ func collision_body(value_of_damage: int):
 			_shield.set_values(0, 0)
 		else:
 			_shield.shield_bar.value = shield_value
-			_shield.show_shield_bar()
 	else:
 		_life.value -= value_of_damage
 	

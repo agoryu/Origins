@@ -17,9 +17,10 @@ func _ready():
 	is_player = true
 
 func _physics_process(delta: float) -> void:
-	direction = get_gamepad_direction()
-	
-	move_in_direction(direction)
+	if is_player:
+		player_move()
+	else:
+		move_ally(delta, Game.player)
 	
 	if direction != Vector2.ZERO and not _engine_audio.playing:
 		_engine_audio.play()

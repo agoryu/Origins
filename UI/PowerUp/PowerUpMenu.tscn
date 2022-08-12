@@ -1,13 +1,16 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
+[ext_resource path="res://UI/PowerUp/powerup.wav" type="AudioStream" id=1]
 [ext_resource path="res://UI/PowerUp/PowerUpCard.tscn" type="PackedScene" id=5]
 [ext_resource path="res://UI/PowerUp/PowerUpMenu.gd" type="Script" id=6]
 
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.00392157, 0, 0.290196, 0.784314 )
-border_width_left = 4
+border_width_left = 5
 border_color = Color( 0, 0.592157, 0.705882, 1 )
 border_blend = true
+corner_radius_top_left = 6
+corner_radius_bottom_left = 6
 
 [sub_resource type="Theme" id=3]
 PanelContainer/styles/panel = SubResource( 2 )
@@ -17,40 +20,43 @@ VBoxContainer/constants/separation = 50
 
 [node name="PowerUpScreen" type="PanelContainer"]
 anchor_bottom = 1.0
-margin_right = 352.0
+margin_right = 350.0
 theme = SubResource( 3 )
 script = ExtResource( 6 )
 
 [node name="CardBox" type="VBoxContainer" parent="."]
 pause_mode = 2
-margin_left = 4.0
-margin_right = 352.0
+margin_left = 5.0
+margin_right = 350.0
 margin_bottom = 920.0
 theme = SubResource( 1 )
 
 [node name="PowerUpCard" parent="CardBox" instance=ExtResource( 5 )]
-margin_left = 48.0
+margin_left = 45.0
 margin_top = 40.0
-margin_right = 348.0
+margin_right = 345.0
 margin_bottom = 232.0
 size_flags_horizontal = 8
 size_flags_vertical = 6
 
 [node name="PowerUpCard2" parent="CardBox" instance=ExtResource( 5 )]
-margin_left = 48.0
+margin_left = 45.0
 margin_top = 363.0
-margin_right = 348.0
+margin_right = 345.0
 margin_bottom = 555.0
 size_flags_horizontal = 8
 size_flags_vertical = 6
 
 [node name="PowerUpCard3" parent="CardBox" instance=ExtResource( 5 )]
-margin_left = 48.0
+margin_left = 45.0
 margin_top = 687.0
-margin_right = 348.0
+margin_right = 345.0
 margin_bottom = 879.0
 size_flags_horizontal = 8
 size_flags_vertical = 6
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 1 )
 
 [connection signal="close_menu" from="CardBox/PowerUpCard" to="." method="_on_PowerUpCard_close_menu"]
 [connection signal="close_menu" from="CardBox/PowerUpCard2" to="." method="_on_PowerUpCard_close_menu"]

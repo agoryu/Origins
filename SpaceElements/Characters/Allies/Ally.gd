@@ -7,10 +7,10 @@ export var energy_reserve = 1
 export var limit_distance = 500
 export var min_distance = 100
 
-export var max_damage_added = 10
-export var max_speed_added = 50
-export var max_energy_consume_reduction = 4
-export var max_life_added = 20
+export var max_damage = 10
+export var max_speed = 50
+export var min_energy_consume = 4
+export var max_life = 20
 
 var direction = Vector2.ZERO
 var is_player = false
@@ -62,3 +62,6 @@ func loose_ally():
 	Game.player._fleet_tab.erase(self)
 	queue_free()
 	
+func player_move():
+		direction = get_gamepad_direction()
+		move_in_direction(direction)

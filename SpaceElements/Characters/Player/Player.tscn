@@ -17,8 +17,12 @@ radius = 72.0
 collision_mask = 0
 script = ExtResource( 1 )
 speed = 300.0
+drag = 10.0
 damage_caused = 3
 energy_consume = 5
+max_damage = 15
+min_energy_consume = 1
+max_life = 50
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.2, 0.2 )
