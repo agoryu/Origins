@@ -5,7 +5,7 @@ func _ready():
 	Game.connect("update_max_energy", self, "update_max_energy")
 
 func _on_EnergyTimer_timeout():
-	value -= Game.energy_consume
+	value -= FleetManager.energy_consume
 	if value <= 0:
 		Game.game_over()
 		

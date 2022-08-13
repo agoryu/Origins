@@ -5,7 +5,6 @@ class_name Character
 onready var _life: SpaceProgressBar = $Life
 onready var _shield: Shield = $Shield
 onready var _sprite: Sprite = $Sprite
-onready var _sprite_texture = $Sprite.texture
 onready var _weapon: Node2D = null
 
 var damage_added = 0

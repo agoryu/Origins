@@ -16,7 +16,7 @@ func _init():
 		for i in range(nb_rarity - custom_ship_resource.rarity):
 			custom_ship_tab.push_back(custom_ship_resource)
 			
-func add_custom_card(card: PowerUpCard, fleet: Array):
+func add_custom_card(card: PowerUpCard, card_child: CustomCard, fleet: Array):
 	var is_valid_custom : bool = false
 	var custom_ship_index = 0
 	var custom_ship : SpecCustomShipResource = null
@@ -30,8 +30,7 @@ func add_custom_card(card: PowerUpCard, fleet: Array):
 		custom_value = randi() % (custom_ship.max_value - custom_ship.min_value) + custom_ship.min_value
 		is_valid_custom = _is_valid_customization(ship, custom_ship, custom_value)
 	
-	card.picture.texture = ship._sprite_texture
-	card.description.text = custom_ship.text % [custom_value]
+	card_child.icon.texture = custom_ship.icon
 	card.sub_powerup = custom_ship
 	var global_rarity = (calculate_score_value(
 		custom_value, 
@@ -39,8 +38,8 @@ func add_custom_card(card: PowerUpCard, fleet: Array):
 		custom_ship.max_value
 	) + card.powerup.rarity + custom_ship.rarity) / 3
 	card.set_rarity(calculate_color_rarity(global_rarity))
-	card.value = custom_value
-	card.ship = ship
+	card_child.value = custom_value
+	card_child.ship = ship
 
 func _get_ship(fleet : Array) -> Ally:
 	var is_valid_ship = false

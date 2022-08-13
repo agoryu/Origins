@@ -9,10 +9,11 @@ onready var _engine_audio = $EnginePlayer
 var weapon_uses : int = 1
 
 func _ready():
-	Game.player = self
-	Game.fleet_points = $PlayerNodes/FleetPoints
-	Game.player_nodes = $PlayerNodes
-	Game.fleet_tab.push_back(self)
+	FleetManager.player = self
+	FleetManager.fleet_points = $PlayerNodes/FleetPoints
+	FleetManager.player_nodes = $PlayerNodes
+	FleetManager.fleet_tab.push_back(self)
+	FleetManager.energy_consume = energy_consume
 	_weapon = $Weapons
 	is_player = true
 
@@ -20,7 +21,7 @@ func _physics_process(delta: float) -> void:
 	if is_player:
 		player_move()
 	else:
-		move_ally(delta, Game.player)
+		move_ally(delta, FleetManager.player)
 	
 	if direction != Vector2.ZERO and not _engine_audio.playing:
 		_engine_audio.play()

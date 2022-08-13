@@ -23,8 +23,8 @@ func _physics_process(delta):
 
 func move(delta: float):
 	if not is_valid_target():
-		move_ally(delta, Game.player)
-		if global_position.distance_to(Game.player.global_position) < limit_distance and collision_shape.disabled:
+		move_ally(delta, FleetManager.player)
+		if global_position.distance_to(FleetManager.player.global_position) < limit_distance and collision_shape.disabled:
 			collision_shape.disabled = false
 		if follow_timer.is_stopped():
 			follow_timer.start()

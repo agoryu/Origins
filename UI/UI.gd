@@ -19,16 +19,16 @@ func level_up(value : int, max_value : int, warning_level : int):
 	update_xp(value)
 	_xp_level.max_value = max_value
 	_power_up_screen.level_up()
-	anim_menu(1445, 1075)
+	anim_menu(1445, 1045)
 	_overlay.visible = true
 	
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
 		Game.make_pause()
 	elif event.is_action_released("switch_left"):
-		Game.switch_ship(-1)
+		FleetManager.switch_ship(-1)
 	elif event.is_action_released("switch_right"):
-		Game.switch_ship(1)
+		FleetManager.switch_ship(1)
 		
 func anim_menu(start_position: int, end_position: int):
 	_tween.interpolate_property(
@@ -43,7 +43,7 @@ func anim_menu(start_position: int, end_position: int):
 	_tween.start()
 
 func _on_PowerUpScreen_close_menu():
-	anim_menu(1075, 1445)
+	anim_menu(1045, 1445)
 	_overlay.visible = false
 	Game.stop_pause()
 	

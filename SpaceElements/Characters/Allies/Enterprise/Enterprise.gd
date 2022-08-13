@@ -7,7 +7,7 @@ func _physics_process(delta):
 	if is_player:
 		player_move()
 	else:
-		move_ally(delta, Game.player)
+		move_ally(delta, FleetManager.player)
 
 func _on_LaserBeamTimer_timeout():
 	_laser_beam.set_is_casting(true)

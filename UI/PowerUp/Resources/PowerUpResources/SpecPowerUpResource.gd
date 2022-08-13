@@ -9,5 +9,4 @@ enum POWERUP_TYPE {
 
 export (RARITY) var rarity: int = 0
 export (POWERUP_TYPE) var powerup_type: int = 0
-export var text: String = ""
-export var image: Resource = null
+export var card : Resource = null

@@ -2,10 +2,13 @@ extends Character
 
 class_name Ally
 
+onready var animation_player: AnimationPlayer = $AnimationPlayer
+
 export var energy_consume = 1
 export var energy_reserve = 1
 export var limit_distance = 500
 export var min_distance = 100
+export var cooldown = 5
 
 export var max_damage = 10
 export var max_speed = 50
@@ -14,6 +17,7 @@ export var max_life = 20
 
 var direction = Vector2.ZERO
 var is_player = false setget set_is_player
+var is_selected = false
 
 func add_damage(value: int):
 	damage_added += value
@@ -59,7 +63,7 @@ func move_ally(delta: float, player):
 	
 func loose_ally():
 	Game.add_energy(-energy_consume)
-	Game.fleet_tab.erase(self)
+	FleetManager.fleet_tab.erase(self)
 	queue_free()
 	
 func player_move():

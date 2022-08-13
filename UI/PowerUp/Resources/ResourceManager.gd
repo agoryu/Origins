@@ -19,27 +19,30 @@ func _init():
 			powerup_tab.push_back(powerup_resource)
 
 # Get a powerup and randomize value
-func update_card(card: PowerUpCard, fleet: Array):
+func get_card(card: PowerUpCard, fleet: Array) -> Control:
 	var powerup_index = randi() % powerup_tab.size()
 	var powerup = powerup_tab[powerup_index]
+	var card_child = powerup.card.instance()
+	card_child._init()
 	card.powerup = powerup
-	randomize_value(card, fleet)
+	randomize_value(card, fleet, card_child)
+	return card_child
 
 # Randomize value of card
-func randomize_value(card: PowerUpCard, fleet: Array):
+func randomize_value(card: PowerUpCard, fleet: Array, card_child: Control):
 	match card.powerup.powerup_type:
 		card.powerup.POWERUP_TYPE.ADD_SHIP:
-			randomize_add_ship(card)
+			randomize_add_ship(card, card_child as AddShipCard, fleet)
 		card.powerup.POWERUP_TYPE.CUSTOM_SHIP:
-			randomize_custom_ship(card, fleet)
+			randomize_custom_ship(card, card_child as CustomCard, fleet)
 		card.powerup.POWERUP_TYPE.ENERGY_UP:
-			randomize_energy_up(card)
+			randomize_energy_up(card, card_child as CustomCard)
 			
-func randomize_add_ship(card: PowerUpCard):
-	_add_ship_manager.add_ship_card(card)
+func randomize_add_ship(card: PowerUpCard, card_child: AddShipCard, fleet: Array):
+	_add_ship_manager.add_ship_card(card, card_child, fleet)
 	
-func randomize_custom_ship(card: PowerUpCard, fleet: Array):
-	_custom_ship_manager.add_custom_card(card, fleet)
+func randomize_custom_ship(card: PowerUpCard, card_child: CustomCard, fleet: Array):
+	_custom_ship_manager.add_custom_card(card, card_child, fleet)
 	
-func randomize_energy_up(card: PowerUpCard):
-	_energy_up_manager.add_energy_up(card)
+func randomize_energy_up(card: PowerUpCard, card_child: CustomCard):
+	_energy_up_manager.add_energy_up(card, card_child)

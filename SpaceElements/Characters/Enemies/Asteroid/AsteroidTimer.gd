@@ -7,7 +7,7 @@ func spawn_element(spawn_location: PathFollow2D):
 	spawn_location.offset = randi()
 	asteroid.global_position = spawn_location.global_position
 	
-	var direction = Game.player.global_position.angle_to_point(spawn_location.global_position)
+	var direction = FleetManager.player.global_position.angle_to_point(spawn_location.global_position)
 	asteroid.global_rotation = direction + PI/2
 	asteroid.set_as_toplevel(true)
 	

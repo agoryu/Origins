@@ -20,37 +20,37 @@ VBoxContainer/constants/separation = 50
 
 [node name="PowerUpScreen" type="PanelContainer"]
 anchor_bottom = 1.0
-margin_right = 350.0
+margin_right = 384.0
 theme = SubResource( 3 )
 script = ExtResource( 6 )
 
 [node name="CardBox" type="VBoxContainer" parent="."]
 pause_mode = 2
 margin_left = 5.0
-margin_right = 350.0
+margin_right = 384.0
 margin_bottom = 920.0
 theme = SubResource( 1 )
 
 [node name="PowerUpCard" parent="CardBox" instance=ExtResource( 5 )]
-margin_left = 45.0
+margin_left = 79.0
 margin_top = 40.0
-margin_right = 345.0
+margin_right = 379.0
 margin_bottom = 232.0
 size_flags_horizontal = 8
 size_flags_vertical = 6
 
 [node name="PowerUpCard2" parent="CardBox" instance=ExtResource( 5 )]
-margin_left = 45.0
+margin_left = 79.0
 margin_top = 363.0
-margin_right = 345.0
+margin_right = 379.0
 margin_bottom = 555.0
 size_flags_horizontal = 8
 size_flags_vertical = 6
 
 [node name="PowerUpCard3" parent="CardBox" instance=ExtResource( 5 )]
-margin_left = 45.0
+margin_left = 79.0
 margin_top = 687.0
-margin_right = 345.0
+margin_right = 379.0
 margin_bottom = 879.0
 size_flags_horizontal = 8
 size_flags_vertical = 6

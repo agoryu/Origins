@@ -1,11 +1,12 @@
-[gd_resource type="Resource" load_steps=2 format=2]
+[gd_resource type="Resource" load_steps=3 format=2]
 
 [ext_resource path="res://UI/PowerUp/Resources/CustomShipResources/SpecCustomShipResource.gd" type="Script" id=1]
+[ext_resource path="res://UI/PowerUp/EnergyConsume.png" type="Texture" id=2]
 
 [resource]
 script = ExtResource( 1 )
 rarity = 0
 custom_ship_type = 3
-text = "Reduction of energy consumption by %s"
 min_value = 1
 max_value = 3
+icon = ExtResource( 2 )
