@@ -1,5 +1,7 @@
 extends "res://Bonus/Bonus.gd"
 
+class_name EnergyCharge
+
 func _physics_process(delta: float) -> void:
 	attract(delta)
 

@@ -7,6 +7,7 @@ onready var collision_shape = $CollisionShape2D
 onready var detection_zone = $DetectionZone
 onready var follow_timer = $FollowTimer
 onready var fire_timer = $FireTimer
+onready var _fires = $Sprite/Fires
 
 var _target = null
 var _is_first_fire: bool = true
@@ -20,6 +21,11 @@ func _physics_process(delta):
 		player_move()
 	else:
 		move(delta)
+		
+	var speed_rate : float = _velocity.length() / speed
+	var fire_scale = Vector2.ONE * speed_rate * 0.5
+	for fire in _fires.get_children():
+		fire.scale = fire_scale
 
 func move(delta: float):
 	if not is_valid_target():
@@ -27,7 +33,7 @@ func move(delta: float):
 		if global_position.distance_to(FleetManager.player.global_position) < limit_distance and collision_shape.disabled:
 			collision_shape.disabled = false
 		if follow_timer.is_stopped():
-			follow_timer.start()
+			follow_timer.start(5)
 	else:
 		if global_position.distance_to(_target.global_position) > distance_fire:
 			direction = global_position.direction_to(_target.global_position)

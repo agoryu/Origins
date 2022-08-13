@@ -1,0 +1,25 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://UI/PowerUp/Resources/ShipResources/SpecShipResource.gd" type="Script" id=1]
+[ext_resource path="res://SpaceElements/Characters/Allies/RadarShip/RadarShipIcon.png" type="Texture" id=2]
+[ext_resource path="res://SpaceElements/Characters/Allies/RadarShip/RadarShip.tscn" type="PackedScene" id=3]
+
+[resource]
+script = ExtResource( 1 )
+rarity = 0
+ship_scene = ExtResource( 3 )
+name = "RadarShip"
+image = ExtResource( 2 )
+max_ship = 1
+life = 5
+life_random = 2
+weapon = 2
+weapon_random = 1
+energy = 5
+energy_random = 2
+energy_consume = 5
+energy_consume_random = 1
+speed = 300
+speed_random = 50
+cooldown = 5
+cooldown_random = 1

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/direction.png-30bdfa08f7348edfd4160e79dd54c307.stex"
+path="res://.import/Radar.png-2708195d548e740fd6cb74e7d6701e9f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://SpaceElements/Characters/Allies/RadarShip/direction.png"
-dest_files=[ "res://.import/direction.png-30bdfa08f7348edfd4160e79dd54c307.stex" ]
+source_file="res://SpaceElements/Characters/Allies/RadarShip/Radar.png"
+dest_files=[ "res://.import/Radar.png-2708195d548e740fd6cb74e7d6701e9f.stex" ]
 
 [params]
 

@@ -49,6 +49,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://SpaceElements/Characters/Enemies/Enemy.gd"
 }, {
+"base": "Area2D",
+"class": "EnergyCharge",
+"language": "GDScript",
+"path": "res://Bonus/EnergyCharge/EnergyCharge.gd"
+}, {
 "base": "GlobalManager",
 "class": "EnergyManager",
 "language": "GDScript",
@@ -128,6 +133,7 @@ _global_script_class_icons={
 "CustomCard": "",
 "CustomShipManager": "",
 "Enemy": "",
+"EnergyCharge": "",
 "EnergyManager": "",
 "GlobalManager": "",
 "GlobalSpecResource": "",

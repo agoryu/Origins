@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://SpaceElements/Characters/Allies/XWing/XWing.gd" type="Script" id=1]
 [ext_resource path="res://Effects/Shield/Shield.tscn" type="PackedScene" id=2]
 [ext_resource path="res://UI/ProgressBar/SpaceProgressBar.tscn" type="PackedScene" id=3]
 [ext_resource path="res://SpaceElements/Characters/Allies/XWing/XWing.png" type="Texture" id=4]
+[ext_resource path="res://SpaceElements/Characters/Allies/XWing/fire.png" type="Texture" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 24.0
@@ -49,7 +50,6 @@ speed = 300.0
 energy_consume = 4
 energy_reserve = 20
 limit_distance = 200
-cool_down = null
 max_damage = 5
 min_energy_consume = 1
 max_life = 15
@@ -58,14 +58,52 @@ max_life = 15
 scale = Vector2( 0.05, 0.05 )
 texture = ExtResource( 4 )
 
+[node name="Fires" type="Node2D" parent="Sprite"]
+
+[node name="Fire1" type="Sprite" parent="Sprite/Fires"]
+position = Vector2( -458.424, 411.213 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 5 )
+
+[node name="Fire2" type="Sprite" parent="Sprite/Fires"]
+position = Vector2( -338.949, 410.426 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 5 )
+
+[node name="Fire3" type="Sprite" parent="Sprite/Fires"]
+position = Vector2( -60, 20 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 5 )
+
+[node name="Fire4" type="Sprite" parent="Sprite/Fires"]
+position = Vector2( 60, 20 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 5 )
+
+[node name="Fire5" type="Sprite" parent="Sprite/Fires"]
+position = Vector2( 340, 411.564 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 5 )
+
+[node name="Fire6" type="Sprite" parent="Sprite/Fires"]
+position = Vector2( 460.496, 411.066 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 5 )
+
 [node name="Shield" parent="." instance=ExtResource( 2 )]
 visible = false
 position = Vector2( 3.8147e-06, 3.8147e-06 )
 scale = Vector2( 1.25, 1.25 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 8 )
 shape = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="FollowTimer" type="Timer" parent="."]
 wait_time = 5.0
@@ -74,15 +112,26 @@ one_shot = true
 [node name="DetectionZone" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 18
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionZone"]
 shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="FireTimer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
 
 [node name="Weapons" type="Node2D" parent="."]
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 
 [node name="FirstShoot" type="Node2D" parent="Weapons"]
 

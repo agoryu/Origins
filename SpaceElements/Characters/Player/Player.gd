@@ -5,6 +5,8 @@ class_name Player
 onready var laser_shoot_constructore = preload("res://SpaceElements/Weapons/LaserShoot/LaserShoot.tscn")
 
 onready var _engine_audio = $EnginePlayer
+onready var _fire1 = $Sprite/Fire1
+onready var _fire2 = $Sprite/Fire2
 
 var weapon_uses : int = 1
 
@@ -27,6 +29,10 @@ func _physics_process(delta: float) -> void:
 		_engine_audio.play()
 	elif direction == Vector2.ZERO and _engine_audio.playing: 
 		_engine_audio.stop()
+		
+	var speed_rate : float = _velocity.length() / speed
+	_fire1.scale = Vector2.ONE * speed_rate * 0.2
+	_fire2.scale = Vector2.ONE * speed_rate * 0.2
 
 func _on_ShootTimer_timeout():
 	var laser_shoot = laser_shoot_constructore.instance()

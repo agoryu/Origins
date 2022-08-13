@@ -4,6 +4,7 @@ class_name AddShipManager
 
 var ship_resources: Array = [
 	preload("res://UI/PowerUp/Resources/ShipResources/Enterprise.tres"),
+	preload("res://UI/PowerUp/Resources/ShipResources/RadarShip.tres"),
 	preload("res://UI/PowerUp/Resources/ShipResources/XWing.tres")
 ]
 

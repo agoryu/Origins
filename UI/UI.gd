@@ -19,7 +19,7 @@ func level_up(value : int, max_value : int, warning_level : int):
 	update_xp(value)
 	_xp_level.max_value = max_value
 	_power_up_screen.level_up()
-	anim_menu(1445, 1045)
+	anim_menu(1445, 1075)
 	_overlay.visible = true
 	
 func _unhandled_input(event):
@@ -43,7 +43,7 @@ func anim_menu(start_position: int, end_position: int):
 	_tween.start()
 
 func _on_PowerUpScreen_close_menu():
-	anim_menu(1045, 1445)
+	anim_menu(1075, 1445)
 	_overlay.visible = false
 	Game.stop_pause()
 	
