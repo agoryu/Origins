@@ -12,7 +12,7 @@ func _ready():
 	Game.player = self
 	Game.fleet_points = $PlayerNodes/FleetPoints
 	Game.player_nodes = $PlayerNodes
-	Game._fleet_tab.push_back(self)
+	Game.fleet_tab.push_back(self)
 	_weapon = $Weapons
 	is_player = true
 

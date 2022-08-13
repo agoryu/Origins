@@ -1,20 +1,33 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://UI/EnergyIndicator/EnergyIndicator.png" type="Texture" id=1]
 [ext_resource path="res://UI/EnergyIndicator/EnergyIndicator.gd" type="Script" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+
+[sub_resource type="StyleBoxFlat" id=2]
+
+[sub_resource type="Theme" id=3]
+ProgressBar/colors/font_color = Color( 0.94, 0.94, 0.94, 1 )
+ProgressBar/colors/font_color_shadow = Color( 0, 0, 0, 1 )
+ProgressBar/fonts/font = null
+ProgressBar/styles/bg = SubResource( 1 )
+ProgressBar/styles/fg = SubResource( 2 )
 
 [node name="EnergyIndicator" type="TextureProgress"]
 pause_mode = 1
 margin_right = 5000.0
 margin_bottom = 5200.0
 rect_scale = Vector2( 0.04, 0.04 )
+theme = SubResource( 3 )
 max_value = 500.0
 value = 500.0
 texture_under = ExtResource( 1 )
 texture_progress = ExtResource( 1 )
 fill_mode = 4
-tint_under = Color( 0.243137, 0.243137, 0.243137, 1 )
-tint_progress = Color( 0.980392, 0.392157, 0.392157, 1 )
+tint_under = Color( 0.0196078, 0.0666667, 0.243137, 1 )
+tint_progress = Color( 0.709804, 0.223529, 0.223529, 1 )
+nine_patch_stretch = true
 script = ExtResource( 2 )
 
 [node name="EnergyTimer" type="Timer" parent="."]

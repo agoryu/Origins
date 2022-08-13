@@ -2,7 +2,7 @@ extends Camera2D
 
 onready var timer : Timer = $Timer
 
-var shake_amount : float = 3.0
+var shake_amount : float = 5.0
 
 func _ready():
 	Game.connect("shake_screen", self, "begin_shake")

@@ -59,7 +59,7 @@ func move_ally(delta: float, player):
 	
 func loose_ally():
 	Game.add_energy(-energy_consume)
-	Game._fleet_tab.erase(self)
+	Game.fleet_tab.erase(self)
 	queue_free()
 	
 func player_move():

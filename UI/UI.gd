@@ -3,10 +3,13 @@ extends CanvasLayer
 onready var _xp_level = $HBoxContainer/XPLevel
 onready var _power_up_screen = $PowerUpScreen
 onready var _tween = $PowerUpScreen/Tween
+onready var _overlay = $Overlay
 
 func _ready():
 	Game.connect("update_xp", self, "update_xp")
 	Game.connect("level_up", self, "level_up")
+	Game.connect("make_pause", self, "make_pause")
+	Game.connect("stop_pause", self, "stop_pause")
 	_xp_level.max_value = Game.max_xp_value
 	
 func update_xp(value : int):
@@ -17,6 +20,7 @@ func level_up(value : int, max_value : int, warning_level : int):
 	_xp_level.max_value = max_value
 	_power_up_screen.level_up()
 	anim_menu(1445, 1075)
+	_overlay.visible = true
 	
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
@@ -40,4 +44,11 @@ func anim_menu(start_position: int, end_position: int):
 
 func _on_PowerUpScreen_close_menu():
 	anim_menu(1075, 1445)
+	_overlay.visible = false
 	Game.stop_pause()
+	
+func make_pause():
+	_overlay.visible = true
+	
+func stop_pause():
+	_overlay.visible = false
