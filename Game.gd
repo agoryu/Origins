@@ -8,8 +8,12 @@ signal make_pause
 signal add_energy
 signal update_max_energy
 signal shake_screen
+signal start_alert
+signal stop_alert
 
 onready var tree = get_tree()
+
+var is_on_pause: bool = false
 
 # XP management
 var xp : int = 0
@@ -25,6 +29,7 @@ func init():
 
 func game_over():
 	tree.paused = true
+	stop_alert()
 	emit_signal("game_over")
 
 func add_xp(value: int):
@@ -64,3 +69,9 @@ func add_max_energy(value: int):
 	
 func shake_screen():
 	emit_signal("shake_screen")
+
+func start_alert():
+	emit_signal("start_alert")
+	
+func stop_alert():
+	emit_signal("stop_alert")

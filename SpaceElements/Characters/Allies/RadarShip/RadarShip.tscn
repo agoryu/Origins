@@ -47,8 +47,8 @@ tracks/0/keys = {
 }
 
 [node name="RadarShip" type="KinematicBody2D" groups=["ally"]]
-collision_mask = 0
 script = ExtResource( 5 )
+limit_distance = 200
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.2, 0.2 )

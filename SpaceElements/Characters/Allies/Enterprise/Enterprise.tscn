@@ -42,7 +42,6 @@ tracks/0/keys = {
 }
 
 [node name="Enterprise" type="KinematicBody2D" groups=["ally"]]
-collision_mask = 0
 script = ExtResource( 1 )
 speed = 250.0
 drag = 20.0

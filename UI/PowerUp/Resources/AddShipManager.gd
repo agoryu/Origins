@@ -50,7 +50,7 @@ func check_validity(ship: SpecShipResources, fleet: Array) -> bool:
 	for ship_fleet in fleet:
 		if ship.ship_scene.resource_path == (ship_fleet as Ally).filename:
 			nb_type_ship += 1
-	return nb_type_ship <= ship.max_ship
+	return nb_type_ship < ship.max_ship
 	
 func randomize_value(value: int, randomness: int) -> int:
 	var rand_value = randi() % ((value + randomness) - (value - randomness))

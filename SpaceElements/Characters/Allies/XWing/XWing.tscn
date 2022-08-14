@@ -44,7 +44,6 @@ tracks/0/keys = {
 }
 
 [node name="XWing" type="KinematicBody2D" groups=["ally"]]
-collision_mask = 0
 script = ExtResource( 1 )
 speed = 300.0
 energy_consume = 4

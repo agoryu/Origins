@@ -25,6 +25,7 @@ func level_up(value : int, max_value : int, warning_level : int):
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
 		Game.make_pause()
+		Game.is_on_pause = true
 	elif event.is_action_released("switch_left"):
 		FleetManager.switch_ship(-1)
 	elif event.is_action_released("switch_right"):

@@ -54,7 +54,7 @@ func move_ally(delta: float, player):
 	
 	if player_distance < min_distance:
 		direction = global_position.direction_to(player.global_position).rotated(PI/2)
-	elif current_direction == Vector2.ZERO and player_distance > limit_distance:
+	elif player_distance > limit_distance:
 		direction = global_position.direction_to(player.global_position)
 	else:
 		direction = current_direction

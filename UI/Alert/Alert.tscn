@@ -1,0 +1,73 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://UI/Alert/alarm.wav" type="AudioStream" id=1]
+[ext_resource path="res://UI/Alert/Alert.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.960784, 0.160784, 0.141176, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AudioStreamPlayer:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "begin_alert"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 2.46229, 1 ),
+"update": 0,
+"values": [ Color( 0.960784, 0.160784, 0.141176, 0 ), Color( 0.960784, 0.160784, 0.141176, 0.392157 ), Color( 0.960784, 0.160784, 0.141176, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AudioStreamPlayer:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[node name="Alert" type="ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.960784, 0.160784, 0.141176, 0 )
+script = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 1 )
+anims/begin_alert = SubResource( 2 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )

@@ -47,12 +47,12 @@ tracks/0/keys = {
 }
 
 [node name="Player" type="KinematicBody2D"]
-collision_mask = 0
 script = ExtResource( 1 )
 speed = 300.0
 drag = 10.0
 damage_caused = 3
 energy_consume = 5
+limit_distance = 200
 max_damage = 15
 min_energy_consume = 1
 max_life = 50
