@@ -12,6 +12,7 @@ var energy_consume : int = 1
 
 func _init():
 	energy_consume = 1
+	fleet_tab = []
 
 func add_ally(ally):
 	var pos = find_position()
