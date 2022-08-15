@@ -53,7 +53,7 @@ func move_ally(delta: float, player):
 	var player_distance = global_position.distance_to(player.global_position)
 	
 	if player_distance < min_distance:
-		direction = global_position.direction_to(player.global_position).rotated(PI/2)
+		direction = Vector2.ZERO#global_position.direction_to(player.global_position).rotated(PI/2)
 	elif player_distance > limit_distance:
 		direction = global_position.direction_to(player.global_position)
 	else:
@@ -63,7 +63,7 @@ func move_ally(delta: float, player):
 	
 func loose_ally():
 	Game.add_energy(-energy_consume)
-	FleetManager.fleet_tab.erase(self)
+	FleetManager.remove_ally(self)
 	queue_free()
 	
 func player_move():

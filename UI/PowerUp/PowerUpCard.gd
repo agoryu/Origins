@@ -15,11 +15,12 @@ func _ready():
 	add_stylebox_override("focus", override_style_focus)
 
 func _on_PowerUpCard_button_up():
+	release_focus()
 	match powerup.powerup_type:
 		SpecPowerUpResource.POWERUP_TYPE.ADD_SHIP:
 			add_ship()
 		SpecPowerUpResource.POWERUP_TYPE.ENERGY_UP:
-			var card = get_child(0) as CustomCard
+			var card = get_child(0) as EnergyCard
 			Game.add_max_energy(card.value)
 		SpecPowerUpResource.POWERUP_TYPE.CUSTOM_SHIP:
 			var card = (get_child(0) as CustomCard)
@@ -27,6 +28,7 @@ func _on_PowerUpCard_button_up():
 			var ship = card.ship
 			ship.animation_player.stop()
 			ship.animation_player.play("RESET")
+			print("RESET VALIDATION")
 			match sub_powerup.custom_ship_type:
 				SpecCustomShipResource.CUSTOM_SHIP_TYPE.ADD_SHIELD:
 					ship.add_shield_value(value)
@@ -38,7 +40,6 @@ func _on_PowerUpCard_button_up():
 				SpecCustomShipResource.CUSTOM_SHIP_TYPE.REDUCE_ENERGY_CONSUME:
 					ship.reduce_energy_consume(value)
 					
-	release_focus()
 	emit_signal("close_menu")
 
 func set_rarity(color: Color):
@@ -59,11 +60,13 @@ func add_ship():
 
 func _on_PowerUpCard_focus_entered():
 	var child = get_child(0)
-	if child is CustomCard and (child as CustomCard).ship != null:
+	if child.is_in_group("custom") and (child as CustomCard).ship != null:
 		(child as CustomCard).ship.animation_player.play("blink")
+		print("BLINK")
 
 func _on_PowerUpCard_focus_exited():
 	var child = get_child(0)
-	if child is CustomCard and (child as CustomCard).ship != null:
+	if child.is_in_group("custom") and (child as CustomCard).ship != null:
 		(child as CustomCard).ship.animation_player.stop()
 		(child as CustomCard).ship.animation_player.play("RESET")
+		print("RESET FOCUS")

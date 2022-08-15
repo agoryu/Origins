@@ -42,7 +42,7 @@ void fragment(){
 	vec2 ratio = obj_size / screen_resolution;    // This gives the ratio of object to screen
 	float magnify_value = (magnification - 1.0) / magnification; // Maps the magnification value to range[0.0, 1.0)
 	                                                                // while magnification is higher than 1.0
-	if(is_round){
+	if(is_round) {
 		magnify_value /= smoothstep(0.0, 1.0, length(UV - vec2(0.5))) * roundness + 1.0; // It slightly reduces the magnification 
 	}                                                                                    // of points that are far to the center 
 

@@ -1,14 +1,16 @@
 extends Camera2D
 
-onready var timer : Timer = $Timer
+onready var _timer : Timer = $Timer
+onready var _tween : Tween = $Tween
 
 var shake_amount : float = 5.0
 
 func _ready():
 	Game.connect("shake_screen", self, "begin_shake")
+	FleetManager.connect("update_allies", self, "update_allies")
 
 func _process(delta):
-	if !timer.is_stopped():
+	if !_timer.is_stopped():
 		offset = Vector2(
 			rand_range(-1.0, 1.0) * shake_amount,
 			rand_range(-1.0, 1.0) * shake_amount
@@ -23,4 +25,10 @@ func _process(delta):
 	global_position = FleetManager.player.global_position
 
 func begin_shake():
-	timer.start()
+	_timer.start()
+
+func update_allies(nb_allies: int):
+	var new_zoom = Vector2.ONE * (1.0 + float(nb_allies) / 10.0)
+	_tween.interpolate_property(self, "zoom", zoom, new_zoom, 1.0, Tween.TRANS_LINEAR)
+	_tween.start()
+	

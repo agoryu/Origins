@@ -59,7 +59,10 @@ func restart():
 	init()
 	for object in tree.get_nodes_in_group("object"):
 		object.queue_free()
+	for object in tree.get_nodes_in_group("weapon"):
+		object.queue_free()
 	tree.reload_current_scene()
+	FleetManager.fleet_tab.clear()
 	
 func exit():
 	tree.quit()

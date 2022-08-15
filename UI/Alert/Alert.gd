@@ -19,4 +19,5 @@ func start_alert():
 	
 func stop_alert():
 	_animation_player.stop()
+	_animation_player.play("RESET")
 	is_playing = false

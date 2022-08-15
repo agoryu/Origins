@@ -11,8 +11,8 @@ __meta__ = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="ParallaxLayer"]
-margin_right = 1440.0
-margin_bottom = 920.0
+margin_right = 50000.0
+margin_bottom = 50000.0
 color = Color( 0.0666667, 0.0941176, 0.168627, 1 )
 script = ExtResource( 1 )
 

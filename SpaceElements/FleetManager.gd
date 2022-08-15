@@ -1,5 +1,7 @@
 extends Node
 
+signal update_allies
+
 var player : Ally
 
 # Fleet
@@ -23,6 +25,11 @@ func add_ally(ally):
 	ally.set_as_toplevel(true)
 	FleetManager.energy_consume += ally.energy_consume
 	Game.add_max_energy(ally.energy_reserve)
+	emit_signal("update_allies", fleet_tab.size())
+	
+func remove_ally(ally: Ally):
+	fleet_tab.erase(ally)
+	emit_signal("update_allies", fleet_tab.size())
 	
 func find_position() -> Area2D:
 	for i in range(fleet_points.get_child_count()):
