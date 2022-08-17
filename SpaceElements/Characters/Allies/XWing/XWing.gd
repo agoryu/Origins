@@ -18,14 +18,15 @@ func _ready():
 
 func _physics_process(delta):
 	if is_player:
-		player_move()
+		player_move(delta)
 	else:
 		move(delta)
 		
-	var speed_rate : float = _velocity.length() / speed
-	var fire_scale = Vector2.ONE * speed_rate * 0.5
-	for fire in _fires.get_children():
-		fire.scale = fire_scale
+	if wait_time_collision == 0:
+		var speed_rate : float = _velocity.length() / speed
+		var fire_scale = Vector2.ONE * speed_rate * 0.5
+		for fire in _fires.get_children():
+			fire.scale = fire_scale
 
 func move(delta: float):
 	if not is_valid_target():

@@ -21,7 +21,7 @@ func _on_PowerUpCard_button_up():
 			add_ship()
 		SpecPowerUpResource.POWERUP_TYPE.ENERGY_UP:
 			var card = get_child(0) as EnergyCard
-			Game.add_max_energy(card.value)
+			FleetManager.add_max_energy(card.value)
 		SpecPowerUpResource.POWERUP_TYPE.CUSTOM_SHIP:
 			var card = (get_child(0) as CustomCard)
 			var value = card.value

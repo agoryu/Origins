@@ -45,7 +45,8 @@ tracks/0/keys = {
 
 [node name="XWing" type="KinematicBody2D" groups=["ally"]]
 script = ExtResource( 1 )
-speed = 300.0
+speed = 320.0
+drag = 5.0
 energy_consume = 4
 energy_reserve = 20
 limit_distance = 300

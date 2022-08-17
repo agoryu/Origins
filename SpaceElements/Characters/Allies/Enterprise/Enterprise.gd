@@ -8,13 +8,14 @@ onready var _fire2 = $Sprite/Fire2
 
 func _physics_process(delta):
 	if is_player:
-		player_move()
+		player_move(delta)
 	else:
 		move_ally(delta, FleetManager.player)
 		
-	var speed_rate : float = _velocity.length() / speed
-	_fire1.scale = Vector2.ONE * speed_rate * 0.2
-	_fire2.scale = Vector2.ONE * speed_rate * 0.2
+	if wait_time_collision == 0:
+		var speed_rate : float = _velocity.length() / speed
+		_fire1.scale = Vector2.ONE * speed_rate * 0.2
+		_fire2.scale = Vector2.ONE * speed_rate * 0.2
 
 func _on_LaserBeamTimer_timeout():
 	_laser_beam.set_is_casting(true)

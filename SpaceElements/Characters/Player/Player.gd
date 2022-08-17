@@ -18,10 +18,14 @@ func _ready():
 	FleetManager.energy_consume = energy_consume
 	_weapon = $Weapons
 	is_player = true
+	
+	FleetManager.add_ally(preload("res://SpaceElements/Characters/Allies/Enterprise/Enterprise.tscn").instance())
+	FleetManager.add_ally(preload("res://SpaceElements/Characters/Allies/XWing/XWing.tscn").instance())
+	FleetManager.add_ally(preload("res://SpaceElements/Characters/Allies/RadarShip/RadarShip.tscn").instance())
 
 func _physics_process(delta: float) -> void:
 	if is_player:
-		player_move()
+		player_move(delta)
 	else:
 		move_ally(delta, FleetManager.player)
 	
@@ -30,15 +34,17 @@ func _physics_process(delta: float) -> void:
 	elif direction == Vector2.ZERO and _engine_audio.playing: 
 		_engine_audio.stop()
 		
-	var speed_rate : float = _velocity.length() / speed
-	_fire1.scale = Vector2.ONE * speed_rate * 0.2
-	_fire2.scale = Vector2.ONE * speed_rate * 0.2
+	if wait_time_collision == 0:
+		var speed_rate : float = _velocity.length() / speed
+		_fire1.scale = Vector2.ONE * speed_rate * 0.2
+		_fire2.scale = Vector2.ONE * speed_rate * 0.2
 
 func _on_ShootTimer_timeout():
 	var laser_shoot = laser_shoot_constructore.instance()
 	laser_shoot.global_position = _weapon.get_child(weapon_uses).global_position
 	laser_shoot.rotation = _sprite.rotation
+	laser_shoot.scale.x *= 1.5
 	add_child(laser_shoot)
 	laser_shoot.set_as_toplevel(true)
 	laser_shoot.damage_caused += damage_added
-	weapon_uses = (weapon_uses + 1) % 2	
+	weapon_uses = (weapon_uses + 1) % 2

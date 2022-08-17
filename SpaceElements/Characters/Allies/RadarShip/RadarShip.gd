@@ -12,14 +12,15 @@ onready var _fire2 = $Sprite/Fire2
 
 func _physics_process(delta):
 	if is_player:
-		player_move()
+		player_move(delta)
 	else:
 		move_ally(delta, FleetManager.player)
 		
 	_radar.rotate(PI/30.0)
-	var speed_rate : float = _velocity.length() / speed
-	_fire1.scale = Vector2.ONE * speed_rate * 0.2
-	_fire2.scale = Vector2.ONE * speed_rate * 0.2
+	if wait_time_collision == 0:
+		var speed_rate : float = _velocity.length() / speed
+		_fire1.scale = Vector2.ONE * speed_rate * 0.2
+		_fire2.scale = Vector2.ONE * speed_rate * 0.2
 
 
 func _on_RadarTimer_timeout():

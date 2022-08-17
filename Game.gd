@@ -6,7 +6,6 @@ signal game_over
 signal close_menu
 signal make_pause
 signal add_energy
-signal update_max_energy
 signal shake_screen
 signal start_alert
 signal stop_alert
@@ -66,9 +65,6 @@ func restart():
 	
 func exit():
 	tree.quit()
-
-func add_max_energy(value: int):
-	emit_signal("update_max_energy", value)
 	
 func shake_screen():
 	emit_signal("shake_screen")

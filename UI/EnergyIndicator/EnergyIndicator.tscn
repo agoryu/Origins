@@ -31,6 +31,5 @@ nine_patch_stretch = true
 script = ExtResource( 2 )
 
 [node name="EnergyTimer" type="Timer" parent="."]
-autostart = true
 
 [connection signal="timeout" from="EnergyTimer" to="." method="_on_EnergyTimer_timeout"]

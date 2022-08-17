@@ -17,7 +17,10 @@ export var max_life = 20
 
 var direction = Vector2.ZERO
 var is_player = false setget set_is_player
-var is_selected = false
+
+# Manage collision
+export var MAX_WAIT_TIME_COLLISION = 25
+var wait_time_collision = 0
 
 func add_damage(value: int):
 	damage_added += value
@@ -52,21 +55,33 @@ func move_ally(delta: float, player):
 	var current_direction = get_gamepad_direction()
 	var player_distance = global_position.distance_to(player.global_position)
 	
-	if player_distance < min_distance:
-		direction = Vector2.ZERO#global_position.direction_to(player.global_position).rotated(PI/2)
-	elif player_distance > limit_distance:
-		direction = global_position.direction_to(player.global_position)
-	else:
+	if get_slide_count() > 0 and wait_time_collision == 0:
+		wait_time_collision = MAX_WAIT_TIME_COLLISION
 		direction = current_direction
+		for index_collision in range(get_slide_count()):
+			var ally_collision = get_slide_collision(index_collision).collider as Ally
+			direction -= ally_collision.direction
+		direction /= 2.0
+		
+		
+	if player_distance < min_distance:
+			direction = global_position.direction_to(player.global_position).rotated(PI/2)
+	elif wait_time_collision == 0:
+		if player_distance > limit_distance:
+			direction = global_position.direction_to(player.global_position)
+		else:
+			direction = current_direction
+	else:
+		wait_time_collision -= 1
 		
 	move_in_direction(direction)
 	
 func loose_ally():
-	Game.add_energy(-energy_consume)
+	FleetManager.add_max_energy(-energy_consume)
 	FleetManager.remove_ally(self)
 	queue_free()
 	
-func player_move():
+func player_move(delta: float):
 		direction = get_gamepad_direction()
 		move_in_direction(direction)
 

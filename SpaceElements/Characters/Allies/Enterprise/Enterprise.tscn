@@ -43,7 +43,7 @@ tracks/0/keys = {
 
 [node name="Enterprise" type="KinematicBody2D" groups=["ally"]]
 script = ExtResource( 1 )
-speed = 250.0
+speed = 300.0
 drag = 20.0
 damage_caused = 2
 energy_consume = 8

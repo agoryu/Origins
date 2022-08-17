@@ -19,6 +19,6 @@ func explose():
 	get_tree().root.add_child(explosion)
 
 func dead():
-	get_xp()
+#	get_xp()
 	explose()
 	queue_free()

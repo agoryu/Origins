@@ -5,6 +5,7 @@ class_name Character
 onready var _life: SpaceProgressBar = $Life
 onready var _shield: Shield = $Shield
 onready var _sprite: Sprite = $Sprite
+onready var _collision: CollisionShape2D = $CollisionShape2D
 onready var _weapon: Node2D = null
 
 var damage_added = 0
@@ -28,5 +29,6 @@ func move_in_direction(direction: Vector2):
 	.move_in_direction(direction)
 	
 	_sprite.rotation = _velocity.angle() + PI / 2
+	_collision.rotation = _velocity.angle() + PI / 2
 	if _weapon:
 		_weapon.rotation = _sprite.rotation

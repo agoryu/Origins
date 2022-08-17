@@ -1,6 +1,7 @@
 extends Node
 
 signal update_allies
+signal update_max_energy
 
 var player : Ally
 
@@ -24,7 +25,7 @@ func add_ally(ally):
 	fleet_tab.push_front(ally)
 	ally.set_as_toplevel(true)
 	FleetManager.energy_consume += ally.energy_consume
-	Game.add_max_energy(ally.energy_reserve)
+	add_max_energy(ally.energy_reserve)
 	emit_signal("update_allies", fleet_tab.size())
 	
 func remove_ally(ally: Ally):
@@ -40,9 +41,12 @@ func find_position() -> Area2D:
 	
 func switch_ship(direction: int):
 	if fleet_tab.size() > 0:
-		var index = (fleet_tab.find(player) + direction) % (fleet_tab.size() - 1)
+		var index = (fleet_tab.find(player) + direction) % fleet_tab.size()
 		player.is_player = false
 		player.remove_child(player_nodes)
 		player = fleet_tab[index]
 		player.is_player = true
 		player.add_child(player_nodes)
+		
+func add_max_energy(value: int):
+	emit_signal("update_max_energy", value)
