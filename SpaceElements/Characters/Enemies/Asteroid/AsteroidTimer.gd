@@ -11,4 +11,6 @@ func spawn_element(spawn_location: PathFollow2D):
 	asteroid.global_rotation = direction + PI/2
 	asteroid.set_as_toplevel(true)
 	
+	asteroid.set_scale_damage(randi() % 3 + 1)
+	
 	add_child(asteroid)

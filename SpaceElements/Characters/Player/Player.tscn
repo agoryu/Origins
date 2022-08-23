@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://SpaceElements/Characters/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://UI/ProgressBar/SpaceProgressBar.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://SpaceElements/Characters/Player/PlayerShip.png" type="Texture" id=4]
 [ext_resource path="res://SpaceElements/Characters/Player/engine.wav" type="AudioStream" id=5]
 [ext_resource path="res://SpaceElements/Characters/Player/fire.png" type="Texture" id=6]
+[ext_resource path="res://SpaceElements/Characters/Player/blure_fire.png" type="Texture" id=8]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 32.249
@@ -18,36 +19,13 @@ extents = Vector2( 32, 32 )
 
 [sub_resource type="Animation" id=6]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
-}
 
 [sub_resource type="Animation" id=7]
 resource_name = "blink"
 loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.588235 ), Color( 1, 1, 1, 1 ) ]
-}
 
 [node name="Player" type="KinematicBody2D"]
+collision_mask = 65
 script = ExtResource( 1 )
 speed = 300.0
 drag = 10.0
@@ -61,19 +39,32 @@ max_life = 50
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 4 )
-__meta__ = {
-"_edit_lock_": true
-}
 
-[node name="Fire2" type="Sprite" parent="Sprite"]
+[node name="Fire" type="Node2D" parent="Sprite"]
+
+[node name="Fire2" type="Sprite" parent="Sprite/Fire"]
 position = Vector2( 35, 220 )
 scale = Vector2( 0.15, 0.15 )
 texture = ExtResource( 6 )
 
-[node name="Fire1" type="Sprite" parent="Sprite"]
+[node name="Fire1" type="Sprite" parent="Sprite/Fire"]
 position = Vector2( -35, 220 )
 scale = Vector2( 0.15, 0.15 )
 texture = ExtResource( 6 )
+
+[node name="Fire3" type="Sprite" parent="Sprite/Fire"]
+position = Vector2( -124.977, 223.305 )
+rotation = -0.0349066
+scale = Vector2( 0.25, 0.8 )
+z_index = -10
+texture = ExtResource( 8 )
+
+[node name="Fire6" type="Sprite" parent="Sprite/Fire"]
+position = Vector2( 125, 220 )
+rotation = 0.0349066
+scale = Vector2( 0.25, 0.8 )
+z_index = -10
+texture = ExtResource( 8 )
 
 [node name="Shield" parent="." instance=ExtResource( 3 )]
 visible = false

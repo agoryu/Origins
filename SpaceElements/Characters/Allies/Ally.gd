@@ -18,10 +18,6 @@ export var max_life = 20
 var direction = Vector2.ZERO
 var is_player = false setget set_is_player
 
-# Manage collision
-export var MAX_WAIT_TIME_COLLISION = 25
-var wait_time_collision = 0
-
 func add_damage(value: int):
 	damage_added += value
 	

@@ -1,18 +1,58 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://SpaceElements/Characters/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Camera/Camera.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Game/Spawner.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Effects/Background/ParallaxBackground.tscn" type="PackedScene" id=4]
 
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 25816, 15.5 )
+
 [node name="Origins" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 25000, 25000 )
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 4 )]
 
 [node name="Camera" parent="." instance=ExtResource( 2 )]
+position = Vector2( 25000, 25000 )
+limit_left = 0
+limit_top = 0
+limit_right = 50000
+limit_bottom = 50000
+limit_smoothed = true
 offset_h = 0.0
 
 [node name="Spawner" parent="Camera" instance=ExtResource( 3 )]
 position = Vector2( -816, -472 )
+
+[node name="Limits" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Limits"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Limits/StaticBody2D"]
+position = Vector2( 25760, -16 )
+shape = SubResource( 1 )
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Limits"]
+position = Vector2( 0, 50000 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Limits/StaticBody2D2"]
+position = Vector2( 25760, -16 )
+shape = SubResource( 1 )
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Limits"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Limits/StaticBody2D3"]
+position = Vector2( 0, 25000 )
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Limits"]
+position = Vector2( 50000, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Limits/StaticBody2D4"]
+position = Vector2( 0, 25000 )
+rotation = 1.5708
+shape = SubResource( 1 )

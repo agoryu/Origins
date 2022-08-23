@@ -6,8 +6,8 @@ var _energy_up_manager = EnergyManager.new()
 
 var powerup_resources: Array = [
 	preload("res://UI/PowerUp/Resources/PowerUpResources/AddShip.tres"),
-	preload("res://UI/PowerUp/Resources/PowerUpResources/CustomShip.tres"),
-	preload("res://UI/PowerUp/Resources/PowerUpResources/EnergyUp.tres")
+	preload("res://UI/PowerUp/Resources/PowerUpResources/CustomShip.tres")
+#	preload("res://UI/PowerUp/Resources/PowerUpResources/EnergyUp.tres")
 ]
 
 var powerup_tab = []

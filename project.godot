@@ -239,6 +239,7 @@ switch_left={
 2d_physics/layer_4="object"
 2d_physics/layer_5="asteroid"
 2d_physics/layer_6="enemy_weapon"
+2d_physics/layer_7="field"
 
 [physics]
 
