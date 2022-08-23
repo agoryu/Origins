@@ -36,7 +36,7 @@ func add_xp(value: int):
 	if xp >= max_xp_value:
 		warning_level += 1
 		xp -= max_xp_value
-		tree.paused = true
+#		tree.paused = true
 		max_xp_value += 1
 		emit_signal("level_up", xp, max_xp_value, warning_level)
 	else:
