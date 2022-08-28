@@ -15,8 +15,12 @@ export var max_speed = 50
 export var min_energy_consume = 4
 export var max_life = 20
 
+const MAX_LVL = 10
+
 var direction = Vector2.ZERO
 var is_player = false setget set_is_player
+var lvl : int = 0
+var first_group : String = ""
 
 func add_damage(value: int):
 	damage_added += value
@@ -40,6 +44,7 @@ func impact_damage(value: int):
 		else:
 			Game.game_over()
 	Game.shake_screen()
+	animation_player.play("blink")
 	
 func get_gamepad_direction():
 	return Vector2(
@@ -83,3 +88,7 @@ func player_move(delta: float):
 
 func set_is_player(value: bool):
 	is_player = value
+
+func lvl_up():
+	if lvl + 1 < MAX_LVL:
+		lvl += 1

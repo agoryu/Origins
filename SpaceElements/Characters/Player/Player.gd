@@ -17,10 +17,7 @@ func _ready():
 	_weapon = $Weapons
 	_fire = $Sprite/Fire
 	is_player = true
-	
-#	FleetManager.add_ally(preload("res://SpaceElements/Characters/Allies/Enterprise/Enterprise.tscn").instance())
-#	FleetManager.add_ally(preload("res://SpaceElements/Characters/Allies/XWing/XWing.tscn").instance())
-#	FleetManager.add_ally(preload("res://SpaceElements/Characters/Allies/RadarShip/RadarShip.tscn").instance())
+	first_group = "player"
 
 func _physics_process(delta: float) -> void:
 	if is_player:

@@ -9,7 +9,7 @@ func _init():
 	
 # Calculate score for determination of rarity of object
 func calculate_score_value(value_bonus: float, min_value: float, max_value: float) -> int:
-	var step = (max_value - min_value) / float(GlobalSpecResource.RARITY.size())
+	var step : int = (max_value - min_value) / GlobalSpecResource.RARITY.size()
 	for i in nb_rarity - 1:
 		if value_bonus >= min_value + ((nb_rarity - i) * step):
 			return nb_rarity - i - 1

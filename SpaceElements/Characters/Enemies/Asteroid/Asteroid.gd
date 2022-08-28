@@ -2,8 +2,15 @@ extends Weapon
 
 class_name Asteroid
 
+onready var _sprite = $Sprite
+var speed_rotation : float
+
+func _ready():
+	speed_rotation = (PI / ((randi() % 5 + 5) * 10)) * (1 if (randi() % 6 < 3) else -1)
+
 func _physics_process(delta):
 	var direction = Vector2(sin(rotation), -cos(rotation))
+	_sprite.rotate(speed_rotation)
 	move_and_collide(direction.normalized() * speed * delta)
 
 func _on_VisibilityNotifier2D_screen_exited():

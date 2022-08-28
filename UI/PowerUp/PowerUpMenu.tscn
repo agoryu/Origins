@@ -1,63 +1,129 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://UI/PowerUp/powerup.wav" type="AudioStream" id=1]
-[ext_resource path="res://UI/PowerUp/PowerUpCard.tscn" type="PackedScene" id=5]
+[ext_resource path="res://UI/label_theme_size_18.tres" type="Theme" id=2]
 [ext_resource path="res://UI/PowerUp/PowerUpMenu.gd" type="Script" id=6]
 
 [sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0.00392157, 0, 0.290196, 0.784314 )
+bg_color = Color( 0.00392157, 0, 0.290196, 0.705882 )
 border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
 border_color = Color( 0, 0.592157, 0.705882, 1 )
 border_blend = true
 corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
+expand_margin_left = 15.0
+expand_margin_right = 15.0
+expand_margin_top = 15.0
+expand_margin_bottom = 15.0
+shadow_color = Color( 0, 0.592157, 0.705882, 1 )
+shadow_size = 4
 
 [sub_resource type="Theme" id=3]
 PanelContainer/styles/panel = SubResource( 2 )
 
-[sub_resource type="Theme" id=1]
-VBoxContainer/constants/separation = 50
-
 [node name="PowerUpScreen" type="PanelContainer"]
-anchor_bottom = 1.0
-margin_right = 384.0
+pause_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -400.0
+margin_top = -125.0
+margin_right = 400.0
+margin_bottom = 125.0
+rect_min_size = Vector2( 800, 250 )
+rect_scale = Vector2( 1e-05, 1e-05 )
+rect_pivot_offset = Vector2( 400, 125 )
 theme = SubResource( 3 )
 script = ExtResource( 6 )
 
-[node name="CardBox" type="VBoxContainer" parent="."]
-pause_mode = 2
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_left = 5.0
-margin_right = 384.0
-margin_bottom = 920.0
-theme = SubResource( 1 )
+margin_top = 5.0
+margin_right = 795.0
+margin_bottom = 245.0
 
-[node name="PowerUpCard" parent="CardBox" instance=ExtResource( 5 )]
-margin_left = 79.0
-margin_top = 40.0
-margin_right = 379.0
-margin_bottom = 232.0
-size_flags_horizontal = 8
-size_flags_vertical = 6
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_right = 790.0
+margin_bottom = 23.0
+theme = ExtResource( 2 )
+text = "Select Power UP"
+align = 1
+valign = 1
 
-[node name="PowerUpCard2" parent="CardBox" instance=ExtResource( 5 )]
-margin_left = 79.0
-margin_top = 363.0
-margin_right = 379.0
-margin_bottom = 555.0
-size_flags_horizontal = 8
-size_flags_vertical = 6
+[node name="CardBox" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 27.0
+margin_right = 790.0
+margin_bottom = 226.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="PowerUpCard3" parent="CardBox" instance=ExtResource( 5 )]
-margin_left = 79.0
-margin_top = 687.0
-margin_right = 379.0
-margin_bottom = 879.0
-size_flags_horizontal = 8
-size_flags_vertical = 6
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 230.0
+margin_right = 790.0
+margin_bottom = 240.0
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/HBoxContainer"]
+margin_right = 790.0
+margin_bottom = 10.0
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/CenterContainer"]
+margin_left = 362.0
+margin_right = 428.0
+margin_bottom = 10.0
+size_flags_horizontal = 3
+
+[node name="Common" type="ColorRect" parent="VBoxContainer/HBoxContainer/CenterContainer/HBoxContainer"]
+margin_right = 10.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 10, 10 )
+size_flags_horizontal = 4
+size_flags_vertical = 0
+color = Color( 0.0901961, 0.611765, 0.815686, 1 )
+
+[node name="Rare" type="ColorRect" parent="VBoxContainer/HBoxContainer/CenterContainer/HBoxContainer"]
+margin_left = 14.0
+margin_right = 24.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 10, 10 )
+size_flags_horizontal = 4
+size_flags_vertical = 0
+color = Color( 0.247059, 0.815686, 0.0901961, 1 )
+
+[node name="SuperRare" type="ColorRect" parent="VBoxContainer/HBoxContainer/CenterContainer/HBoxContainer"]
+margin_left = 28.0
+margin_right = 38.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 10, 10 )
+size_flags_horizontal = 4
+size_flags_vertical = 0
+color = Color( 0.815686, 0.788235, 0.0901961, 1 )
+
+[node name="Extraodinary" type="ColorRect" parent="VBoxContainer/HBoxContainer/CenterContainer/HBoxContainer"]
+margin_left = 42.0
+margin_right = 52.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 10, 10 )
+size_flags_horizontal = 4
+size_flags_vertical = 0
+color = Color( 0.815686, 0.482353, 0.0901961, 1 )
+
+[node name="Legendary" type="ColorRect" parent="VBoxContainer/HBoxContainer/CenterContainer/HBoxContainer"]
+margin_left = 56.0
+margin_right = 66.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 10, 10 )
+size_flags_horizontal = 4
+size_flags_vertical = 0
+color = Color( 0.592157, 0.333333, 0.854902, 1 )
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 1 )
 
-[connection signal="close_menu" from="CardBox/PowerUpCard" to="." method="_on_PowerUpCard_close_menu"]
-[connection signal="close_menu" from="CardBox/PowerUpCard2" to="." method="_on_PowerUpCard_close_menu"]
-[connection signal="close_menu" from="CardBox/PowerUpCard3" to="." method="_on_PowerUpCard_close_menu"]
+[node name="Tween" type="Tween" parent="."]

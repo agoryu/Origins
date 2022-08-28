@@ -18,9 +18,6 @@ func _on_EnergyTimer_timeout():
 	elif is_alert and value > (percent_alert_threshold * max_value) / 100:
 		Game.stop_alert()
 		is_alert = false
-	
-	print("Max value : " + String(max_value))
-	print("Consume : " + String(FleetManager.energy_consume))
 		
 func add_energy(energy: int):
 	value += energy
@@ -28,5 +25,3 @@ func add_energy(energy: int):
 func update_max_energy(max_energy: int):
 	max_value += max_energy
 	value += max_energy
-	print("Max value : " + String(max_value))
-	print("Consume : " + String(FleetManager.energy_consume))

@@ -10,3 +10,4 @@ custom_ship_type = 2
 min_value = 3
 max_value = 8
 icon = ExtResource( 2 )
+description = ""

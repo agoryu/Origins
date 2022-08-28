@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/playership.png-00228b29e07a8ec50ee8ab85603f1513.stex"
+path="res://.import/Energy.png-e80872d44d6ab318a7ef1fa1326ef8d2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://SpaceElements/Characters/Player/playership.png"
-dest_files=[ "res://.import/playership.png-00228b29e07a8ec50ee8ab85603f1513.stex" ]
+source_file="res://UI/EnergyIndicator/Energy.png"
+dest_files=[ "res://.import/Energy.png-e80872d44d6ab318a7ef1fa1326ef8d2.stex" ]
 
 [params]
 

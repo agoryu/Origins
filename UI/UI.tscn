@@ -94,16 +94,8 @@ margin_right = 4960.0
 margin_bottom = 4912.0
 
 [node name="PowerUpScreen" parent="." instance=ExtResource( 10 )]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = 5.0
-margin_right = 371.0
-
-[node name="Tween" type="Tween" parent="PowerUpScreen"]
 
 [node name="Alert" parent="." instance=ExtResource( 5 )]
 
 [node name="Menu" parent="." instance=ExtResource( 7 )]
 visible = false
-
-[connection signal="close_menu" from="PowerUpScreen" to="." method="_on_PowerUpScreen_close_menu"]
