@@ -3,12 +3,13 @@ extends Character
 class_name Ally
 
 onready var animation_player: AnimationPlayer = $AnimationPlayer
+onready var shoot_timer: Timer = $ShootTimer
 
 export var energy_consume = 1
 export var energy_reserve = 1
 export var limit_distance = 500
 export var min_distance = 100
-export var cooldown = 5
+export var min_cooldown : float = 0.2
 
 export var max_damage = 10
 export var max_speed = 50

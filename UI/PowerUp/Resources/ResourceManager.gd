@@ -30,7 +30,9 @@ func get_card(fleet: Array, tree) -> Control:
 # Randomize value of card
 func randomize_value(card: Button, fleet: Array, tree):
 	if card is CustomCard:
-		randomize_custom_ship(card, fleet, tree)
+		if not randomize_custom_ship(card, fleet, tree):
+			pass
+			# randomize ship
 #	card.powerup.POWERUP_TYPE.ADD_SHIP:
 #			randomize_add_ship(card, card_child as AddShipCard, fleet)
 #		card.powerup.POWERUP_TYPE.CUSTOM_SHIP:
@@ -41,8 +43,8 @@ func randomize_value(card: Button, fleet: Array, tree):
 func randomize_add_ship(card: PowerUpCard, card_child: AddShipCard, fleet: Array):
 	_add_ship_manager.add_ship_card(card, card_child, fleet)
 	
-func randomize_custom_ship(card: CustomCard, fleet: Array, tree):
-	_custom_ship_manager.add_custom_card(card, fleet, tree)
+func randomize_custom_ship(card: CustomCard, fleet: Array, tree) -> bool:
+	return _custom_ship_manager.add_custom_card(card, fleet, tree)
 	
 func randomize_energy_up(card: PowerUpCard, card_child: EnergyCard):
 	_energy_up_manager.add_energy_up(card, card_child)

@@ -5,9 +5,8 @@
 
 [resource]
 script = ExtResource( 1 )
-rarity = 1
+rarity = 2
 custom_ship_type = 0
 min_value = 2
 max_value = 8
 icon = ExtResource( 2 )
-description = "Life boost"

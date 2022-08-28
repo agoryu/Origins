@@ -44,9 +44,12 @@ func _on_Card_button_up():
 			SpecCustomShipResource.CUSTOM_SHIP_TYPE.BOOST_LIFE:
 				ship._life.max_value += value
 				ship._life.value += value
-				print(ship._life.max_value)
 			SpecCustomShipResource.CUSTOM_SHIP_TYPE.BOOST_WEAPON:
 				ship.add_damage(value)
 			SpecCustomShipResource.CUSTOM_SHIP_TYPE.REDUCE_ENERGY_CONSUME:
 				ship.reduce_energy_consume(value)
+			SpecCustomShipResource.CUSTOM_SHIP_TYPE.SPEED:
+				ship.speed += value
+			SpecCustomShipResource.CUSTOM_SHIP_TYPE.COOLDOWN:
+				ship.shoot_timer.wait_time -= float(value) / 100.0
 	emit_signal("custom_selected")

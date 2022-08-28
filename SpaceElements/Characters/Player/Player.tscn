@@ -55,7 +55,8 @@ drag = 10.0
 damage_caused = 3
 energy_consume = 5
 limit_distance = 200
-max_damage = 15
+max_damage = 30
+max_speed = 500
 min_energy_consume = 1
 max_life = 50
 
