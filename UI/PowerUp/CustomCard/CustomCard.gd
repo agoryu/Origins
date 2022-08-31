@@ -52,4 +52,5 @@ func _on_Card_button_up():
 				ship.speed += value
 			SpecCustomShipResource.CUSTOM_SHIP_TYPE.COOLDOWN:
 				ship.shoot_timer.wait_time -= float(value) / 100.0
+		ship.lvl_up()
 	emit_signal("custom_selected")

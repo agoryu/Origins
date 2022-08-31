@@ -91,5 +91,7 @@ func set_is_player(value: bool):
 	is_player = value
 
 func lvl_up():
-	if lvl + 1 < MAX_LVL:
+	if lvl + 1 <= MAX_LVL:
 		lvl += 1
+	if lvl == MAX_LVL:
+		FleetManager.max_lvl_ship()

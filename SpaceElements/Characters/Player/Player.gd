@@ -39,3 +39,14 @@ func _on_ShootTimer_timeout():
 	laser_shoot.set_as_toplevel(true)
 	laser_shoot.damage_caused += damage_added
 	weapon_uses = (weapon_uses + 1) % 2
+	
+func lvl_up():
+	.lvl_up()
+	if lvl >= MAX_LVL:
+		$Weapons/Option1.visible = true
+		$Weapons/Option2.visible = true
+		$BeamTimer.start()
+
+func _on_BeamTimer_timeout():
+	$Weapons/LaserBeam1.set_is_casting(true)
+	$Weapons/LaserBeam2.set_is_casting(true)

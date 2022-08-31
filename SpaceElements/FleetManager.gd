@@ -2,6 +2,7 @@ extends Node
 
 signal update_allies
 signal update_max_energy
+signal max_lvl_ship
 
 var player : Ally
 
@@ -50,3 +51,6 @@ func switch_ship(direction: int):
 		
 func add_max_energy(value: int):
 	emit_signal("update_max_energy", value)
+	
+func max_lvl_ship():
+	emit_signal("max_lvl_ship")

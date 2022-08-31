@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://SpaceElements/Characters/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://UI/ProgressBar/SpaceProgressBar.tscn" type="PackedScene" id=2]
@@ -6,7 +6,9 @@
 [ext_resource path="res://SpaceElements/Characters/Player/PlayerShip.png" type="Texture" id=4]
 [ext_resource path="res://SpaceElements/Characters/Player/engine.wav" type="AudioStream" id=5]
 [ext_resource path="res://SpaceElements/Characters/Player/fire.png" type="Texture" id=6]
+[ext_resource path="res://SpaceElements/Weapons/LaserBeam/LaserBeam.tscn" type="PackedScene" id=7]
 [ext_resource path="res://SpaceElements/Characters/Player/blure_fire.png" type="Texture" id=8]
+[ext_resource path="res://SpaceElements/Characters/Player/Option.png" type="Texture" id=9]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 32.249
@@ -90,10 +92,6 @@ scale = Vector2( 0.25, 0.8 )
 z_index = -10
 texture = ExtResource( 8 )
 
-[node name="Shield" parent="." instance=ExtResource( 3 )]
-visible = false
-position = Vector2( 0, 4 )
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 4 )
 shape = SubResource( 1 )
@@ -108,6 +106,39 @@ position = Vector2( -6, -14 )
 
 [node name="Weapon2" type="Position2D" parent="Weapons"]
 position = Vector2( 6, -14 )
+
+[node name="LaserBeam1" parent="Weapons" instance=ExtResource( 7 )]
+modulate = Color( 0.964706, 0.172549, 0.172549, 1 )
+position = Vector2( -56, 0 )
+rotation = -1.5708
+scale = Vector2( 1, 0.6 )
+max_length = 2000
+
+[node name="LaserBeam2" parent="Weapons" instance=ExtResource( 7 )]
+modulate = Color( 0.964706, 0.172549, 0.172549, 1 )
+position = Vector2( 56, 0 )
+rotation = -1.5708
+scale = Vector2( 1, 0.6 )
+damage_caused = 2
+max_length = 2000
+
+[node name="Option1" type="Sprite" parent="Weapons"]
+visible = false
+position = Vector2( -56, 0 )
+rotation = -1.5708
+scale = Vector2( 0.05, 0.05 )
+texture = ExtResource( 9 )
+
+[node name="Option2" type="Sprite" parent="Weapons"]
+visible = false
+position = Vector2( 56, 0 )
+rotation = -1.5708
+scale = Vector2( 0.05, 0.05 )
+texture = ExtResource( 9 )
+
+[node name="Shield" parent="." instance=ExtResource( 3 )]
+visible = false
+position = Vector2( 0, 4 )
 
 [node name="ObjectArea" type="Area2D" parent="."]
 __meta__ = {
@@ -207,4 +238,8 @@ pause_mode = 2
 anims/RESET = SubResource( 6 )
 anims/blink = SubResource( 7 )
 
+[node name="BeamTimer" type="Timer" parent="."]
+wait_time = 5.0
+
 [connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]
+[connection signal="timeout" from="BeamTimer" to="." method="_on_BeamTimer_timeout"]
