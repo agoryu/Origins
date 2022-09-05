@@ -6,6 +6,8 @@ export var speed = 1000.0
 export var drag := 4.0
 export var damage_caused : int = 1
 
+onready var _collision: CollisionShape2D = $CollisionShape2D
+
 var _velocity = Vector2.ZERO
 
 func impact_damage(value_of_damage: int):

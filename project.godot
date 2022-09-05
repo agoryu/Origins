@@ -9,7 +9,7 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "HBoxContainer",
+"base": "Button",
 "class": "AddShipCard",
 "language": "GDScript",
 "path": "res://UI/PowerUp/AddShipCard/AddShipCard.gd"
@@ -49,20 +49,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://SpaceElements/Characters/Enemies/Enemy.gd"
 }, {
-"base": "HBoxContainer",
-"class": "EnergyCard",
-"language": "GDScript",
-"path": "res://UI/PowerUp/EnergyCard/EnergyCard.gd"
-}, {
 "base": "Area2D",
 "class": "EnergyCharge",
 "language": "GDScript",
 "path": "res://Bonus/EnergyCharge/EnergyCharge.gd"
-}, {
-"base": "GlobalManager",
-"class": "EnergyManager",
-"language": "GDScript",
-"path": "res://UI/PowerUp/Resources/EnergyManager.gd"
 }, {
 "base": "Node",
 "class": "GlobalManager",
@@ -73,6 +63,16 @@ _global_script_classes=[ {
 "class": "GlobalSpecResource",
 "language": "GDScript",
 "path": "res://UI/PowerUp/Resources/GlobalSpecResource.gd"
+}, {
+"base": "Weapon",
+"class": "Gun",
+"language": "GDScript",
+"path": "res://SpaceElements/Weapons/Gun/Gun.gd"
+}, {
+"base": "Ally",
+"class": "Hunter",
+"language": "GDScript",
+"path": "res://SpaceElements/Characters/Allies/Hunter.gd"
 }, {
 "base": "Weapon",
 "class": "LaserBeam",
@@ -89,10 +89,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://SpaceElements/Characters/Player/Player.gd"
 }, {
-"base": "Button",
-"class": "PowerUpCard",
+"base": "PanelContainer",
+"class": "PowerupMenu",
 "language": "GDScript",
-"path": "res://UI/PowerUp/PowerUpCard.gd"
+"path": "res://UI/PowerUp/PowerUpMenu.gd"
 }, {
 "base": "Sprite",
 "class": "Shield",
@@ -124,6 +124,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://UI/PowerUp/Resources/ShipResources/SpecShipResource.gd"
 }, {
+"base": "Hunter",
+"class": "Viper",
+"language": "GDScript",
+"path": "res://SpaceElements/Characters/Allies/Viper/Viper.gd"
+}, {
 "base": "SpaceElement",
 "class": "Weapon",
 "language": "GDScript",
@@ -138,21 +143,22 @@ _global_script_class_icons={
 "CustomCard": "",
 "CustomShipManager": "",
 "Enemy": "",
-"EnergyCard": "",
 "EnergyCharge": "",
-"EnergyManager": "",
 "GlobalManager": "",
 "GlobalSpecResource": "",
+"Gun": "",
+"Hunter": "",
 "LaserBeam": "",
 "LaserShoot": "",
 "Player": "",
-"PowerUpCard": "",
+"PowerupMenu": "",
 "Shield": "",
 "SpaceElement": "",
 "SpaceProgressBar": "",
 "SpecCustomShipResource": "",
 "SpecPowerUpResource": "",
 "SpecShipResources": "",
+"Viper": "",
 "Weapon": ""
 }
 

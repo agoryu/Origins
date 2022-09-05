@@ -18,5 +18,5 @@ export var energy_consume = 5
 export var energy_consume_random = 1
 export var speed = 300
 export var speed_random = 50
-export var cooldown = 5
-export var cooldown_random = 1
+export var cooldown = 5.0
+export var cooldown_random = 1.0

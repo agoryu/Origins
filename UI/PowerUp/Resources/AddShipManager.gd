@@ -3,7 +3,8 @@ extends GlobalManager
 class_name AddShipManager
 
 var ship_resources: Array = [
-#	preload("res://UI/PowerUp/Resources/ShipResources/Enterprise.tres"),
+	preload("res://UI/PowerUp/Resources/ShipResources/Viper.tres")
+#	preload("res://UI/PowerUp/Resources/ShipResources/Enterprise.tres")
 #	preload("res://UI/PowerUp/Resources/ShipResources/RadarShip.tres"),
 #	preload("res://UI/PowerUp/Resources/ShipResources/XWing.tres")
 ]
@@ -15,7 +16,7 @@ func _init():
 		for i in range(nb_rarity - ship_resource.rarity):
 			ship_tab.push_back(ship_resource)
 
-func add_ship_card(card: PowerUpCard, card_child: AddShipCard, fleet: Array):
+func add_ship_card(card: AddShipCard, fleet: Array):
 	var is_valid_ship : bool = false
 	var ship: SpecShipResources = null
 	
@@ -24,15 +25,15 @@ func add_ship_card(card: PowerUpCard, card_child: AddShipCard, fleet: Array):
 		ship = ship_tab[ship_index] as SpecShipResources
 		is_valid_ship = check_validity(ship, fleet)
 		
-	card.sub_powerup = ship
-	card_child.icon.texture = ship.image
+	card.powerup = ship
+	card._icon.texture = ship.image
 	var life = randomize_value(ship.life, ship.life_random)
 	var weapon = randomize_value(ship.weapon, ship.weapon_random)
 	var energy = randomize_value(ship.energy, ship.energy_random)
 	var energy_consume = randomize_value(ship.energy_consume, ship.energy_consume_random)
 	var speed = randomize_value(ship.speed, ship.speed_random)
-	var cooldown = randomize_value(ship.cooldown, ship.cooldown_random)
-	card_child.set_ship(life, weapon, energy, energy_consume, speed, cooldown)
+	var cooldown = randomize_value_float(ship.cooldown, ship.cooldown_random)
+	card.set_ship(life, weapon, energy, energy_consume, speed, cooldown)
 	
 	var rarity = (
 		ship.rarity + 
@@ -55,3 +56,7 @@ func check_validity(ship: SpecShipResources, fleet: Array) -> bool:
 func randomize_value(value: int, randomness: int) -> int:
 	var rand_value = randi() % ((value + randomness) - (value - randomness))
 	return (value - randomness) + rand_value
+	
+func randomize_value_float(value: float, randomness: float) -> float:
+	var rand_value = fmod(randf(), ((value + randomness) - (value - randomness)))
+	return stepify((value - randomness) + rand_value, 0.01)

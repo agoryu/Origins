@@ -21,9 +21,9 @@ func _ready():
 
 func _physics_process(delta: float) -> void:
 	if is_player:
-		player_move(delta)
+		player_move()
 	else:
-		move_ally(delta, FleetManager.player)
+		move_ally()
 	
 	if direction != Vector2.ZERO and not _engine_audio.playing:
 		_engine_audio.play()

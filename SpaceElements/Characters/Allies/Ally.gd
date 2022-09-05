@@ -7,14 +7,14 @@ onready var shoot_timer: Timer = $ShootTimer
 
 export var energy_consume = 1
 export var energy_reserve = 1
-export var limit_distance = 500
-export var min_distance = 100
 export var min_cooldown : float = 0.2
-
 export var max_damage = 10
 export var max_speed = 50
 export var min_energy_consume = 4
 export var max_life = 20
+
+var limit_distance = 150
+var min_distance = 100
 
 const MAX_LVL = 10
 
@@ -53,8 +53,9 @@ func get_gamepad_direction():
 		Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 	).normalized()
 	
-func move_ally(delta: float, player):
+func move_ally():
 	var current_direction = get_gamepad_direction()
+	var player = FleetManager.player
 	var player_distance = global_position.distance_to(player.global_position)
 	
 	if get_slide_count() > 0 and wait_time_collision == 0:
@@ -83,7 +84,7 @@ func loose_ally():
 	FleetManager.remove_ally(self)
 	queue_free()
 	
-func player_move(delta: float):
+func player_move():
 		direction = get_gamepad_direction()
 		move_in_direction(direction)
 
@@ -95,3 +96,9 @@ func lvl_up():
 		lvl += 1
 	if lvl == MAX_LVL:
 		FleetManager.max_lvl_ship()
+		
+func set_cooldown(value: float):
+	shoot_timer.wait_time = value
+	
+func set_speed(value: int):
+	speed += value

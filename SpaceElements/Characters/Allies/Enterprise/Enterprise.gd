@@ -1,6 +1,5 @@
 extends Ally
 
-onready var _laser_beam_timer = $LaserBeamTimer
 onready var _laser_beam = $Sprite/LaserBeam
 
 onready var _fire1 = $Sprite/Fire1
@@ -8,9 +7,9 @@ onready var _fire2 = $Sprite/Fire2
 
 func _physics_process(delta):
 	if is_player:
-		player_move(delta)
+		player_move()
 	else:
-		move_ally(delta, FleetManager.player)
+		move_ally()
 		
 	if wait_time_collision == 0:
 		var speed_rate : float = _velocity.length() / speed

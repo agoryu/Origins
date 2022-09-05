@@ -1,15 +1,13 @@
-extends Ally
+extends Hunter
 
 export var distance_fire: int = 100
 
 onready var laser_shoot_constructore = preload("res://SpaceElements/Weapons/LaserShoot/LaserShoot.tscn")
 onready var collision_shape = $CollisionShape2D
-onready var detection_zone = $DetectionZone
 onready var follow_timer = $FollowTimer
 onready var fire_timer = $FireTimer
 onready var _fires = $Sprite/Fires
 
-var _target = null
 var _is_first_fire: bool = true
 
 func _ready():
@@ -60,9 +58,6 @@ func _on_FollowTimer_timeout():
 		collision_shape.disabled = true
 	else:
 		follow_timer.start(1)
-
-func is_valid_target() -> bool:
-	return _target != null and is_instance_valid(_target)
 
 func _on_FireTimer_timeout():
 	fire()

@@ -3,8 +3,7 @@ class_name SpecPowerUpResource
 
 enum POWERUP_TYPE {
 	ADD_SHIP,
-	CUSTOM_SHIP,
-	ENERGY_UP
+	CUSTOM_SHIP
 }
 
 export (RARITY) var rarity: int = 0

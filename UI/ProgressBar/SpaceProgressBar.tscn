@@ -1,20 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://SpaceElements/Characters/Lifebar.tres" type="Theme" id=1]
 [ext_resource path="res://UI/ProgressBar/SpaceProgressBar.gd" type="Script" id=2]
-
-[sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0.0470588, 0.686275, 0.133333, 1 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color( 0.117647, 0.286275, 0.690196, 1 )
-border_blend = true
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
 
 [node name="SpaceProgressBar" type="ProgressBar"]
 margin_left = -24.0
@@ -22,7 +9,6 @@ margin_top = -56.0
 margin_right = 24.0
 margin_bottom = -42.0
 theme = ExtResource( 1 )
-custom_styles/fg = SubResource( 3 )
 max_value = 3.0
 step = 1.0
 value = 3.0

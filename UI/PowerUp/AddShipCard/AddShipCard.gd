@@ -1,28 +1,50 @@
-extends HBoxContainer
+extends Button
 
 class_name AddShipCard
 
-var icon = null
-var _life = null
-var _weapon = null
-var _energy = null
-var _energy_consume = null
-var _speed = null
-var _cooldown = null
+signal custom_selected
 
-func _init():
-	icon = $Icon
-	_life = $Stats/Life/Value
-	_weapon = $Stats/Weapon/Value
-	_energy = $Stats/Energy/Value
-	_energy_consume = $Stats/EnergyConsume/Value
-	_speed = $Stats/Speed/Value
-	_cooldown = $Stats/Cooldown/Value
+onready var _icon = $HBoxContainer/ShipContainer/Icon
+onready var _life = $HBoxContainer/StatsContainer/Stats/Life
+onready var _weapon = $HBoxContainer/StatsContainer/Stats/Weapon
+onready var _energy = $HBoxContainer/StatsContainer/Stats/Energy
+onready var _energy_consume = $HBoxContainer/StatsContainer/Stats/EnergyConsume
+onready var _speed = $HBoxContainer/StatsContainer/Stats/Speed
+onready var _cooldown = $HBoxContainer/StatsContainer/Stats/Cooldown
 
-func set_ship(life: int, weapon: int, energy: int, energy_consume: int, speed: int, cooldown: int):
-	_life.text = String(life)
-	_weapon.text = String(weapon)
-	_energy.text = String(energy)
-	_energy_consume.text = String(energy_consume)
-	_speed.text = String(speed)
-	_cooldown.text = String(cooldown)
+var override_style = get_stylebox("normal").duplicate()
+var override_style_focus = get_stylebox("focus").duplicate()
+
+var powerup: SpecShipResources = null
+
+func _ready():
+	add_stylebox_override("normal", override_style)
+	add_stylebox_override("focus", override_style_focus)
+
+func set_ship(life: int, weapon: int, energy: int, energy_consume: int, speed: int, cooldown: float):
+	_life.value = life
+	_weapon.value = weapon
+	_energy.value = energy
+	_energy_consume.value = energy_consume
+	_speed.value = speed
+	_cooldown.value = cooldown
+
+func _on_Card_button_up():
+	var ship = powerup.ship_scene.instance() as Ally
+	FleetManager.add_ally(ship)
+	ship._life.max_value = _life.value
+	ship._life.value = _life.value
+	ship.damage_caused = _weapon.value
+	ship.energy_reserve = _energy.value
+	ship.energy_consume = _energy_consume.value
+	ship.speed = _speed.value
+	ship.set_cooldown(_cooldown.value)
+	emit_signal("custom_selected")
+	
+func set_rarity(color: Color):
+	override_style.border_color = color
+	override_style_focus.border_color = color
+	override_style.bg_color = color
+	override_style.bg_color.a = 0.5
+	override_style_focus.bg_color = color
+	override_style_focus.bg_color.a = 0.5

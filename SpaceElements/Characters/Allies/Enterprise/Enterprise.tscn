@@ -48,7 +48,6 @@ drag = 20.0
 damage_caused = 2
 energy_consume = 8
 energy_reserve = 40
-limit_distance = 200
 max_damage = 15
 min_energy_consume = 2
 max_life = 40
@@ -82,7 +81,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="LaserBeamTimer" type="Timer" parent="."]
+[node name="ShootTimer" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
 
@@ -97,4 +96,4 @@ pause_mode = 2
 anims/RESET = SubResource( 2 )
 anims/blink = SubResource( 3 )
 
-[connection signal="timeout" from="LaserBeamTimer" to="." method="_on_LaserBeamTimer_timeout"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_LaserBeamTimer_timeout"]

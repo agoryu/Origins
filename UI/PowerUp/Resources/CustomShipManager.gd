@@ -83,7 +83,7 @@ func _is_valid_customization(
 			SpecCustomShipResource.CUSTOM_SHIP_TYPE.ADD_SHIELD:
 				return true
 			SpecCustomShipResource.CUSTOM_SHIP_TYPE.BOOST_LIFE:
-				if ship._life.value + value > ship.max_life:
+				if ship._life.max_value + value > ship.max_life:
 					return false
 			SpecCustomShipResource.CUSTOM_SHIP_TYPE.BOOST_WEAPON:
 				if ship.damage_added + value > ship.max_damage:
