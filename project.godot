@@ -99,6 +99,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Effects/Shield/Shield.gd"
 }, {
+"base": "Hunter",
+"class": "ShuttlePod",
+"language": "GDScript",
+"path": "res://SpaceElements/Characters/Allies/Enterprise/ShuttlePod/ShuttlePod.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "SpaceElement",
 "language": "GDScript",
@@ -153,6 +158,7 @@ _global_script_class_icons={
 "Player": "",
 "PowerupMenu": "",
 "Shield": "",
+"ShuttlePod": "",
 "SpaceElement": "",
 "SpaceProgressBar": "",
 "SpecCustomShipResource": "",
@@ -246,6 +252,7 @@ switch_left={
 2d_physics/layer_5="asteroid"
 2d_physics/layer_6="enemy_weapon"
 2d_physics/layer_7="field"
+2d_physics/layer_8="player"
 
 [physics]
 

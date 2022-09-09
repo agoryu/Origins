@@ -8,7 +8,7 @@
 [ext_resource path="res://SpaceElements/Characters/Allies/Enterprise/fire.png" type="Texture" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 64.0
+radius = 82.0549
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -24,10 +24,21 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=3]
 resource_name = "blink"
-loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:modulate")
 tracks/0/interp = 1
@@ -35,45 +46,76 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.2, 0.5, 0.7, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.588235 ), Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0.0705882, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0, 0.0705882, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
 }
 
-[node name="Enterprise" type="KinematicBody2D" groups=["ally"]]
+[node name="Enterprise" type="KinematicBody2D" groups=["ally", "enterprise"]]
+collision_mask = 65
 script = ExtResource( 1 )
-speed = 300.0
+speed = 280.0
 drag = 20.0
 damage_caused = 2
 energy_consume = 8
 energy_reserve = 40
 max_damage = 15
+max_speed = 350
 min_energy_consume = 2
 max_life = 40
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 0.3, 0.3 )
+scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 4 )
 
 [node name="LaserBeam" parent="Sprite" instance=ExtResource( 5 )]
 position = Vector2( 0, -240 )
 rotation = -1.5708
 
-[node name="Fire1" type="Sprite" parent="Sprite"]
+[node name="Fire" type="Node2D" parent="Sprite"]
+
+[node name="Fire1" type="Sprite" parent="Sprite/Fire"]
 position = Vector2( -126.667, 300 )
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 6 )
 
-[node name="Fire2" type="Sprite" parent="Sprite"]
+[node name="Fire2" type="Sprite" parent="Sprite/Fire"]
 position = Vector2( 126.667, 300 )
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 6 )
 
+[node name="ShuttlePod" type="Node2D" parent="Sprite"]
+scale = Vector2( 2.5, 2.5 )
+
+[node name="ShuttlePod1" type="Position2D" parent="Sprite/ShuttlePod"]
+position = Vector2( -120, 56 )
+
+[node name="ShuttlePod2" type="Position2D" parent="Sprite/ShuttlePod"]
+position = Vector2( 120, 56 )
+
 [node name="Shield" parent="." instance=ExtResource( 2 )]
 visible = false
-position = Vector2( 2.38419e-06, 4.00001 )
-scale = Vector2( 1.75, 1.6875 )
+position = Vector2( 6.19888e-06, 4 )
+scale = Vector2( 2.375, 2.3125 )
+
+[node name="ShieldBar" parent="Shield" index="0"]
+margin_left = -10.0
+margin_top = -64.0
+margin_right = 10.0
+margin_bottom = -58.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -86,8 +128,8 @@ wait_time = 5.0
 autostart = true
 
 [node name="Life" parent="." instance=ExtResource( 3 )]
-margin_top = -104.0
-margin_bottom = -90.0
+margin_top = -124.0
+margin_bottom = -110.0
 max_value = 8.0
 value = 8.0
 
@@ -97,3 +139,5 @@ anims/RESET = SubResource( 2 )
 anims/blink = SubResource( 3 )
 
 [connection signal="timeout" from="ShootTimer" to="." method="_on_LaserBeamTimer_timeout"]
+
+[editable path="Shield"]

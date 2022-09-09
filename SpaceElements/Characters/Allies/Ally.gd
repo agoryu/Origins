@@ -16,7 +16,7 @@ export var max_life = 20
 var limit_distance = 150
 var min_distance = 100
 
-const MAX_LVL = 10
+const MAX_LVL = 2
 
 var direction = Vector2.ZERO
 var is_player = false setget set_is_player

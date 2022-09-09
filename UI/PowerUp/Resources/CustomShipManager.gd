@@ -3,11 +3,11 @@ extends GlobalManager
 class_name CustomShipManager
 
 var custom_ship_resources: Array = [
-	preload("res://UI/PowerUp/Resources/CustomShipResources/AddShield.tres"),
-	preload("res://UI/PowerUp/Resources/CustomShipResources/BoostLife.tres"),
-	preload("res://UI/PowerUp/Resources/CustomShipResources/BoostWeapon.tres"),
-	preload("res://UI/PowerUp/Resources/CustomShipResources/ReduceEnergyConsume.tres"),
-	preload("res://UI/PowerUp/Resources/CustomShipResources/Speed.tres"),
+#	preload("res://UI/PowerUp/Resources/CustomShipResources/AddShield.tres"),
+#	preload("res://UI/PowerUp/Resources/CustomShipResources/BoostLife.tres"),
+#	preload("res://UI/PowerUp/Resources/CustomShipResources/BoostWeapon.tres"),
+#	preload("res://UI/PowerUp/Resources/CustomShipResources/ReduceEnergyConsume.tres"),
+#	preload("res://UI/PowerUp/Resources/CustomShipResources/Speed.tres"),
 	preload("res://UI/PowerUp/Resources/CustomShipResources/Cooldown.tres")
 ]
 

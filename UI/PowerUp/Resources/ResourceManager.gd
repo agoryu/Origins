@@ -4,8 +4,8 @@ var _add_ship_manager = AddShipManager.new()
 var _custom_ship_manager = CustomShipManager.new()
 
 var powerup_resources: Array = [
-	preload("res://UI/PowerUp/Resources/PowerUpResources/AddShip.tres")
-#	preload("res://UI/PowerUp/Resources/PowerUpResources/CustomShip.tres")
+#	preload("res://UI/PowerUp/Resources/PowerUpResources/AddShip.tres")
+	preload("res://UI/PowerUp/Resources/PowerUpResources/CustomShip.tres")
 ]
 
 var powerup_tab = []
