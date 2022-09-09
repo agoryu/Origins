@@ -3,11 +3,11 @@ extends GlobalManager
 class_name CustomShipManager
 
 var custom_ship_resources: Array = [
-#	preload("res://UI/PowerUp/Resources/CustomShipResources/AddShield.tres"),
-#	preload("res://UI/PowerUp/Resources/CustomShipResources/BoostLife.tres"),
-#	preload("res://UI/PowerUp/Resources/CustomShipResources/BoostWeapon.tres"),
-#	preload("res://UI/PowerUp/Resources/CustomShipResources/ReduceEnergyConsume.tres"),
-#	preload("res://UI/PowerUp/Resources/CustomShipResources/Speed.tres"),
+	preload("res://UI/PowerUp/Resources/CustomShipResources/AddShield.tres"),
+	preload("res://UI/PowerUp/Resources/CustomShipResources/BoostLife.tres"),
+	preload("res://UI/PowerUp/Resources/CustomShipResources/BoostWeapon.tres"),
+	preload("res://UI/PowerUp/Resources/CustomShipResources/ReduceEnergyConsume.tres"),
+	preload("res://UI/PowerUp/Resources/CustomShipResources/Speed.tres"),
 	preload("res://UI/PowerUp/Resources/CustomShipResources/Cooldown.tres")
 ]
 
@@ -73,15 +73,14 @@ func _is_valid_customization(
 ) -> bool:
 	var ship_in_group = tree.get_nodes_in_group(ship_type)
 	for ship in ship_in_group:
+		if customization.custom_ship_type == SpecCustomShipResource.CUSTOM_SHIP_TYPE.ADD_SHIELD:
+			return true
 		if ship.lvl > ship.MAX_LVL:
 			return false
-			
 		match customization.custom_ship_type:
 			SpecCustomShipResource.CUSTOM_SHIP_TYPE.REDUCE_ENERGY_CONSUME:
 				if ship.energy_consume - value < ship.min_energy_consume:
 					return false
-			SpecCustomShipResource.CUSTOM_SHIP_TYPE.ADD_SHIELD:
-				return true
 			SpecCustomShipResource.CUSTOM_SHIP_TYPE.BOOST_LIFE:
 				if ship._life.max_value + value > ship.max_life:
 					return false

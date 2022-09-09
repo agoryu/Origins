@@ -15,8 +15,9 @@ export var max_life = 20
 
 var limit_distance = 150
 var min_distance = 100
+var _initial_speed = speed
 
-const MAX_LVL = 2
+const MAX_LVL = 5
 
 var direction = Vector2.ZERO
 var is_player = false setget set_is_player
@@ -68,11 +69,14 @@ func move_ally():
 		
 		
 	if player_distance < min_distance:
+			speed = min(FleetManager.player.speed, speed)
 			direction = global_position.direction_to(player.global_position).rotated(PI/2)
 	elif wait_time_collision == 0:
 		if player_distance > limit_distance:
+			speed = _initial_speed
 			direction = global_position.direction_to(player.global_position)
 		else:
+			speed = min(FleetManager.player.speed, speed)
 			direction = current_direction
 	else:
 		wait_time_collision -= 1
@@ -102,3 +106,4 @@ func set_cooldown(value: float):
 	
 func set_speed(value: int):
 	speed += value
+	_initial_speed += value

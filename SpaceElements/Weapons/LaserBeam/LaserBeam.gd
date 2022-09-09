@@ -1,5 +1,7 @@
 extends Weapon
 
+signal end_shoot
+
 class_name LaserBeam
 
 onready var fill := $LaserBeam/FillLine
@@ -73,3 +75,6 @@ func set_is_casting(cast: bool):
 
 func _on_Timer_timeout():
 	set_is_casting(false)
+
+func _on_Tween_tween_all_completed():
+	emit_signal("end_shoot")

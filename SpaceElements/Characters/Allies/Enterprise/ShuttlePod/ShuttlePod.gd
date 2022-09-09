@@ -11,7 +11,7 @@ func _ready():
 	_state = STATE.FOLLOW_PLAYER
 	_initial_speed = speed
 	first_group = "shuttlepod"
-	limit_distance = 50
+	min_distance = 50
 
 func _physics_process(delta):
 	move()
@@ -21,8 +21,17 @@ func _on_TargetTimer_timeout():
 
 func _on_ShootTimer_timeout():
 	_laser_beam.set_is_casting(true)
+	yield(_laser_beam, "end_shoot")
 	shoot_counter += 1
 	
 func move_ally():
-	if global_position.distance_to(_position.global_position) > limit_distance:
+	var distance = global_position.distance_to(_position.global_position)
+	
+	if distance > min_distance:
 		move_in_direction(global_position.direction_to(_position.global_position))
+	elif _state == STATE.GO_BACK:
+		_state = STATE.FOLLOW_PLAYER
+	
+func go_back():
+	speed = _initial_speed
+	move_ally()

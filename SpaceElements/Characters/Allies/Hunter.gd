@@ -20,7 +20,6 @@ const DISTANCE_MAX_SPEED = 200
 
 var _target = null
 var _state = null
-var _initial_speed = 0
 var shoot_counter = 0
 
 func is_valid_target() -> bool:
@@ -61,6 +60,7 @@ func move():
 			if _target_timer.is_stopped():
 				_target_timer.start()
 		STATE.FOLLOW_TARGET:
+			speed = _initial_speed
 			if is_valid_target():
 				var target_distance = move_on_target()
 				_collision.disabled = true
@@ -85,9 +85,12 @@ func move():
 			else:
 				move_ally()
 		STATE.GO_BACK:
-			var distance_player = global_position.distance_to(FleetManager.player.global_position)
-			if distance_player <= limit_distance:
-				_state = STATE.FOLLOW_PLAYER
-				_collision.disabled = false
-			speed = _initial_speed
-			move_ally()
+			go_back()
+			
+func go_back():
+	var distance_player = global_position.distance_to(FleetManager.player.global_position)
+	if distance_player <= limit_distance:
+		_state = STATE.FOLLOW_PLAYER
+		_collision.disabled = false
+	speed = _initial_speed
+	move_ally()
