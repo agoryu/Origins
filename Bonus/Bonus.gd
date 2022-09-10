@@ -1,5 +1,7 @@
 extends Area2D
 
+class_name Bonus
+
 export var value : int = 1
 
 const DRAG := 14.0

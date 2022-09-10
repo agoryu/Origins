@@ -18,7 +18,7 @@ func _ready():
 	_fire = $Sprite/Fire
 	is_player = true
 	first_group = "player"
-	FleetManager.add_ally(preload("res://SpaceElements/Characters/Allies/XWing/XWing.tscn").instance())
+#	FleetManager.add_ally(preload("res://SpaceElements/Characters/Allies/XWing/XWing.tscn").instance())
 
 func _physics_process(delta: float) -> void:
 	if is_player:

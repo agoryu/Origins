@@ -35,6 +35,5 @@ func _on_TargetTimer_timeout():
 	
 func lvl_up():
 	.lvl_up()
-	print(String(speed))
 	if lvl >= MAX_LVL:
 		pass

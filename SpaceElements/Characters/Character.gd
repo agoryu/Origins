@@ -11,7 +11,7 @@ onready var _fire: Node2D = null
 var damage_added = 0
 
 # Manage collision
-export var MAX_WAIT_TIME_COLLISION = 25
+export var MAX_WAIT_TIME_COLLISION = 12
 var wait_time_collision = 0
 
 func impact_damage(value: int):
