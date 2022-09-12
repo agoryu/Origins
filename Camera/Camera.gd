@@ -27,8 +27,7 @@ func _process(delta):
 func begin_shake():
 	_timer.start()
 
-func update_allies(nb_allies: int):
-	var new_zoom = Vector2.ONE * (1.0 + float(nb_allies) / 10.0)
-	_tween.interpolate_property(self, "zoom", zoom, new_zoom, 1.0, Tween.TRANS_LINEAR)
+func update_allies(vector_zoom: Vector2):
+	_tween.interpolate_property(self, "zoom", zoom, vector_zoom, 1.0, Tween.TRANS_LINEAR)
 	_tween.start()
 	

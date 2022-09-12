@@ -1,7 +1,6 @@
 extends CanvasLayer
 
-onready var _xp_level = $HBoxContainer/VBoxContainer/XPLevel
-onready var _warning_level = $HBoxContainer/VBoxContainer/HBoxContainer/WarningLevelValue
+onready var _xp_level = $XP/XPLevel
 onready var _power_up_screen = $PowerUpScreen
 onready var _overlay = $Overlay
 onready var _animation_player = $AnimationPlayer
@@ -20,7 +19,6 @@ func update_xp(value : int):
 func level_up(value : int, max_value : int, warning_level : int):
 	update_xp(value)
 	_xp_level.max_value = max_value
-	_warning_level.text = String(warning_level)
 	_overlay.visible = true
 	_power_up_screen.level_up()
 	

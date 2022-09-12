@@ -25,6 +25,8 @@ func set_value(new_value: int):
 
 func _on_Card_button_up():
 	for ship in get_tree().get_nodes_in_group(ship_type):
+		if ship.is_max_lvl():
+			continue
 		match custom_type:
 			SpecCustomShipResource.CUSTOM_SHIP_TYPE.ADD_SHIELD:
 				ship.add_shield_value(value)

@@ -3,6 +3,7 @@ extends Node
 signal update_allies
 signal update_max_energy
 signal max_lvl_ship
+signal loose_ally
 
 var player : Ally
 
@@ -27,11 +28,12 @@ func add_ally(ally):
 	ally.set_as_toplevel(true)
 	FleetManager.energy_consume += ally.energy_consume
 	add_max_energy(ally.energy_reserve)
-	emit_signal("update_allies", fleet_tab.size())
+	emit_signal("update_allies", FleetManager.calc_vector_radius())
 	
 func remove_ally(ally: Ally):
+	add_max_energy(-ally.energy_reserve)
 	fleet_tab.erase(ally)
-	emit_signal("update_allies", fleet_tab.size())
+	emit_signal("update_allies", FleetManager.calc_vector_radius())
 	
 func find_position() -> Area2D:
 	for i in range(fleet_points.get_child_count()):
@@ -58,3 +60,10 @@ func add_max_energy(value: int):
 	
 func max_lvl_ship():
 	emit_signal("max_lvl_ship")
+	
+func calc_vector_radius() -> Vector2:
+	var fleet_radius = 0.0
+	for ally in fleet_tab:
+		if not ally.is_in_group("player"):
+			fleet_radius += (ally as Ally)._collision.shape.radius
+	return Vector2.ONE * (1.0 + fleet_radius / 150.0)

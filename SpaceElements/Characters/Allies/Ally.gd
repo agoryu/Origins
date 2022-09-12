@@ -84,7 +84,6 @@ func move_ally():
 	move_in_direction(direction)
 	
 func loose_ally():
-	FleetManager.add_max_energy(-energy_consume)
 	FleetManager.remove_ally(self)
 	queue_free()
 	
@@ -98,8 +97,11 @@ func set_is_player(value: bool):
 func lvl_up():
 	if lvl + 1 <= MAX_LVL:
 		lvl += 1
-	if lvl == MAX_LVL:
+	if is_max_lvl():
 		FleetManager.max_lvl_ship()
+		
+func is_max_lvl() -> bool:
+	return lvl == MAX_LVL
 		
 func set_cooldown(value: float):
 	shoot_timer.wait_time = value

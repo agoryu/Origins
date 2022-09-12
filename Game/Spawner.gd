@@ -14,5 +14,5 @@ func _on_CylonTimer_timeout():
 func _on_EnergyChargeTimer_timeout():
 	$EnergyChargeTimer.spawn_element(spawn_location)
 	
-func update_allies(nb_allies: int):
-	scale = Vector2.ONE * (1.0 + float(nb_allies) / 10.0)
+func update_allies(vector_scale: Vector2):
+	scale = vector_scale

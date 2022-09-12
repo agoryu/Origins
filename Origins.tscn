@@ -25,6 +25,7 @@ limit_smoothed = true
 offset_h = 0.0
 
 [node name="Spawner" parent="Camera" instance=ExtResource( 3 )]
+pause_mode = 1
 position = Vector2( -816, -472 )
 
 [node name="Limits" type="Node2D" parent="."]
