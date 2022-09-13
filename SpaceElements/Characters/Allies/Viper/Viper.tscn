@@ -101,10 +101,6 @@ margin_bottom = -34.0
 max_value = 8.0
 value = 8.0
 
-[node name="ShootTimer" type="Timer" parent="."]
-wait_time = 0.5
-one_shot = true
-
 [node name="DetectionZone" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 50
@@ -116,14 +112,18 @@ __meta__ = {
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="DetectionZone"]
 shape = SubResource( 2 )
 
-[node name="TargetTimer" type="Timer" parent="."]
-wait_time = 5.0
-one_shot = true
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 pause_mode = 2
 anims/RESET = SubResource( 3 )
 anims/blink = SubResource( 4 )
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="TargetTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
 
 [connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]
 [connection signal="timeout" from="TargetTimer" to="." method="_on_TargetTimer_timeout"]

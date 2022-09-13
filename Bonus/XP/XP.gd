@@ -1,4 +1,6 @@
-extends "res://Bonus/Bonus.gd"
+extends Bonus
+
+onready var _animation_player = $AnimationPlayer
 
 #func _ready():
 #	var warning_level = Game.warning_level
@@ -16,4 +18,4 @@ func _physics_process(delta: float) -> void:
 
 func _on_XP_body_entered(body):
 	Game.add_xp(value)
-	queue_free()
+	_animation_player.play("pickup")

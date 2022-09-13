@@ -70,6 +70,7 @@ func shake_screen():
 	emit_signal("shake_screen")
 
 func start_alert():
+	print("try to start")
 	emit_signal("start_alert")
 	
 func stop_alert():

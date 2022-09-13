@@ -21,5 +21,5 @@ energy_consume = 5
 energy_consume_random = 1
 speed = 300
 speed_random = 50
-cooldown = 5
-cooldown_random = 1
+cooldown = 0.5
+cooldown_random = 0.1

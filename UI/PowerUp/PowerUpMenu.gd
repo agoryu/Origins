@@ -3,6 +3,7 @@ extends PanelContainer
 class_name PowerupMenu
 
 onready var _card_box = $VBoxContainer/CardBox
+onready var _audio_player = $AudioStreamPlayer
 onready var _tween = $Tween
 
 var resource_manager = preload("res://UI/PowerUp/Resources/ResourceManager.gd").new()
@@ -10,7 +11,6 @@ var resource_manager = preload("res://UI/PowerUp/Resources/ResourceManager.gd").
 var open : bool = false
 
 func level_up():
-	$AudioStreamPlayer2D.play()
 	animate()
 	clear_children()
 	for i in range(3):
@@ -18,6 +18,8 @@ func level_up():
 		card.connect("custom_selected", self, "close_power_up_menu")
 		if i == 0:
 			card.grab_focus()
+	if not _audio_player.playing:
+		_audio_player.play()
 
 func close_power_up_menu():
 	Game.stop_pause()

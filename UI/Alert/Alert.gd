@@ -16,6 +16,7 @@ func _process(delta):
 func start_alert():
 	_animation_player.play("begin_alert")
 	is_playing = true
+	print("start")
 	
 func stop_alert():
 	_animation_player.stop()
