@@ -16,3 +16,4 @@ export (CUSTOM_SHIP_TYPE) var custom_ship_type: int = 0
 export var min_value: int = 0
 export var max_value: int = 0
 export var icon: Resource = null
+export var description: String = ""

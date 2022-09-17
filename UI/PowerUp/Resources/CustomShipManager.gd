@@ -44,6 +44,7 @@ func add_custom_card(card: CustomCard, fleet: Array, tree) -> bool:
 	card._icon.texture = custom_ship.icon
 	card._ship_type.texture = ship._sprite.texture
 	card.custom_type = custom_ship.custom_ship_type
+	card._description.text = custom_ship.description
 	var global_rarity = (calculate_score_value(
 		custom_value, 
 		custom_ship.min_value, 

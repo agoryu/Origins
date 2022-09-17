@@ -7,6 +7,7 @@ signal custom_selected
 onready var _icon : NinePatchRect = $VBox/HBox/Icon
 onready var _ship_type : NinePatchRect = $VBox/HBox/ShipType
 onready var _value_label : Label = $VBox/Value
+onready var _description : Label = $VBox/Description
 
 var ship_type = ""
 var value: int = 0 setget set_value
@@ -51,3 +52,7 @@ func set_rarity(color: Color):
 	override_style.bg_color.a = 0.5
 	override_style_focus.bg_color = color
 	override_style_focus.bg_color.a = 0.5
+
+
+func _on_Card_focus_entered():
+	$AudioStreamPlayer.play()

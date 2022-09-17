@@ -10,3 +10,4 @@ custom_ship_type = 3
 min_value = 1
 max_value = 2
 icon = ExtResource( 2 )
+description = "Reduce energy consume"

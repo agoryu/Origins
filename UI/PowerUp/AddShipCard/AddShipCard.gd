@@ -4,13 +4,13 @@ class_name AddShipCard
 
 signal custom_selected
 
-onready var _icon = $HBoxContainer/ShipContainer/Icon
-onready var _life = $HBoxContainer/StatsContainer/Stats/Life
-onready var _weapon = $HBoxContainer/StatsContainer/Stats/Weapon
-onready var _energy = $HBoxContainer/StatsContainer/Stats/Energy
-onready var _energy_consume = $HBoxContainer/StatsContainer/Stats/EnergyConsume
-onready var _speed = $HBoxContainer/StatsContainer/Stats/Speed
-onready var _cooldown = $HBoxContainer/StatsContainer/Stats/Cooldown
+onready var _icon = $VBoxContainer/HBoxContainer/ShipContainer/Icon
+onready var _life = $VBoxContainer/HBoxContainer/StatsContainer/Stats/Life
+onready var _weapon = $VBoxContainer/HBoxContainer/StatsContainer/Stats/Weapon
+onready var _energy = $VBoxContainer/HBoxContainer/StatsContainer/Stats/Energy
+onready var _energy_consume = $VBoxContainer/HBoxContainer/StatsContainer/Stats/EnergyConsume
+onready var _speed = $VBoxContainer/HBoxContainer/StatsContainer/Stats/Speed
+onready var _cooldown = $VBoxContainer/HBoxContainer/StatsContainer/Stats/Cooldown
 
 var override_style = get_stylebox("normal").duplicate()
 var override_style_focus = get_stylebox("focus").duplicate()
@@ -48,3 +48,7 @@ func set_rarity(color: Color):
 	override_style.bg_color.a = 0.5
 	override_style_focus.bg_color = color
 	override_style_focus.bg_color.a = 0.5
+
+
+func _on_Card_focus_entered():
+	$AudioStreamPlayer.play()

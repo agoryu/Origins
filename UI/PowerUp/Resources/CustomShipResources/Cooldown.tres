@@ -10,3 +10,4 @@ custom_ship_type = 5
 min_value = 10
 max_value = 30
 icon = ExtResource( 2 )
+description = "Reduce fire cooldown"

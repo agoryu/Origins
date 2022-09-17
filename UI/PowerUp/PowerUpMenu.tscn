@@ -32,24 +32,24 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -400.0
-margin_top = -125.0
-margin_right = 400.0
-margin_bottom = 125.0
-rect_min_size = Vector2( 800, 250 )
+margin_left = -500.0
+margin_top = -175.0
+margin_right = 500.0
+margin_bottom = 175.0
+rect_min_size = Vector2( 1000, 300 )
 rect_scale = Vector2( 1e-05, 1e-05 )
-rect_pivot_offset = Vector2( 400, 125 )
+rect_pivot_offset = Vector2( 500, 150 )
 theme = SubResource( 3 )
 script = ExtResource( 6 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_left = 5.0
 margin_top = 5.0
-margin_right = 795.0
-margin_bottom = 245.0
+margin_right = 995.0
+margin_bottom = 345.0
 
 [node name="Label" type="Label" parent="VBoxContainer"]
-margin_right = 790.0
+margin_right = 990.0
 margin_bottom = 23.0
 theme = ExtResource( 2 )
 text = "Select Power UP"
@@ -58,24 +58,24 @@ valign = 1
 
 [node name="CardBox" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 27.0
-margin_right = 790.0
-margin_bottom = 226.0
+margin_right = 990.0
+margin_bottom = 326.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 230.0
-margin_right = 790.0
-margin_bottom = 240.0
+margin_top = 330.0
+margin_right = 990.0
+margin_bottom = 340.0
 
 [node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/HBoxContainer"]
-margin_right = 790.0
+margin_right = 990.0
 margin_bottom = 10.0
 size_flags_horizontal = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/CenterContainer"]
-margin_left = 362.0
-margin_right = 428.0
+margin_left = 462.0
+margin_right = 528.0
 margin_bottom = 10.0
 size_flags_horizontal = 3
 
@@ -125,6 +125,8 @@ color = Color( 0.592157, 0.333333, 0.854902, 1 )
 
 [node name="Tween" type="Tween" parent="."]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="OpenAudioPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
-volume_db = 2.0
+volume_db = 5.0
+
+[node name="ConfirmAudioPlayer" type="AudioStreamPlayer" parent="."]
