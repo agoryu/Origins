@@ -16,7 +16,7 @@ var is_on_pause: bool = false
 
 # XP management
 var xp : int = 0
-var max_xp_value : int = 1
+var max_xp_value : int = 4
 var xp_next_step : int = 1
 var warning_level : int = 0
 	
@@ -37,7 +37,8 @@ func add_xp(value: int):
 		warning_level += 1
 		xp -= max_xp_value
 		tree.paused = true
-		max_xp_value += 1
+		max_xp_value += xp_next_step
+		xp_next_step += 1
 		emit_signal("level_up", xp, max_xp_value, warning_level)
 	else:
 		emit_signal("update_xp", xp)

@@ -3,6 +3,7 @@
 [ext_resource path="res://SpaceElements/Weapons/LaserBeam/LaserBeam.gd" type="Script" id=1]
 [ext_resource path="res://SpaceElements/Weapons/LaserBeam/glowing_circle.png" type="Texture" id=2]
 [ext_resource path="res://SpaceElements/Weapons/LaserBeam/laser_beam.wav" type="AudioStream" id=3]
+[ext_resource path="res://SpaceElements/Weapons/impact.wav" type="AudioStream" id=4]
 
 [sub_resource type="Gradient" id=2]
 offsets = PoolRealArray( 0.00355872, 0.622776 )
@@ -55,12 +56,6 @@ orbit_velocity_random = 0.0
 scale = 0.5
 scale_curve = SubResource( 5 )
 color_ramp = SubResource( 3 )
-
-[sub_resource type="Environment" id=1]
-background_mode = 4
-glow_enabled = true
-glow_blend_mode = 0
-glow_bicubic_upscale = true
 
 [sub_resource type="RectangleShape2D" id=11]
 
@@ -115,11 +110,12 @@ one_shot = true
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 1 )
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 11 )
+disabled = true
+
+[node name="Impact" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
 
 [connection signal="tween_all_completed" from="LaserBeam/Tween" to="." method="_on_Tween_tween_all_completed"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

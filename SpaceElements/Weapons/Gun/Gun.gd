@@ -2,6 +2,8 @@ extends Weapon
 
 class_name Gun
 
+onready var _animation_player = $AnimationPlayer
+
 func _ready():
 	$AudioStreamPlayer2D.play()
 
@@ -14,4 +16,4 @@ func _on_Timer_timeout():
 
 func _on_Area2D_body_entered(body: SpaceElement):
 	body.impact_damage(damage_caused)
-	queue_free()
+	_animation_player.play("impact")

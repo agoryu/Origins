@@ -109,6 +109,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://SpaceElements/Characters/Allies/Enterprise/ShuttlePod/ShuttlePod.gd"
 }, {
+"base": "Control",
+"class": "Sound",
+"language": "GDScript",
+"path": "res://Sound/Sound.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "SpaceElement",
 "language": "GDScript",
@@ -165,6 +170,7 @@ _global_script_class_icons={
 "PowerupMenu": "",
 "Shield": "",
 "ShuttlePod": "",
+"Sound": "",
 "SpaceElement": "",
 "SpaceProgressBar": "",
 "SpecCustomShipResource": "",

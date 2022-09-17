@@ -1,10 +1,10 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://SpaceElements/Weapons/LaserShoot/LaserShoot.gd" type="Script" id=1]
 [ext_resource path="res://SpaceElements/Weapons/LaserShoot/LaserShoot.png" type="Texture" id=2]
 [ext_resource path="res://SpaceElements/Weapons/LaserShoot/laser_shoot.wav" type="AudioStream" id=3]
 [ext_resource path="res://Effects/Impact/Impact.tscn" type="PackedScene" id=4]
-[ext_resource path="res://SpaceElements/Weapons/LaserShoot/impact.wav" type="AudioStream" id=5]
+[ext_resource path="res://SpaceElements/Weapons/impact.wav" type="AudioStream" id=5]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 2.0
@@ -141,12 +141,6 @@ tracks/4/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Environment" id=6]
-background_mode = 4
-glow_enabled = true
-glow_blend_mode = 0
-glow_bicubic_upscale = true
-
 [node name="LaserShoot" type="KinematicBody2D" groups=["weapon"]]
 collision_layer = 4
 collision_mask = 0
@@ -187,9 +181,6 @@ z_as_relative = false
 
 [node name="Impact" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 5 )
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 6 )
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

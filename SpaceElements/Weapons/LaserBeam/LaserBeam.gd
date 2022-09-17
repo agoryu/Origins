@@ -12,6 +12,7 @@ onready var collision_particles = $LaserBeam/CollisionParticle
 onready var timer = $Timer
 onready var audiostream = $AudioStreamPlayer2D
 onready var laser_bream = $LaserBeam
+onready var _impact_audio_player = $Impact
 
 onready var line_width: float = fill.width
 
@@ -40,6 +41,7 @@ func cast_beam():
 		collision_particles.position = cast_point
 		var collider = laser_bream.get_collider()
 		collider.impact_damage(damage_caused)
+		_impact_audio_player.play()
 		
 	fill.points[1] = cast_point
 	beam_particles.position = cast_point * 0.5

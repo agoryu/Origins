@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://SpaceElements/Characters/Enemies/Asteroid/Asteroid.gd" type="Script" id=1]
 [ext_resource path="res://SpaceElements/Characters/Enemies/Asteroid/asteroidA.png" type="Texture" id=2]
@@ -9,11 +9,42 @@ radius = 24.0
 [sub_resource type="CircleShape2D" id=2]
 radius = 24.0
 
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "impact"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0.607843, 0.607843, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
 [node name="Asteroid" type="KinematicBody2D"]
 collision_layer = 16
 collision_mask = 0
 script = ExtResource( 1 )
-speed = 200.0
+speed = 100.0
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
@@ -35,6 +66,10 @@ shape = SubResource( 2 )
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 3 )
+anims/impact = SubResource( 4 )
 
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Asteroid_body_entered"]

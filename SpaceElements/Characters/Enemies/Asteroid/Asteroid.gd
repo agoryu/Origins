@@ -3,6 +3,7 @@ extends Weapon
 class_name Asteroid
 
 onready var _sprite = $Sprite
+onready var _animation_player = $AnimationPlayer
 onready var _sprite_tab = [
 	preload("res://SpaceElements/Characters/Enemies/Asteroid/asteroidA.png"),
 	preload("res://SpaceElements/Characters/Enemies/Asteroid/asteroidB.png"),
@@ -14,6 +15,7 @@ var _life = 1
 func _ready():
 	speed_rotation = (PI / ((randi() % 5 + 5) * 10)) * (1 if (randi() % 6 < 3) else -1)
 	_sprite.texture = _sprite_tab[randi() % 3]
+	_animation_player.play("RESET")
 
 func _physics_process(delta):
 	var direction = Vector2(sin(rotation), -cos(rotation))
@@ -30,6 +32,7 @@ func _on_Asteroid_body_entered(body):
 
 func impact_damage(damage: int):
 	_life -= damage
+	_animation_player.play("impact")
 	if damage_caused != 1 and _life <= 0 :
 		divide_asteroid()
 	if _life <= 0:
