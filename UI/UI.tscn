@@ -186,3 +186,5 @@ anims/unlock_power = SubResource( 4 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AnimationPlayer"]
 stream = ExtResource( 9 )
+
+[connection signal="time_over" from="GameTimer" to="Menu" method="_on_GameTimer_time_over"]

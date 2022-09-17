@@ -33,3 +33,6 @@ func close_menu():
 
 func _on_focus_entered():
 	$AudioStreamPlayer2D.play()
+
+func _on_GameTimer_time_over(text: String):
+	time_value = text
