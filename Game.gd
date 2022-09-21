@@ -22,7 +22,7 @@ var warning_level : int = 0
 	
 func init():
 	xp = 0
-	max_xp_value = 1
+	max_xp_value = 4
 	xp_next_step = 1
 	warning_level = 0
 

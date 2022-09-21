@@ -18,7 +18,7 @@ export var limit_distance = 350
 var min_distance = 100
 var _initial_speed = speed
 
-const MAX_LVL = 5
+const MAX_LVL = 2
 
 var direction = Vector2.ZERO
 var is_player = false setget set_is_player

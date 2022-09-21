@@ -1,14 +1,14 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://SpaceElements/Characters/Allies/RadarShip/halo_circle.shader" type="Shader" id=1]
+[ext_resource path="res://Effects/HaloCircle/halo_circle.shader" type="Shader" id=1]
 [ext_resource path="res://SpaceElements/Characters/Allies/RadarShip/white_square.svg" type="Texture" id=2]
-[ext_resource path="res://SpaceElements/Characters/Allies/RadarShip/HaloCircle.gd" type="Script" id=3]
+[ext_resource path="res://Effects/HaloCircle/HaloCircle.gd" type="Script" id=3]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 1 )
-shader_param/halo_color = Color( 1, 1, 1, 1 )
-shader_param/bounds_half_length = 50.0
-shader_param/halo_radius = 12.0
+shader_param/halo_color = Color( 0.137255, 0.694118, 0.862745, 1 )
+shader_param/bounds_half_length = 150.0
+shader_param/halo_radius = 100.0
 
 [node name="HaloCircle" type="Sprite"]
 material = SubResource( 1 )

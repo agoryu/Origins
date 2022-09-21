@@ -91,6 +91,9 @@ scale = Vector2( 0.05, 0.05 )
 texture = ExtResource( 4 )
 
 [node name="Fires" type="Node2D" parent="Sprite"]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Fire1" type="Sprite" parent="Sprite/Fires"]
 position = Vector2( -458.424, 411.213 )
@@ -125,16 +128,15 @@ texture = ExtResource( 5 )
 [node name="Shield" parent="." instance=ExtResource( 2 )]
 visible = false
 position = Vector2( 3.8147e-06, 3.8147e-06 )
-scale = Vector2( 1.25, 1.25 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="ShieldBar" parent="Shield" index="0"]
-margin_left = -19.0
-margin_top = -60.0
-margin_right = 19.0
-margin_bottom = -50.0
+margin_left = -23.0
+margin_top = -70.0
+margin_right = 23.0
+margin_bottom = -58.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 8 )
@@ -185,6 +187,9 @@ position = Vector2( -9, -15 )
 [node name="Position2D3" type="Position2D" parent="Weapons/SecondShoot"]
 position = Vector2( 11, 4 )
 
+[node name="PhotonPosition" type="Position2D" parent="Weapons"]
+position = Vector2( 0, -20 )
+
 [node name="Life" parent="." instance=ExtResource( 3 )]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -223,10 +228,17 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionZone"]
 modulate = Color( 0.203922, 0.921569, 0.027451, 1 )
 shape = SubResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="PhotonTimer" type="Timer" parent="."]
+wait_time = 8.0
 
 [connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]
 [connection signal="timeout" from="TargetTimer" to="." method="_on_TargetTimer_timeout"]
 [connection signal="body_entered" from="CollisionZone" to="." method="_on_CollisionZone_body_entered"]
 [connection signal="body_exited" from="CollisionZone" to="." method="_on_CollisionZone_body_exited"]
+[connection signal="timeout" from="PhotonTimer" to="." method="_on_PhotonTimer_timeout"]
 
 [editable path="Shield"]

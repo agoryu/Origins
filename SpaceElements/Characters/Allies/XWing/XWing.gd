@@ -1,6 +1,7 @@
 extends Hunter
 
 onready var laser_shoot_constructor = preload("res://SpaceElements/Weapons/LaserShoot/LaserShoot.tscn")
+onready var photon_shoot_constructor = preload("res://SpaceElements/Weapons/Photon/Photon.tscn")
 
 func _ready():
 	_fire = $Sprite/Fire
@@ -21,7 +22,7 @@ func _on_TargetTimer_timeout():
 func lvl_up():
 	.lvl_up()
 	if lvl >= MAX_LVL:
-		pass
+		$PhotonTimer.start()
 
 func _on_ShootTimer_timeout():
 	var positions_fire = _weapon.get_node("FirstShoot") if shoot_counter % 2 else _weapon.get_node("SecondShoot")
@@ -57,3 +58,10 @@ func _on_CollisionZone_body_exited(body):
 		and not is_player 
 	):
 		end_collision()
+
+func _on_PhotonTimer_timeout():
+	var photon_shoot = photon_shoot_constructor.instance()
+	photon_shoot.global_position = $Weapons/PhotonPosition.global_position
+	photon_shoot.rotation = _sprite.rotation
+	add_child(photon_shoot)
+	photon_shoot.set_as_toplevel(true)

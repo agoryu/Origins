@@ -22,16 +22,21 @@ func get_card(fleet: Array, tree, card_box) -> Control:
 	var powerup = powerup_tab[powerup_index]
 	var card = powerup.card.instance()
 	card_box.add_child(card)
-	randomize_value(card, fleet, tree)
+	if not randomize_value(card, fleet, tree):
+		card.queue_free()
+		var new_card = powerup_tab[0].card.instance()
+		card_box.add_child(new_card)
+		randomize_value(new_card, fleet, tree)
+		return new_card
 	return card
 
 # Randomize value of card
-func randomize_value(card: Button, fleet: Array, tree):
+func randomize_value(card: Button, fleet: Array, tree) -> bool:
 	if card is CustomCard:
-		if not randomize_custom_ship(card, fleet, tree):
-			randomize_add_ship(card, fleet)
+		return randomize_custom_ship(card, fleet, tree)
 	if card is AddShipCard:
-			randomize_add_ship(card, fleet)
+		randomize_add_ship(card, fleet)
+	return true
 #
 func randomize_add_ship(card: AddShipCard, fleet: Array):
 	_add_ship_manager.add_ship_card(card, fleet)

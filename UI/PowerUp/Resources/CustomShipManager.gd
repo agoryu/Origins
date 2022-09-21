@@ -57,6 +57,8 @@ func add_custom_card(card: CustomCard, fleet: Array, tree) -> bool:
 
 func _get_ship(fleet : Array) -> Ally:
 	var is_valid_ship = true
+	if fleet.size() <= 0:
+		return null
 	while is_valid_ship:
 		var ship_index = randi() % fleet.size()
 		var ship = fleet[ship_index]
