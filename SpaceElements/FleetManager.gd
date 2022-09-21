@@ -31,9 +31,10 @@ func add_ally(ally):
 	emit_signal("update_allies", FleetManager.calc_vector_radius())
 	
 func remove_ally(ally: Ally):
+	emit_signal("loose_ally", ally)
 	add_max_energy(-ally.energy_reserve)
 	fleet_tab.erase(ally)
-	emit_signal("update_allies", FleetManager.calc_vector_radius())
+#	emit_signal("update_allies", FleetManager.calc_vector_radius())
 	
 func find_position() -> Area2D:
 	for i in range(fleet_points.get_child_count()):
@@ -47,12 +48,10 @@ func switch_ship(direction: int):
 		var index = (fleet_tab.find(player) + direction) % fleet_tab.size()
 		player.is_player = false
 		player.remove_child(player_nodes)
-		player.set_collision_layer_bit(1, true)
 		player.set_collision_layer_bit(8, false)
 		player = fleet_tab[index]
 		player.is_player = true
 		player.add_child(player_nodes)
-		player.set_collision_layer_bit(1, false)
 		player.set_collision_layer_bit(8, true)
 		
 func add_max_energy(value: int):

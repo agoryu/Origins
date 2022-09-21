@@ -44,7 +44,7 @@ func add_ship_card(card: AddShipCard, fleet: Array):
 		calculate_score_value(life, ship.speed - ship.speed_random, ship.speed + ship.speed_random) +
 		calculate_score_value(life, ship.cooldown - ship.cooldown_random, ship.cooldown + ship.cooldown_random)
 	) / 7
-	card.set_rarity(calculate_color_rarity(rarity))
+	card.set_rarity(calculate_color_rarity(rarity), rarity)
 	
 func check_validity(ship: SpecShipResources, fleet: Array) -> bool:
 	var nb_type_ship = 0

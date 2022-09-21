@@ -42,3 +42,18 @@ func lvl_up():
 	.lvl_up()
 	if lvl >= MAX_LVL:
 		shoot_timer.one_shot = false
+
+func _on_CollisionZone_body_exited(body):
+	if (body is Ally 
+		and body.get_parent() != self 
+		and not is_player 
+	):
+		end_collision()
+
+func _on_CollisionZone_body_entered(body):
+	if (body is Ally 
+		and body.get_parent() != self 
+		and not is_player 
+		and not body.is_player
+	):
+		collision_detected(body)

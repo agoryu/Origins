@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/slow_motion.wav-80f2e0cc75593ec1f3dee04b108cfc23.sample"
+
+[deps]
+
+source_file="res://Camera/slow_motion.wav"
+dest_files=[ "res://.import/slow_motion.wav-80f2e0cc75593ec1f3dee04b108cfc23.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

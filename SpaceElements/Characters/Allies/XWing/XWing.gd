@@ -42,3 +42,18 @@ func set_cooldown(value: float):
 func set_speed(value: int):
 	.set_speed(value)
 	_initial_speed += value
+
+func _on_CollisionZone_body_entered(body):
+	if (body is Ally 
+		and body.get_parent() != self 
+		and not is_player 
+		and not body.is_player
+	):
+		collision_detected(body)
+
+func _on_CollisionZone_body_exited(body):
+	if (body is Ally 
+		and body.get_parent() != self 
+		and not is_player 
+	):
+		end_collision()

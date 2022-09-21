@@ -6,6 +6,7 @@ onready var _shuttlepod_constructor = preload("res://SpaceElements/Characters/Al
 func _ready():
 	_fire = $Sprite/Fire
 	first_group = "enterprise"
+	_initial_speed = speed
 
 func _physics_process(delta):
 	if is_player:
@@ -30,3 +31,17 @@ func lvl_up():
 			shuttlepod._position = child
 			shuttlepod.speed = speed
 			add_child(shuttlepod)
+
+func _on_CollisionZone_body_exited(body):
+	if (body is Ally 
+		and body.get_parent() != self 
+		and not is_player 
+	):
+		end_collision()
+
+func _on_CollisionZone_body_entered(body):
+	if (body is Ally 
+		and body.get_parent() != self 
+		and not is_player 
+	):
+		collision_detected(body)

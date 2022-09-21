@@ -6,11 +6,11 @@
 
 [resource]
 script = ExtResource( 1 )
-rarity = 3
+rarity = 0
 ship_scene = ExtResource( 2 )
 name = "Enterprise"
 image = ExtResource( 3 )
-max_ship = 10
+max_ship = 5
 life = 5
 life_random = 2
 weapon = 2

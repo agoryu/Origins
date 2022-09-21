@@ -18,7 +18,10 @@ func _ready():
 	_fire = $Sprite/Fire
 	is_player = true
 	first_group = "player"
+	_initial_speed = speed
 #	FleetManager.add_ally(preload("res://SpaceElements/Characters/Allies/XWing/XWing.tscn").instance())
+#	FleetManager.add_ally(preload("res://SpaceElements/Characters/Allies/Enterprise/Enterprise.tscn").instance())
+#	FleetManager.add_ally(preload("res://SpaceElements/Characters/Allies/Enterprise/Enterprise.tscn").instance())
 
 func _physics_process(delta: float) -> void:
 	if is_player:
@@ -51,3 +54,18 @@ func lvl_up():
 func _on_BeamTimer_timeout():
 	$Weapons/LaserBeam1.set_is_casting(true)
 	$Weapons/LaserBeam2.set_is_casting(true)
+
+func _on_CollisionZone_body_exited(body):
+	if (body is Ally 
+		and body.get_parent() != self 
+		and not is_player 
+	):
+		end_collision()
+
+func _on_CollisionZone_body_entered(body):
+	if (body is Ally 
+		and body.get_parent() != self 
+		and not is_player 
+		and not body.is_player
+	):
+		collision_detected(body)

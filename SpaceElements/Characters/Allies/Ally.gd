@@ -4,6 +4,7 @@ class_name Ally
 
 onready var animation_player: AnimationPlayer = $AnimationPlayer
 onready var shoot_timer: Timer = $ShootTimer
+onready var _collision_zone : Area2D = $CollisionZone
 
 export var energy_consume = 1
 export var energy_reserve = 1
@@ -12,8 +13,8 @@ export var max_damage = 10
 export var max_speed = 50
 export var min_energy_consume = 4
 export var max_life = 20
+export var limit_distance = 350
 
-var limit_distance = 150
 var min_distance = 100
 var _initial_speed = speed
 
@@ -59,33 +60,28 @@ func move_ally():
 	var player = FleetManager.player
 	var player_distance = global_position.distance_to(player.global_position)
 	
-	if get_slide_count() > 0 and wait_time_collision == 0:
-		wait_time_collision = MAX_WAIT_TIME_COLLISION
+	if player_distance > limit_distance:
+		speed = _initial_speed
+		direction = global_position.direction_to(player.global_position)
+	elif wait_time_collision:
 		direction = current_direction
-		for index_collision in range(get_slide_count()):
-			var ally_collision = get_slide_collision(index_collision).collider as Ally
-			direction -= ally_collision.direction
-		direction /= 2.0
-		
-		
-	if player_distance < min_distance:
-			speed = min(FleetManager.player.speed, speed)
-			direction = global_position.direction_to(player.global_position).rotated(PI/2)
-	elif wait_time_collision == 0:
-		if player_distance > limit_distance:
-			speed = _initial_speed
-			direction = global_position.direction_to(player.global_position)
-		else:
-			speed = min(FleetManager.player.speed, speed)
-			direction = current_direction
 	else:
-		wait_time_collision -= 1
+		speed = min(FleetManager.player.speed, speed)
+		direction = current_direction
 		
 	move_in_direction(direction)
 	
+func collision_detected(body):
+	if get_ally_radius(self) <= get_ally_radius(body) and not body.wait_time_collision:
+		wait_time_collision = true
+		speed /= 2
+			
+func end_collision():
+	wait_time_collision = false
+	speed = _initial_speed
+
 func loose_ally():
 	FleetManager.remove_ally(self)
-	queue_free()
 	
 func player_move():
 		direction = get_gamepad_direction()
@@ -109,3 +105,6 @@ func set_cooldown(value: float):
 func set_speed(value: int):
 	speed += value
 	_initial_speed += value
+
+func get_ally_radius(ally: Ally) -> float:
+	return ally._collision.shape.radius
