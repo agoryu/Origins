@@ -32,6 +32,7 @@ nine_patch_stretch = true
 script = ExtResource( 2 )
 
 [node name="EnergyTimer" type="Timer" parent="."]
+autostart = true
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 show_behind_parent = true

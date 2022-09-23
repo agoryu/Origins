@@ -7,25 +7,24 @@ onready var _radar_direction_node = $RadarDirection
 onready var _tween = $Tween
 onready var _halo = $HaloCircle
 onready var _radar = $Sprite/Radar
-onready var _fire1 = $Sprite/Fire1
-onready var _fire2 = $Sprite/Fire2
+
+var activate_absorption : bool = false
+
+func _ready():
+	_fire = $Sprite/Fire
+	first_group = "radar"
+	_initial_speed = speed
 
 func _physics_process(delta):
 	if is_player:
-		player_move(delta)
+		player_move()
 	else:
-		move_ally(delta, FleetManager.player)
-		
+		move_ally()
 	_radar.rotate(PI/30.0)
-	if wait_time_collision == 0:
-		var speed_rate : float = _velocity.length() / speed
-		_fire1.scale = Vector2.ONE * speed_rate * 0.2
-		_fire2.scale = Vector2.ONE * speed_rate * 0.2
-
 
 func _on_RadarTimer_timeout():
 	activate_radar()
-	if _radar_direction_node.get_child_count() >= damage_caused:
+	if _radar_direction_node.get_child_count() >= damage_caused + damage_added:
 		return
 		
 	var target_list = []
@@ -56,3 +55,28 @@ func activate_radar():
 	_tween.interpolate_property(_halo, "size", 0, 200, 1.0)
 	_tween.interpolate_property(_halo, "modulate", Color.white, Color.transparent, 1.0)
 	_tween.start()
+	if activate_absorption:
+		_detection_zone.monitorable = true
+	
+func lvl_up():
+	.lvl_up()
+	if lvl >= MAX_LVL:
+		activate_absorption = true
+
+func _on_CollisionZone_body_exited(body):
+	if (body is Ally 
+		and body.get_parent() != self 
+		and not is_player 
+	):
+		end_collision()
+
+func _on_CollisionZone_body_entered(body):
+	if (body is Ally 
+		and body.get_parent() != self 
+		and not is_player 
+	):
+		collision_detected(body)
+
+func _on_Tween_tween_all_completed():
+	if activate_absorption:
+		_detection_zone.monitorable = false

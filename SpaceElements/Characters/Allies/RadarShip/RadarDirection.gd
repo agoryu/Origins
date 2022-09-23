@@ -20,4 +20,4 @@ func _physics_process(delta):
 func scale_sprite():
 	var distance = global_position.distance_to(target.global_position) / INITIAL_DISTANCE
 	distance = clamp(distance, 0.5, 1.2)
-	_sprite.scale = _initial_sprite_scale * distance
+	_sprite.scale = _initial_sprite_scale * max(1.2 - distance, 0.5)

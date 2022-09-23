@@ -5,6 +5,6 @@
 
 [resource]
 script = ExtResource( 1 )
-rarity = 1
+rarity = 2
 powerup_type = 0
 card = ExtResource( 2 )

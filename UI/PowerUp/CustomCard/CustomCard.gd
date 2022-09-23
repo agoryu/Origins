@@ -26,23 +26,22 @@ func set_value(new_value: int):
 
 func _on_Card_button_up():
 	for ship in get_tree().get_nodes_in_group(ship_type):
-		if ship.is_max_lvl():
-			continue
-		match custom_type:
-			SpecCustomShipResource.CUSTOM_SHIP_TYPE.ADD_SHIELD:
-				ship.add_shield_value(value)
-			SpecCustomShipResource.CUSTOM_SHIP_TYPE.BOOST_LIFE:
-				ship._life.max_value += value
-				ship._life.value += value
-			SpecCustomShipResource.CUSTOM_SHIP_TYPE.BOOST_WEAPON:
-				ship.add_damage(value)
-			SpecCustomShipResource.CUSTOM_SHIP_TYPE.REDUCE_ENERGY_CONSUME:
-				ship.reduce_energy_consume(value)
-			SpecCustomShipResource.CUSTOM_SHIP_TYPE.SPEED:
-				ship.set_speed(value)
-			SpecCustomShipResource.CUSTOM_SHIP_TYPE.COOLDOWN:
-				ship.set_cooldown(ship.shoot_timer.wait_time - float(value) / 100.0)
-		ship.lvl_up()
+		if custom_type == SpecCustomShipResource.CUSTOM_SHIP_TYPE.ADD_SHIELD:
+			ship.add_shield_value(value)
+		if not ship.is_max_lvl():
+			match custom_type:	
+				SpecCustomShipResource.CUSTOM_SHIP_TYPE.BOOST_LIFE:
+					ship._life.max_value += value
+					ship._life.value += value
+				SpecCustomShipResource.CUSTOM_SHIP_TYPE.BOOST_WEAPON:
+					ship.add_damage(value)
+				SpecCustomShipResource.CUSTOM_SHIP_TYPE.REDUCE_ENERGY_CONSUME:
+					ship.reduce_energy_consume(value)
+				SpecCustomShipResource.CUSTOM_SHIP_TYPE.SPEED:
+					ship.set_speed(value)
+				SpecCustomShipResource.CUSTOM_SHIP_TYPE.COOLDOWN:
+					ship.set_cooldown(ship.shoot_timer.wait_time - float(value) / 100.0)
+			ship.lvl_up()
 	emit_signal("custom_selected")
 	
 func set_rarity(color: Color):

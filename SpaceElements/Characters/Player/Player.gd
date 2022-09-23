@@ -19,7 +19,7 @@ func _ready():
 	is_player = true
 	first_group = "player"
 	_initial_speed = speed
-#	FleetManager.add_ally(preload("res://SpaceElements/Characters/Allies/XWing/XWing.tscn").instance())
+	FleetManager.add_ally(preload("res://SpaceElements/Characters/Allies/RadarShip/RadarShip.tscn").instance())
 #	FleetManager.add_ally(preload("res://SpaceElements/Characters/Allies/Enterprise/Enterprise.tscn").instance())
 #	FleetManager.add_ally(preload("res://SpaceElements/Characters/Allies/Enterprise/Enterprise.tscn").instance())
 

@@ -8,8 +8,9 @@ extents = Vector2( 10, 16 )
 
 [node name="EnergyCharge" type="Area2D" groups=["object"]]
 collision_layer = 8
+collision_mask = 129
 script = ExtResource( 1 )
-value = 50
+value = 100
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 2, 1.5, 1.5, 1 )

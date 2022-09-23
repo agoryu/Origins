@@ -25,7 +25,7 @@ rotation = 0.0281392
 [node name="AsteroidTimer" parent="." instance=ExtResource( 4 )]
 
 [node name="EnergyChargeTimer" parent="." instance=ExtResource( 3 )]
-autostart = false
+wait_time = 8.0
 
 [node name="CylonTimer" parent="." instance=ExtResource( 2 )]
 autostart = false

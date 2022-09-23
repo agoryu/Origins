@@ -33,8 +33,8 @@ func add_ally(ally):
 func remove_ally(ally: Ally):
 	emit_signal("loose_ally", ally)
 	add_max_energy(-ally.energy_reserve)
+	energy_consume -= ally.energy_consume
 	fleet_tab.erase(ally)
-#	emit_signal("update_allies", FleetManager.calc_vector_radius())
 	
 func find_position() -> Area2D:
 	for i in range(fleet_points.get_child_count()):
