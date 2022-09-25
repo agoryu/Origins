@@ -41,13 +41,16 @@ func loose_ally(ally: Ally):
 	var vector_zoom = Vector2.ONE * (ally_radius/100.0)
 	$SlowMotionStreamPlayer.play()
 	_tween.interpolate_property(self, "global_position", global_position, ally_position, 0.2, Tween.TRANS_LINEAR, Tween.EASE_OUT)
-	_tween.interpolate_property(self, "zoom", zoom, vector_zoom, 0.6, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	_tween.interpolate_property(self, "zoom", zoom, vector_zoom, 0.3, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	_tween.start()
 	is_loose_ally_mode = true
 	yield(_tween, "tween_all_completed")
 	ally.queue_free()
 	_tween.interpolate_property(self, "global_position", ally_position, FleetManager.player.global_position, 0.2, Tween.TRANS_LINEAR, Tween.EASE_OUT)
-	_tween.interpolate_property(self, "zoom", vector_zoom, FleetManager.calc_vector_radius(), 0.6, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	_tween.interpolate_property(self, "zoom", vector_zoom, FleetManager.calc_vector_radius(), 0.3, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	_tween.start()
 	is_loose_ally_mode = false
 	Engine.time_scale = 1.0
+	
+func set_player():
+	pass

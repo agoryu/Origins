@@ -3,10 +3,10 @@ extends GlobalManager
 class_name AddShipManager
 
 var ship_resources: Array = [
-#	preload("res://UI/PowerUp/Resources/ShipResources/Viper.tres"),
-#	preload("res://UI/PowerUp/Resources/ShipResources/Enterprise.tres"),
-#	preload("res://UI/PowerUp/Resources/ShipResources/RadarShip.tres"),
-#	preload("res://UI/PowerUp/Resources/ShipResources/XWing.tres"),
+	preload("res://UI/PowerUp/Resources/ShipResources/Viper.tres"),
+	preload("res://UI/PowerUp/Resources/ShipResources/Enterprise.tres"),
+	preload("res://UI/PowerUp/Resources/ShipResources/RadarShip.tres"),
+	preload("res://UI/PowerUp/Resources/ShipResources/XWing.tres"),
 	preload("res://UI/PowerUp/Resources/ShipResources/Cargo.tres")
 ]
 
@@ -36,16 +36,21 @@ func add_ship_card(card: AddShipCard, fleet: Array):
 	var cooldown = randomize_value_float(ship.cooldown, ship.cooldown_random)
 	card.set_ship(life, weapon, energy, energy_consume, speed, cooldown)
 	
-	var rarity = (
-		ship.rarity + 
-		calculate_score_value(life, ship.life - ship.life_random, ship.life + ship.life_random) +
-		calculate_score_value(life, ship.weapon - ship.weapon_random, ship.weapon + ship.weapon_random) +
-		calculate_score_value(life, ship.energy - ship.energy_random, ship.energy + ship.energy_random) +
-		calculate_score_value(life, ship.energy_consume - ship.energy_consume_random, ship.energy_consume + ship.energy_consume_random) +
-		calculate_score_value(life, ship.speed - ship.speed_random, ship.speed + ship.speed_random) +
-		calculate_score_value(life, ship.cooldown - ship.cooldown_random, ship.cooldown + ship.cooldown_random)
-	) / 7
+	var rarity_life = calculate_score_value(life, ship.life - ship.life_random, ship.life + ship.life_random)
+	var rarity_weapon = calculate_score_value(life, ship.weapon - ship.weapon_random, ship.weapon + ship.weapon_random)
+	var rarity_energy = calculate_score_value(life, ship.energy - ship.energy_random, ship.energy + ship.energy_random)
+	var rarity_energy_consume = calculate_score_value(life, ship.energy_consume - ship.energy_consume_random, ship.energy_consume + ship.energy_consume_random)
+	var rarity_speed = calculate_score_value(life, ship.speed - ship.speed_random, ship.speed + ship.speed_random)
+	var rarity_cooldown = calculate_score_value(life, ship.cooldown - ship.cooldown_random, ship.cooldown + ship.cooldown_random)
+	var rarity = (ship.rarity + rarity_life + rarity_weapon + rarity_energy + rarity_energy_consume +
+		rarity_speed + rarity_cooldown) / 7
 	card.set_rarity(calculate_color_rarity(rarity), rarity)
+	card.apply_rarity_color(rarity_life, card._life._value_label)
+	card.apply_rarity_color(rarity_weapon, card._weapon._value_label)
+	card.apply_rarity_color(rarity_energy, card._energy._value_label)
+	card.apply_rarity_color(rarity_energy_consume, card._energy_consume._value_label)
+	card.apply_rarity_color(rarity_speed, card._speed._value_label)
+	card.apply_rarity_color(rarity_cooldown, card._cooldown._value_label)
 	
 func check_validity(ship: SpecShipResources, fleet: Array) -> bool:
 	var nb_type_ship = 0

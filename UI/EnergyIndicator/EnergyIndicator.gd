@@ -10,6 +10,7 @@ func _ready():
 
 func _on_EnergyTimer_timeout():
 	value -= FleetManager.energy_consume
+	print(String(value) + " / " + String(max_value))
 	if value <= 0:
 		Game.game_over()
 	elif not is_alert and value <= (percent_alert_threshold * max_value) / 100:

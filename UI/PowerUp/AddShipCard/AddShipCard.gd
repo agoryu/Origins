@@ -4,6 +4,9 @@ class_name AddShipCard
 
 signal custom_selected
 
+var red_rarity = Color(1.0, 0.0, 0.0)
+var blue_rarity = Color(0.0, 0.0, 1.0)
+
 onready var _icon = $VBoxContainer/HBoxContainer/ShipContainer/Icon
 onready var _life = $VBoxContainer/HBoxContainer/StatsContainer/Stats/Life
 onready var _weapon = $VBoxContainer/HBoxContainer/StatsContainer/Stats/Weapon
@@ -32,11 +35,11 @@ func set_ship(life: int, weapon: int, energy: int, energy_consume: int, speed: i
 
 func _on_Card_button_up():
 	var ship = powerup.ship_scene.instance() as Ally
+	ship.energy_reserve = _energy.value
 	FleetManager.add_ally(ship)
 	ship._life.max_value = _life.value
 	ship._life.value = _life.value
 	ship.damage_caused = _weapon.value
-	ship.energy_reserve = _energy.value
 	ship.energy_consume = _energy_consume.value
 	ship.speed = _speed.value
 	ship.set_cooldown(_cooldown.value)
@@ -54,3 +57,9 @@ func set_rarity(color: Color, rarity_value: int):
 
 func _on_Card_focus_entered():
 	$AudioStreamPlayer.play()
+
+func apply_rarity_color(rarity_component: int, component: Label):
+	if rarity_component <= 1:
+		component.add_color_override("font_color", blue_rarity)
+	else:
+		component.add_color_override("font_color", red_rarity)

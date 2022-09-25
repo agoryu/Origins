@@ -18,7 +18,8 @@ func add_damage(value: int):
 func lvl_up():
 	.lvl_up()
 	if lvl >= MAX_LVL:
-		pass
+		FleetManager.add_max_energy(energy_reserve)
+		energy_reserve *= 2
 
 func _on_CollisionZone_body_exited(body):
 	if (body is Ally 

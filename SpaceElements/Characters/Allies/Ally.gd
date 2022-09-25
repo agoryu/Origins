@@ -18,7 +18,7 @@ export var limit_distance = 350
 var min_distance = 100
 var _initial_speed = speed
 
-const MAX_LVL = 2
+const MAX_LVL = 5
 
 var direction = Vector2.ZERO
 var is_player = false setget set_is_player
@@ -60,7 +60,7 @@ func move_ally():
 	var player = FleetManager.player
 	var player_distance = global_position.distance_to(player.global_position)
 	
-	if player_distance > limit_distance:
+	if player_distance > limit_distance and speed != max_speed:
 		speed = _initial_speed
 		direction = global_position.direction_to(player.global_position)
 	elif wait_time_collision:
