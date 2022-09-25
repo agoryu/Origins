@@ -9,6 +9,7 @@ onready var _weapon: Node2D = null
 onready var _fire: Node2D = null
 
 var damage_added = 0
+var fire_scale = 1.0
 
 var wait_time_collision = false
 
@@ -37,4 +38,4 @@ func move_in_direction(direction: Vector2):
 	if _fire and speed > 0:
 		for fire in _fire.get_children():
 			var speed_rate : float = _velocity.length() / speed
-			fire.scale = Vector2.ONE * speed_rate * 0.2
+			fire.scale = Vector2.ONE * speed_rate * 0.2 * fire_scale
