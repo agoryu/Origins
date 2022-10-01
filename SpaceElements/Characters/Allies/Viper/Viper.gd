@@ -28,7 +28,7 @@ func _on_ShootTimer_timeout():
 		gun_shoot.global_position = gun.global_position
 		add_child(gun_shoot)
 		gun_shoot.set_as_toplevel(true)
-		gun_shoot.damage_caused += damage_added
+		gun_shoot.damage_caused = damage_caused + damage_added
 		
 func set_cooldown(value: float):
 	.set_cooldown(value)

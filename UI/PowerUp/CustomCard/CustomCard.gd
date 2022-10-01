@@ -10,7 +10,7 @@ onready var _value_label : Label = $VBox/Value
 onready var _description : Label = $VBox/Description
 
 var ship_type = ""
-var value: int = 0 setget set_value
+var value: int = 0
 var custom_type
 
 var override_style = get_stylebox("normal").duplicate()
@@ -20,9 +20,9 @@ func _ready():
 	add_stylebox_override("normal", override_style)
 	add_stylebox_override("focus", override_style_focus)
 
-func set_value(new_value: int):
+func set_value(new_value: int, value_sign: String):
 	value = new_value
-	_value_label.text = " + " + String(new_value)
+	_value_label.text = value_sign + String(new_value)
 
 func _on_Card_button_up():
 	for ship in get_tree().get_nodes_in_group(ship_type):
@@ -46,7 +46,6 @@ func _on_Card_button_up():
 	
 func set_rarity(color: Color):
 	override_style.border_color = color
-	override_style_focus.border_color = color
 	override_style.bg_color = color
 	override_style.bg_color.a = 0.5
 	override_style_focus.bg_color = color

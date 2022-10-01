@@ -37,11 +37,11 @@ func add_ship_card(card: AddShipCard, fleet: Array):
 	card.set_ship(life, weapon, energy, energy_consume, speed, cooldown)
 	
 	var rarity_life = calculate_score_value(life, ship.life - ship.life_random, ship.life + ship.life_random)
-	var rarity_weapon = calculate_score_value(life, ship.weapon - ship.weapon_random, ship.weapon + ship.weapon_random)
-	var rarity_energy = calculate_score_value(life, ship.energy - ship.energy_random, ship.energy + ship.energy_random)
-	var rarity_energy_consume = calculate_score_value(life, ship.energy_consume - ship.energy_consume_random, ship.energy_consume + ship.energy_consume_random)
-	var rarity_speed = calculate_score_value(life, ship.speed - ship.speed_random, ship.speed + ship.speed_random)
-	var rarity_cooldown = calculate_score_value(life, ship.cooldown - ship.cooldown_random, ship.cooldown + ship.cooldown_random)
+	var rarity_weapon = calculate_score_value(weapon, ship.weapon - ship.weapon_random, ship.weapon + ship.weapon_random)
+	var rarity_energy = calculate_score_value(energy, ship.energy - ship.energy_random, ship.energy + ship.energy_random)
+	var rarity_energy_consume = GlobalSpecResource.RARITY.size() - 2 - calculate_score_value(energy_consume, ship.energy_consume - ship.energy_consume_random, ship.energy_consume + ship.energy_consume_random)
+	var rarity_speed = calculate_score_value(speed, ship.speed - ship.speed_random, ship.speed + ship.speed_random)
+	var rarity_cooldown = GlobalSpecResource.RARITY.size() - 2 - calculate_score_value(cooldown, ship.cooldown - ship.cooldown_random, ship.cooldown + ship.cooldown_random)
 	var rarity = (ship.rarity + rarity_life + rarity_weapon + rarity_energy + rarity_energy_consume +
 		rarity_speed + rarity_cooldown) / 7
 	card.set_rarity(calculate_color_rarity(rarity), rarity)
@@ -60,9 +60,12 @@ func check_validity(ship: SpecShipResources, fleet: Array) -> bool:
 	return nb_type_ship < ship.max_ship
 	
 func randomize_value(value: int, randomness: int) -> int:
-	var rand_value = randi() % ((value + randomness) - (value - randomness))
-	return (value - randomness) + rand_value
+	var rand_value = randi() % (((value + randomness) - (value - randomness)) + 1)
+	var result = (value - randomness) + rand_value
+	return result if result > 0 else 1
 	
 func randomize_value_float(value: float, randomness: float) -> float:
-	var rand_value = fmod(randf(), ((value + randomness) - (value - randomness)))
-	return stepify((value - randomness) + rand_value, 0.01)
+	value *= 100
+	randomness *= 100
+	var rand_value = randomize_value(value, randomness)
+	return stepify(float(rand_value) / 100.0, 0.01)

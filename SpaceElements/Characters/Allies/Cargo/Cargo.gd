@@ -1,5 +1,7 @@
 extends Ally
 
+const ENERGY_GET : int = 25
+
 func _ready():
 	_fire = $Sprite/Fire
 	first_group = "cargo"
@@ -20,6 +22,7 @@ func lvl_up():
 	if lvl >= MAX_LVL:
 		FleetManager.add_max_energy(energy_reserve)
 		energy_reserve *= 2
+		scale *= 1.5
 
 func _on_CollisionZone_body_exited(body):
 	if (body is Ally 
@@ -34,3 +37,7 @@ func _on_CollisionZone_body_entered(body):
 		and not is_player 
 	):
 		collision_detected(body)
+
+func _on_ShootTimer_timeout():
+	Game.add_energy(ENERGY_GET * (damage_added + damage_caused))
+	$AudioStreamPlayer2D.play()

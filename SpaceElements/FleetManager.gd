@@ -4,6 +4,7 @@ signal update_allies
 signal update_max_energy
 signal max_lvl_ship
 signal loose_ally
+signal set_player
 
 var player : Ally
 
@@ -53,6 +54,7 @@ func switch_ship(direction: int):
 		player.is_player = true
 		player.add_child(player_nodes)
 		player.set_collision_layer_bit(8, true)
+		emit_signal("set_player")
 		
 func add_max_energy(value: int):
 	emit_signal("update_max_energy", value)

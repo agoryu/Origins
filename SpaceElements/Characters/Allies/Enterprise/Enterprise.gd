@@ -7,6 +7,7 @@ func _ready():
 	_fire = $Sprite/Fire
 	first_group = "enterprise"
 	_initial_speed = speed
+	$Sprite/LaserBeam.damage_caused = damage_caused
 
 func _physics_process(delta):
 	if is_player:

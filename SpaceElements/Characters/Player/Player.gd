@@ -19,7 +19,7 @@ func _ready():
 	is_player = true
 	first_group = "player"
 	_initial_speed = speed
-#	FleetManager.add_ally(preload("res://SpaceElements/Characters/Allies/RadarShip/RadarShip.tscn").instance())
+	FleetManager.add_ally(preload("res://SpaceElements/Characters/Allies/Cargo/Cargo.tscn").instance())
 #	FleetManager.add_ally(preload("res://SpaceElements/Characters/Allies/Enterprise/Enterprise.tscn").instance())
 #	FleetManager.add_ally(preload("res://SpaceElements/Characters/Allies/Enterprise/Enterprise.tscn").instance())
 
@@ -46,6 +46,12 @@ func _on_ShootTimer_timeout():
 	
 func lvl_up():
 	.lvl_up()
+#	print(String(_life.value) + " / " + String(_life.max_value))
+#	print(String(_shield.shield_bar.value) + " / " + String(_shield.shield_bar.max_value))
+#	print(damage_caused + damage_added)
+#	print(energy_consume)
+#	print(_initial_speed)
+#	print(shoot_timer.wait_time)
 	if lvl >= MAX_LVL:
 		$Weapons/Option1.visible = true
 		$Weapons/Option2.visible = true

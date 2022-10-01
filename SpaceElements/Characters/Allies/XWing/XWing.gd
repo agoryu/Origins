@@ -32,7 +32,7 @@ func _on_ShootTimer_timeout():
 			laser_shoot.rotation = _sprite.rotation
 			add_child(laser_shoot)
 			laser_shoot.set_as_toplevel(true)
-			laser_shoot.damage_caused += damage_added
+			laser_shoot.damage_caused = damage_caused + damage_added
 			laser_shoot.scale /= 2.0
 	shoot_counter += 1
 	

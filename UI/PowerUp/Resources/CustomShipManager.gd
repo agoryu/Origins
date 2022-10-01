@@ -3,11 +3,11 @@ extends GlobalManager
 class_name CustomShipManager
 
 var custom_ship_resources: Array = [
-	preload("res://UI/PowerUp/Resources/CustomShipResources/AddShield.tres"),
-	preload("res://UI/PowerUp/Resources/CustomShipResources/BoostLife.tres"),
-	preload("res://UI/PowerUp/Resources/CustomShipResources/BoostWeapon.tres"),
-	preload("res://UI/PowerUp/Resources/CustomShipResources/ReduceEnergyConsume.tres"),
-	preload("res://UI/PowerUp/Resources/CustomShipResources/Speed.tres"),
+#	preload("res://UI/PowerUp/Resources/CustomShipResources/AddShield.tres"),
+#	preload("res://UI/PowerUp/Resources/CustomShipResources/BoostLife.tres"),
+#	preload("res://UI/PowerUp/Resources/CustomShipResources/BoostWeapon.tres"),
+#	preload("res://UI/PowerUp/Resources/CustomShipResources/ReduceEnergyConsume.tres"),
+#	preload("res://UI/PowerUp/Resources/CustomShipResources/Speed.tres"),
 	preload("res://UI/PowerUp/Resources/CustomShipResources/Cooldown.tres")
 ]
 
@@ -51,7 +51,11 @@ func add_custom_card(card: CustomCard, fleet: Array, tree) -> bool:
 		custom_ship.max_value
 	) + custom_ship.rarity) / 2
 	card.set_rarity(calculate_color_rarity(global_rarity))
-	card.value = custom_value
+	var value_sign = " - " if (
+		custom_ship.custom_ship_type == SpecCustomShipResource.CUSTOM_SHIP_TYPE.REDUCE_ENERGY_CONSUME
+		or
+		custom_ship.custom_ship_type == SpecCustomShipResource.CUSTOM_SHIP_TYPE.COOLDOWN) else " + "
+	card.set_value(custom_value, value_sign)
 	card.ship_type = ship.first_group
 	return true
 
