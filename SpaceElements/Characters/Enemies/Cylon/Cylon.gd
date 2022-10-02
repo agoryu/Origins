@@ -6,6 +6,8 @@ var weapon_used = 0
 
 func _ready():
 	_weapon = $Weapons
+	_life = $Life
+	$AudioStreamPlayer2D.play()
 
 func _physics_process(delta):
 	var direction_angle = FleetManager.player.global_position.direction_to(self.global_position).angle() - PI / 2

@@ -40,7 +40,8 @@ func find_target():
 func move_on_target() -> int:
 	if is_valid_target():
 		var distance_target = global_position.distance_to(_target.global_position)
-		distance_target -= (_target as SpaceElement)._collision.shape.radius
+		if (_target as SpaceElement)._collision.shape is CircleShape2D:
+			distance_target -= (_target as SpaceElement)._collision.shape.radius
 		speed = distance_target * _initial_speed / DISTANCE_MAX_SPEED
 		speed = speed if speed < _initial_speed else _initial_speed
 		move_in_direction(global_position.direction_to(_target.global_position))

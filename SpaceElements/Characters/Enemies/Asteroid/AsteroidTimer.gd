@@ -26,3 +26,6 @@ func manage_level():
 		speed_boost += 100
 	if time_spawn == 90:
 		wait_time /= 2.0
+	if time_spawn == 240:
+		wait_time *= 2.0
+		speed_boost -= 100

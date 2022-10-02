@@ -18,7 +18,9 @@ func impact_damage(value: int):
 	collision_body(value)
 
 func collision_body(value_of_damage: int):
-	var shield_value = _shield.shield_bar.value
+	var shield_value = 0
+	if _shield != null:
+		shield_value = _shield.shield_bar.value
 	if shield_value != 0:
 		shield_value -= value_of_damage
 		if shield_value <= 0:

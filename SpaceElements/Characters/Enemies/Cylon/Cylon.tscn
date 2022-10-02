@@ -3,12 +3,13 @@
 [ext_resource path="res://UI/ProgressBar/SpaceProgressBar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://SpaceElements/Characters/Enemies/Cylon/Cylon.gd" type="Script" id=2]
 [ext_resource path="res://SpaceElements/Characters/Enemies/Cylon/Cylon.png" type="Texture" id=3]
-[ext_resource path="res://Effects/Shield/Shield.tscn" type="PackedScene" id=4]
+[ext_resource path="res://SpaceElements/Characters/Enemies/Cylon/cylon.wav" type="AudioStream" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 88.0
 
 [node name="Cylon" type="KinematicBody2D"]
+z_index = -10
 collision_layer = 2
 collision_mask = 0
 script = ExtResource( 2 )
@@ -32,15 +33,13 @@ position = Vector2( 32, -32 )
 wait_time = 5.0
 autostart = true
 
-[node name="Shield" parent="." instance=ExtResource( 4 )]
-visible = false
-position = Vector2( 3.8147e-06, 3.8147e-06 )
-scale = Vector2( 1.25, 1.25 )
-
 [node name="Life" parent="." instance=ExtResource( 1 )]
 margin_top = -128.0
 margin_bottom = -114.0
 max_value = 50.0
 value = 50.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
 
 [connection signal="timeout" from="MissileTimer" to="." method="_on_MissileTimer_timeout"]

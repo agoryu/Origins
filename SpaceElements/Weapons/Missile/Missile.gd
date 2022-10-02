@@ -4,6 +4,7 @@ var _target: SpaceElement = null
 
 func _ready():
 	$AudioStreamPlayer2D.play()
+	$Sprite/Fire/AnimationPlayer.play("fire")
 
 func _physics_process(delta):
 	if _target == null or not is_instance_valid(self):
@@ -20,5 +21,10 @@ func _physics_process(delta):
 func _on_Area2D_body_entered(body: SpaceElement):
 	if body is Ally:
 		body.impact_damage(damage_caused)
+		explose()
+		queue_free()
 	else:
 		dead()
+		
+func impact_damage(value):
+	dead()
