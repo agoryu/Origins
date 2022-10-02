@@ -39,7 +39,7 @@ func loose_ally(ally: Ally):
 	var ally_position = ally.global_position
 	var ally_radius = ally._collision.shape.radius
 	Engine.time_scale = 0.1
-	var vector_zoom = Vector2.ONE * (ally_radius/150.0)
+	var vector_zoom = Vector2.ONE * (ally_radius/100.0)
 	$SlowMotionStreamPlayer.play()
 	_tween.interpolate_property(self, "global_position", global_position, ally_position, 0.2, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	_tween.interpolate_property(self, "zoom", zoom, vector_zoom, 0.2, Tween.TRANS_LINEAR, Tween.EASE_OUT)
