@@ -5,7 +5,6 @@
 [ext_resource path="res://UI/PowerUp/AddShipCard/Stat.gd" type="Script" id=3]
 
 [sub_resource type="DynamicFont" id=1]
-size = 12
 use_filter = true
 font_data = ExtResource( 1 )
 
@@ -18,15 +17,15 @@ size_flags_vertical = 3
 script = ExtResource( 3 )
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
-margin_right = 92.0
+margin_right = 80.0
 margin_bottom = 68.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Icon" type="NinePatchRect" parent="CenterContainer"]
-margin_left = 33.0
+margin_left = 27.0
 margin_top = 21.0
-margin_right = 58.0
+margin_right = 52.0
 margin_bottom = 46.0
 rect_min_size = Vector2( 25, 25 )
 size_flags_horizontal = 3
@@ -34,7 +33,7 @@ size_flags_vertical = 3
 texture = ExtResource( 2 )
 
 [node name="Value" type="Label" parent="."]
-margin_left = 96.0
+margin_left = 84.0
 margin_right = 126.0
 margin_bottom = 68.0
 size_flags_horizontal = 0

@@ -4,8 +4,8 @@ class_name AddShipCard
 
 signal custom_selected
 
-var red_rarity = Color(1.0, 0.2, 0.2)
-var blue_rarity = Color(0.2, 0.2, 1.0)
+export var red_rarity = Color(1.0, 0.3, 0.2)
+export var blue_rarity = Color(0.3, 0.2, 1.0)
 
 onready var _icon = $VBoxContainer/HBoxContainer/ShipContainer/Icon
 onready var _life = $VBoxContainer/HBoxContainer/StatsContainer/Stats/Life
