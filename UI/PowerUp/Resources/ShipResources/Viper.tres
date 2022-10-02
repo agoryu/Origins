@@ -8,7 +8,7 @@
 script = ExtResource( 1 )
 rarity = 1
 ship_scene = ExtResource( 3 )
-name = "Viper"
+name = "viper"
 image = ExtResource( 2 )
 max_ship = 10
 life = 5

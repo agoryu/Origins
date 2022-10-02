@@ -17,14 +17,14 @@ func _init():
 		for i in range(nb_rarity - ship_resource.rarity):
 			ship_tab.push_back(ship_resource)
 
-func add_ship_card(card: AddShipCard, fleet: Array):
+func add_ship_card(card: AddShipCard, tree):
 	var is_valid_ship : bool = false
 	var ship: SpecShipResources = null
 	
 	while not is_valid_ship:
 		var ship_index = randi() % ship_tab.size()
 		ship = ship_tab[ship_index] as SpecShipResources
-		is_valid_ship = check_validity(ship, fleet)
+		is_valid_ship = check_validity(ship, tree)
 		
 	card.powerup = ship
 	card._icon.texture = ship.image
@@ -52,11 +52,8 @@ func add_ship_card(card: AddShipCard, fleet: Array):
 	card.apply_rarity_color(rarity_speed, card._speed._value_label)
 	card.apply_rarity_color(rarity_cooldown, card._cooldown._value_label)
 	
-func check_validity(ship: SpecShipResources, fleet: Array) -> bool:
-	var nb_type_ship = 0
-	for ship_fleet in fleet:
-		if ship.ship_scene.resource_path == (ship_fleet as Ally).filename:
-			nb_type_ship += 1
+func check_validity(ship: SpecShipResources, tree) -> bool:
+	var nb_type_ship = tree.get_nodes_in_group(ship.name).size()
 	return nb_type_ship < ship.max_ship
 	
 func randomize_value(value: int, randomness: int) -> int:

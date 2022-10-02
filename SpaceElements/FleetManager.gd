@@ -16,6 +16,8 @@ var player_nodes : Node2D= null
 # Energy management
 var energy_consume : int = 1
 
+var _navigation : Navigation2D = null
+
 func _init():
 	energy_consume = 1
 	fleet_tab = []
@@ -24,7 +26,7 @@ func add_ally(ally):
 	var pos = find_position()
 	
 	ally.global_position = pos.global_position
-	add_child(ally)
+	_navigation.add_child(ally)
 	fleet_tab.push_front(ally)
 	ally.set_as_toplevel(true)
 	FleetManager.energy_consume += ally.energy_consume

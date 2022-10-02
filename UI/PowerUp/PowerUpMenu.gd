@@ -14,7 +14,7 @@ var open : bool = false
 func level_up():
 	animate()
 	for i in range(3):
-		var card = resource_manager.get_card(FleetManager.fleet_tab, get_tree(), _card_box)
+		var card = resource_manager.get_card(get_tree(), _card_box)
 		card.connect("custom_selected", self, "close_power_up_menu")
 		if i == 0:
 			card.grab_focus()

@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://SpaceElements/Characters/Allies/XWing/XWing.gd" type="Script" id=1]
-[ext_resource path="res://Effects/Shield/Shield.tscn" type="PackedScene" id=2]
-[ext_resource path="res://UI/ProgressBar/SpaceProgressBar.tscn" type="PackedScene" id=3]
+[ext_resource path="res://SpaceElements/Characters/CommonShipNode.tscn" type="PackedScene" id=2]
 [ext_resource path="res://SpaceElements/Characters/Allies/XWing/XWing.png" type="Texture" id=4]
 [ext_resource path="res://SpaceElements/Characters/Allies/XWing/fire.png" type="Texture" id=5]
 
@@ -12,65 +11,8 @@ radius = 24.0
 [sub_resource type="CircleShape2D" id=2]
 radius = 384.0
 
-[sub_resource type="Animation" id=3]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("CollisionShape2D:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-
-[sub_resource type="Animation" id=4]
-resource_name = "blink"
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.5, 0.7, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0.0705882, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0, 0.0705882, 1 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("CollisionShape2D:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
-}
-
-[sub_resource type="CircleShape2D" id=5]
-radius = 27.2947
-
-[sub_resource type="CircleShape2D" id=6]
-radius = 32.9848
+[sub_resource type="CircleShape2D" id=3]
+radius = 39.6232
 
 [node name="XWing" type="KinematicBody2D" groups=["ally", "hunter", "xwing"]]
 collision_mask = 64
@@ -125,19 +67,6 @@ position = Vector2( 460.496, 411.066 )
 scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 5 )
 
-[node name="Shield" parent="." instance=ExtResource( 2 )]
-visible = false
-position = Vector2( 3.8147e-06, 3.8147e-06 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="ShieldBar" parent="Shield" index="0"]
-margin_left = -23.0
-margin_top = -70.0
-margin_right = 23.0
-margin_bottom = -58.0
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 8 )
 shape = SubResource( 1 )
@@ -190,55 +119,32 @@ position = Vector2( 11, 4 )
 [node name="PhotonPosition" type="Position2D" parent="Weapons"]
 position = Vector2( 0, -20 )
 
-[node name="Life" parent="." instance=ExtResource( 3 )]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-pause_mode = 2
-anims/RESET = SubResource( 3 )
-anims/blink = SubResource( 4 )
-
-[node name="ShootTimer" type="Timer" parent="."]
-wait_time = 0.5
-one_shot = true
-
 [node name="TargetTimer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
 
-[node name="ObjectArea" type="Area2D" parent="."]
-collision_layer = 129
-collision_mask = 0
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectArea"]
-modulate = Color( 1, 0.0431373, 0.0431373, 1 )
-shape = SubResource( 5 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="CollisionZone" type="Area2D" parent="."]
-collision_layer = 0
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionZone"]
-modulate = Color( 0.203922, 0.921569, 0.027451, 1 )
-shape = SubResource( 6 )
-__meta__ = {
-"_edit_lock_": true
-}
-
 [node name="PhotonTimer" type="Timer" parent="."]
 wait_time = 8.0
 
-[connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]
-[connection signal="timeout" from="TargetTimer" to="." method="_on_TargetTimer_timeout"]
-[connection signal="body_entered" from="CollisionZone" to="." method="_on_CollisionZone_body_entered"]
-[connection signal="body_exited" from="CollisionZone" to="." method="_on_CollisionZone_body_exited"]
-[connection signal="timeout" from="PhotonTimer" to="." method="_on_PhotonTimer_timeout"]
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
 
-[editable path="Shield"]
+[node name="CommonShipNode" parent="." instance=ExtResource( 2 )]
+
+[node name="ShootTimer" parent="CommonShipNode" index="3"]
+one_shot = true
+autostart = false
+
+[node name="ObjectArea" type="Area2D" parent="."]
+collision_layer = 129
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectArea"]
+modulate = Color( 1, 0.0431373, 0.0431373, 1 )
+z_index = 80
+shape = SubResource( 3 )
+
+[connection signal="timeout" from="TargetTimer" to="." method="_on_TargetTimer_timeout"]
+[connection signal="timeout" from="PhotonTimer" to="." method="_on_PhotonTimer_timeout"]
+[connection signal="timeout" from="CommonShipNode/ShootTimer" to="." method="_on_ShootTimer_timeout"]
+
+[editable path="CommonShipNode"]

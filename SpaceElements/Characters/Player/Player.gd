@@ -4,24 +4,20 @@ class_name Player
 
 onready var laser_shoot_constructore = preload("res://SpaceElements/Weapons/LaserShoot/LaserShoot.tscn")
 
-onready var _engine_audio = $EnginePlayer
+onready var _engine_audio = $CommonShipNode/EnginePlayer
 
 var weapon_uses : int = 1
 
 func _ready():
+	on_ready()
 	FleetManager.player = self
 	FleetManager.fleet_points = $PlayerNodes/FleetPoints
 	FleetManager.player_nodes = $PlayerNodes
 	FleetManager.fleet_tab.push_back(self)
 	FleetManager.energy_consume = energy_consume
 	_weapon = $Weapons
-	_fire = $Sprite/Fire
 	is_player = true
 	first_group = "player"
-	_initial_speed = speed
-	FleetManager.add_ally(preload("res://SpaceElements/Characters/Allies/Cargo/Cargo.tscn").instance())
-#	FleetManager.add_ally(preload("res://SpaceElements/Characters/Allies/Enterprise/Enterprise.tscn").instance())
-#	FleetManager.add_ally(preload("res://SpaceElements/Characters/Allies/Enterprise/Enterprise.tscn").instance())
 
 func _physics_process(delta: float) -> void:
 	if is_player:
@@ -51,7 +47,7 @@ func lvl_up():
 #	print(damage_caused + damage_added)
 #	print(energy_consume)
 #	print(_initial_speed)
-#	print(shoot_timer.wait_time)
+#	print(_shoot_timer.wait_time)
 	if lvl >= MAX_LVL:
 		$Weapons/Option1.visible = true
 		$Weapons/Option2.visible = true
@@ -60,18 +56,3 @@ func lvl_up():
 func _on_BeamTimer_timeout():
 	$Weapons/LaserBeam1.set_is_casting(true)
 	$Weapons/LaserBeam2.set_is_casting(true)
-
-func _on_CollisionZone_body_exited(body):
-	if (body is Ally 
-		and body.get_parent() != self 
-		and not is_player 
-	):
-		end_collision()
-
-func _on_CollisionZone_body_entered(body):
-	if (body is Ally 
-		and body.get_parent() != self 
-		and not is_player 
-		and not body.is_player
-	):
-		collision_detected(body)

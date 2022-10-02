@@ -5,13 +5,13 @@ class_name ShuttlePod
 onready var _laser_beam = $Sprite/LaserBeam
 
 var _position : Position2D
+var min_distance = 50
 
 func _ready():
 	_fire = $Sprite/Fire
 	_state = STATE.FOLLOW_PLAYER
 	_initial_speed = speed
 	first_group = "shuttlepod"
-	min_distance = 50
 
 func _physics_process(delta):
 	move()

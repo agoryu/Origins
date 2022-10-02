@@ -8,7 +8,7 @@
 script = ExtResource( 1 )
 rarity = 0
 ship_scene = ExtResource( 3 )
-name = "Cargo"
+name = "cargo"
 image = ExtResource( 2 )
 max_ship = 3
 life = 100

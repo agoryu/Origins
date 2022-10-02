@@ -3,9 +3,8 @@ extends Ally
 const ENERGY_GET : int = 25
 
 func _ready():
-	_fire = $Sprite/Fire
+	on_ready()
 	first_group = "cargo"
-	_initial_speed = speed
 	fire_scale = 3.0
 
 func _physics_process(delta):
@@ -24,20 +23,11 @@ func lvl_up():
 		energy_reserve *= 2
 		scale *= 1.5
 
-func _on_CollisionZone_body_exited(body):
-	if (body is Ally 
-		and body.get_parent() != self 
-		and not is_player 
-	):
-		end_collision()
-
-func _on_CollisionZone_body_entered(body):
-	if (body is Ally 
-		and body.get_parent() != self 
-		and not is_player 
-	):
-		collision_detected(body)
-
 func _on_ShootTimer_timeout():
 	Game.add_energy(ENERGY_GET * (damage_added + damage_caused))
 	$AudioStreamPlayer2D.play()
+
+
+func _on_NavigationAgent2D_velocity_computed(safe_velocity):
+	print("hola")
+	move_velocity(safe_velocity)

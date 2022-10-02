@@ -3,11 +3,11 @@ extends GlobalManager
 class_name CustomShipManager
 
 var custom_ship_resources: Array = [
-#	preload("res://UI/PowerUp/Resources/CustomShipResources/AddShield.tres"),
-#	preload("res://UI/PowerUp/Resources/CustomShipResources/BoostLife.tres"),
-#	preload("res://UI/PowerUp/Resources/CustomShipResources/BoostWeapon.tres"),
-#	preload("res://UI/PowerUp/Resources/CustomShipResources/ReduceEnergyConsume.tres"),
-#	preload("res://UI/PowerUp/Resources/CustomShipResources/Speed.tres"),
+	preload("res://UI/PowerUp/Resources/CustomShipResources/AddShield.tres"),
+	preload("res://UI/PowerUp/Resources/CustomShipResources/BoostLife.tres"),
+	preload("res://UI/PowerUp/Resources/CustomShipResources/BoostWeapon.tres"),
+	preload("res://UI/PowerUp/Resources/CustomShipResources/ReduceEnergyConsume.tres"),
+	preload("res://UI/PowerUp/Resources/CustomShipResources/Speed.tres"),
 	preload("res://UI/PowerUp/Resources/CustomShipResources/Cooldown.tres")
 ]
 
@@ -19,7 +19,7 @@ func _init():
 		for i in range(nb_rarity - custom_ship_resource.rarity):
 			custom_ship_tab.push_back(custom_ship_resource)
 			
-func add_custom_card(card: CustomCard, fleet: Array, tree) -> bool:
+func add_custom_card(card: CustomCard, tree) -> bool:
 	var is_valid_custom : bool = false
 	var nb_search = 0
 	var custom_ship_index = 0
@@ -28,7 +28,7 @@ func add_custom_card(card: CustomCard, fleet: Array, tree) -> bool:
 	var ship : Ally = null
 	
 	while not is_valid_custom:
-		ship = _get_ship(fleet)
+		ship = _get_ship(tree)
 		if ship == null:
 			return false
 		custom_ship_index = randi() % custom_ship_tab.size()
@@ -59,18 +59,16 @@ func add_custom_card(card: CustomCard, fleet: Array, tree) -> bool:
 	card.ship_type = ship.first_group
 	return true
 
-func _get_ship(fleet : Array) -> Ally:
-	var is_valid_ship = true
+func _get_ship(tree) -> Ally:
+	var retry = 10
+	var fleet = tree.get_nodes_in_group("ally")
 	if fleet.size() <= 0:
 		return null
-	while is_valid_ship:
-		var ship_index = randi() % fleet.size()
-		var ship = fleet[ship_index]
-		if is_instance_valid(ship) and (ship as Ally).lvl < ship.MAX_LVL:
-			return ship as Ally
-		else:
-			fleet.remove(ship_index)
-		is_valid_ship = fleet.size() > 0
+	while retry > 0:
+		var ship = fleet[randi() % fleet.size()]
+		if ship.lvl < ship.MAX_LVL:
+			return ship
+		retry -= 1
 	return null
 	
 func _is_valid_customization(
@@ -98,6 +96,6 @@ func _is_valid_customization(
 				if ship.speed + value > ship.max_speed:
 					return false
 			SpecCustomShipResource.CUSTOM_SHIP_TYPE.COOLDOWN:
-				if ship.shoot_timer.wait_time - value / 100.0 < ship.min_cooldown:
+				if ship._shoot_timer.wait_time - value / 100.0 < ship.min_cooldown:
 					return false
 	return true

@@ -1,17 +1,18 @@
-extends "res://SpaceElements/SpaceElement.gd"
+extends SpaceElement
 
 class_name Character
 
-onready var _life: SpaceProgressBar = $Life
-onready var _shield: Shield = $Shield
+onready var _life: SpaceProgressBar = $CommonShipNode/Life
+onready var _shield: Shield = $CommonShipNode/Shield
 onready var _sprite: Sprite = $Sprite
 onready var _weapon: Node2D = null
-onready var _fire: Node2D = null
+onready var _fire: Node2D = $Sprite/Fire
 
 var damage_added = 0
 var fire_scale = 1.0
+var wait_collision = 0
 
-var wait_time_collision = false
+const WAIT_COLLISION_TIME = 10
 
 func impact_damage(value: int):
 	collision_body(value)
@@ -30,11 +31,15 @@ func collision_body(value_of_damage: int):
 	
 func move_in_direction(direction: Vector2):
 	.move_in_direction(direction)
-	
-	_sprite.rotation = _velocity.angle() + PI / 2
-	_collision.rotation = _velocity.angle() + PI / 2
-	if _weapon:
-		_weapon.rotation = _sprite.rotation
+	if get_slide_count() <= 0 and wait_collision <= 0:
+		_sprite.rotation = _velocity.angle() + PI / 2
+		_collision.rotation = _velocity.angle() + PI / 2
+		if _weapon:
+			_weapon.rotation = _sprite.rotation
+	elif get_slide_count() >= 0 and wait_collision <= 0:
+		wait_collision = WAIT_COLLISION_TIME
+	else:
+		wait_collision -= 1
 	if _fire and speed > 0:
 		for fire in _fire.get_children():
 			var speed_rate : float = _velocity.length() / speed

@@ -11,9 +11,8 @@ onready var _radar = $Sprite/Radar
 var activate_absorption : bool = false
 
 func _ready():
-	_fire = $Sprite/Fire
+	on_ready()
 	first_group = "radar"
-	_initial_speed = speed
 
 func _physics_process(delta):
 	if is_player:
@@ -22,7 +21,7 @@ func _physics_process(delta):
 		move_ally()
 	_radar.rotate(PI/30.0)
 
-func _on_RadarTimer_timeout():
+func _on_ShootTimer_timeout():
 	activate_radar()
 	if _radar_direction_node.get_child_count() >= damage_caused + damage_added:
 		return
@@ -62,20 +61,6 @@ func lvl_up():
 	.lvl_up()
 	if lvl >= MAX_LVL:
 		activate_absorption = true
-
-func _on_CollisionZone_body_exited(body):
-	if (body is Ally 
-		and body.get_parent() != self 
-		and not is_player 
-	):
-		end_collision()
-
-func _on_CollisionZone_body_entered(body):
-	if (body is Ally 
-		and body.get_parent() != self 
-		and not is_player 
-	):
-		collision_detected(body)
 
 func _on_Tween_tween_all_completed():
 	if activate_absorption:

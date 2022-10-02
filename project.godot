@@ -34,7 +34,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Bonus/Bonus.gd"
 }, {
-"base": "KinematicBody2D",
+"base": "SpaceElement",
 "class": "Character",
 "language": "GDScript",
 "path": "res://SpaceElements/Characters/Character.gd"

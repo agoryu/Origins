@@ -76,8 +76,8 @@ func move():
 				if shoot_counter >= nb_shoot:
 					shoot_counter = 0
 					_state = STATE.GO_BACK
-				elif shoot_timer.is_stopped():
-					shoot_timer.start()
+				elif _shoot_timer.is_stopped():
+					_shoot_timer.start()
 		STATE.WAIT_TARGET:
 			find_target()
 			if is_valid_target():

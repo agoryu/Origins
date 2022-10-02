@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://SpaceElements/Characters/Allies/Cargo/Cargo.gd" type="Script" id=1]
-[ext_resource path="res://Effects/Shield/Shield.tscn" type="PackedScene" id=2]
-[ext_resource path="res://UI/ProgressBar/SpaceProgressBar.tscn" type="PackedScene" id=3]
+[ext_resource path="res://SpaceElements/Characters/CommonShipNode.tscn" type="PackedScene" id=2]
 [ext_resource path="res://SpaceElements/Characters/Allies/Cargo/Cargo.png" type="Texture" id=4]
 [ext_resource path="res://Bonus/EnergyCharge/energy.wav" type="AudioStream" id=5]
 [ext_resource path="res://SpaceElements/Characters/Allies/Enterprise/fire.png" type="Texture" id=6]
@@ -10,68 +9,11 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 112.285
 
-[sub_resource type="CircleShape2D" id=4]
-radius = 152.21
-
-[sub_resource type="CircleShape2D" id=5]
-radius = 104.307
-
-[sub_resource type="Animation" id=2]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("CollisionShape2D:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-
-[sub_resource type="Animation" id=3]
-resource_name = "blink"
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.5, 0.7, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0.0705882, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0, 0.0705882, 1 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("CollisionShape2D:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
-}
+[sub_resource type="CircleShape2D" id=2]
+radius = 224.143
 
 [node name="Cargo" type="KinematicBody2D" groups=["ally", "cargo"]]
-collision_mask = 64
+collision_mask = 65
 script = ExtResource( 1 )
 speed = 250.0
 energy_consume = 8
@@ -79,7 +21,7 @@ min_cooldown = 10.0
 max_damage = 5
 max_speed = 300
 max_life = 150
-limit_distance = 450
+limit_distance = 200
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.1, 0.1 )
@@ -107,70 +49,47 @@ position = Vector2( -720, 1340 )
 scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 6 )
 
-[node name="Shield" parent="." instance=ExtResource( 2 )]
-visible = false
-position = Vector2( -6.67572e-06, 4.00001 )
-scale = Vector2( 2.875, 2.9375 )
-
-[node name="ShieldBar" parent="Shield" index="0"]
-margin_left = -8.0
-margin_top = -64.0
-margin_right = 8.0
-margin_bottom = -58.0
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Life" parent="." instance=ExtResource( 3 )]
-margin_top = -160.0
-margin_bottom = -146.0
-max_value = 8.0
-value = 8.0
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+
+[node name="CommonShipNode" parent="." instance=ExtResource( 2 )]
+
+[node name="Shield" parent="CommonShipNode" index="0"]
+position = Vector2( -1.14441e-05, 12 )
+scale = Vector2( 3, 3.1875 )
+
+[node name="ShieldBar" parent="CommonShipNode/Shield" index="0"]
+margin_left = -7.99999
+margin_top = -56.4706
+margin_right = 8.00001
+margin_bottom = -51.4706
+
+[node name="Life" parent="CommonShipNode" index="2"]
+margin_top = -144.0
+margin_bottom = -130.0
+
+[node name="ShootTimer" parent="CommonShipNode" index="3"]
+wait_time = 15.0
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
 
 [node name="ObjectArea" type="Area2D" parent="."]
 collision_layer = 129
 collision_mask = 0
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectArea"]
 modulate = Color( 1, 0.0431373, 0.0431373, 1 )
-shape = SubResource( 4 )
-__meta__ = {
-"_edit_lock_": true
-}
+z_index = 20
+shape = SubResource( 2 )
 
-[node name="CollisionZone" type="Area2D" parent="."]
-collision_layer = 0
-__meta__ = {
-"_edit_lock_": true
-}
+[connection signal="timeout" from="CommonShipNode/ShootTimer" to="." method="_on_ShootTimer_timeout"]
+[connection signal="velocity_computed" from="CommonShipNode/NavigationAgent2D" to="." method="_on_NavigationAgent2D_velocity_computed"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionZone"]
-modulate = Color( 0.203922, 0.921569, 0.027451, 1 )
-shape = SubResource( 5 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-pause_mode = 2
-anims/RESET = SubResource( 2 )
-anims/blink = SubResource( 3 )
-
-[node name="ShootTimer" type="Timer" parent="."]
-wait_time = 15.0
-autostart = true
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 5 )
-
-[connection signal="body_entered" from="CollisionZone" to="." method="_on_CollisionZone_body_entered"]
-[connection signal="body_exited" from="CollisionZone" to="." method="_on_CollisionZone_body_exited"]
-[connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]
-
-[editable path="Shield"]
+[editable path="CommonShipNode"]
+[editable path="CommonShipNode/Shield"]

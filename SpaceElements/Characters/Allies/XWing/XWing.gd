@@ -4,9 +4,8 @@ onready var laser_shoot_constructor = preload("res://SpaceElements/Weapons/Laser
 onready var photon_shoot_constructor = preload("res://SpaceElements/Weapons/Photon/Photon.tscn")
 
 func _ready():
-	_fire = $Sprite/Fire
+	on_ready()
 	_weapon = $Weapons
-	_initial_speed = speed
 	_state = STATE.FOLLOW_PLAYER
 	first_group = "xwing"
 
@@ -39,25 +38,6 @@ func _on_ShootTimer_timeout():
 func set_cooldown(value: float):
 	.set_cooldown(value)
 	_target_timer.wait_time = value * 10.0
-	
-func set_speed(value: int):
-	.set_speed(value)
-	_initial_speed += value
-
-func _on_CollisionZone_body_entered(body):
-	if (body is Ally 
-		and body.get_parent() != self 
-		and not is_player 
-		and not body.is_player
-	):
-		collision_detected(body)
-
-func _on_CollisionZone_body_exited(body):
-	if (body is Ally 
-		and body.get_parent() != self 
-		and not is_player 
-	):
-		end_collision()
 
 func _on_PhotonTimer_timeout():
 	var photon_shoot = photon_shoot_constructor.instance()

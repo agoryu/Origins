@@ -2,9 +2,10 @@ extends Character
 
 class_name Ally
 
-onready var animation_player: AnimationPlayer = $AnimationPlayer
-onready var shoot_timer: Timer = $ShootTimer
-onready var _collision_zone : Area2D = $CollisionZone
+onready var _animation_player: AnimationPlayer = $CommonShipNode/AnimationPlayer
+onready var _shoot_timer: Timer = $CommonShipNode/ShootTimer
+onready var _navigation_agent : NavigationAgent2D = $CommonShipNode/NavigationAgent2D
+onready var _find_target_timer : Timer = $CommonShipNode/FindTargetTimer
 
 export var energy_consume = 1
 export var energy_reserve = 1
@@ -15,7 +16,6 @@ export var min_energy_consume = 4
 export var max_life = 20
 export var limit_distance = 350
 
-var min_distance = 100
 var _initial_speed = speed
 
 const MAX_LVL = 5
@@ -24,6 +24,11 @@ var direction = Vector2.ZERO
 var is_player = false setget set_is_player
 var lvl : int = 0
 var first_group : String = ""
+
+func on_ready():
+	_initial_speed = speed
+	_find_target_timer.connect("timeout", self, "find_player")
+	_navigation_agent.connect("velocity_computed", self, "move_velocity")
 
 func add_damage(value: int):
 	damage_added += value
@@ -47,7 +52,7 @@ func impact_damage(value: int):
 		else:
 			Game.game_over()
 	Game.shake_screen()
-	animation_player.play("blink")
+	_animation_player.play("blink")
 	
 func get_gamepad_direction():
 	return Vector2(
@@ -57,35 +62,23 @@ func get_gamepad_direction():
 	
 func move_ally():
 	var current_direction = get_gamepad_direction()
-	var player = FleetManager.player
-	var player_distance = global_position.distance_to(player.global_position)
+	var player_distance = global_position.distance_to(FleetManager.player.global_position)
 	
-	if player_distance > limit_distance and speed != max_speed:
-		speed = _initial_speed
-		direction = global_position.direction_to(player.global_position)
-	elif wait_time_collision:
-		direction = current_direction
-	else:
+	if player_distance < limit_distance:
 		speed = min(FleetManager.player.speed, speed)
 		direction = current_direction
+	else:
+		speed = _initial_speed
+		direction = global_position.direction_to(_navigation_agent.get_next_location())
 		
 	move_in_direction(direction)
-	
-func collision_detected(body):
-	if get_ally_radius(self) <= get_ally_radius(body) and not body.wait_time_collision:
-		wait_time_collision = true
-		speed /= 2
-			
-func end_collision():
-	wait_time_collision = false
-	speed = _initial_speed
 
 func loose_ally():
 	FleetManager.remove_ally(self)
 	
 func player_move():
-		direction = get_gamepad_direction()
-		move_in_direction(direction)
+	direction = get_gamepad_direction()
+	move_in_direction(direction)
 
 func set_is_player(value: bool):
 	is_player = value
@@ -100,7 +93,7 @@ func is_max_lvl() -> bool:
 	return lvl == MAX_LVL
 		
 func set_cooldown(value: float):
-	shoot_timer.wait_time = value
+	_shoot_timer.wait_time = value
 	
 func set_speed(value: int):
 	speed += value
@@ -108,3 +101,11 @@ func set_speed(value: int):
 
 func get_ally_radius(ally: Ally) -> float:
 	return ally._collision.shape.radius
+
+func find_player():
+	_navigation_agent.set_target_location(FleetManager.player.global_position)
+
+func move_velocity(velocity: Vector2):
+	print("move velocity")
+	_velocity = move_and_slide(velocity)
+	_sprite.rotation = lerp(_sprite.rotation, velocity.angle(), 10 * get_physics_process_delta_time())

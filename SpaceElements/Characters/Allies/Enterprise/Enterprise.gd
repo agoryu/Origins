@@ -4,9 +4,8 @@ onready var _laser_beam = $Sprite/LaserBeam
 onready var _shuttlepod_constructor = preload("res://SpaceElements/Characters/Allies/Enterprise/ShuttlePod/ShuttlePod.tscn")
 
 func _ready():
-	_fire = $Sprite/Fire
+	on_ready()
 	first_group = "enterprise"
-	_initial_speed = speed
 	$Sprite/LaserBeam.damage_caused = damage_caused
 
 func _physics_process(delta):
@@ -14,9 +13,6 @@ func _physics_process(delta):
 		player_move()
 	else:
 		move_ally()
-
-func _on_LaserBeamTimer_timeout():
-	_laser_beam.set_is_casting(true)
 
 func add_damage(value: int):
 	damage_added += value
@@ -33,16 +29,5 @@ func lvl_up():
 			shuttlepod.speed = speed
 			add_child(shuttlepod)
 
-func _on_CollisionZone_body_exited(body):
-	if (body is Ally 
-		and body.get_parent() != self 
-		and not is_player 
-	):
-		end_collision()
-
-func _on_CollisionZone_body_entered(body):
-	if (body is Ally 
-		and body.get_parent() != self 
-		and not is_player 
-	):
-		collision_detected(body)
+func _on_ShootTimer_timeout():
+	_laser_beam.set_is_casting(true)
