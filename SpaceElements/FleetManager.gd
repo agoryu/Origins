@@ -47,15 +47,14 @@ func find_position() -> Area2D:
 	return fleet_points.get_child(0) as Area2D
 	
 func switch_ship(direction: int):
+	print(fleet_tab)
 	if fleet_tab.size() > 0:
 		var index = (fleet_tab.find(player) + direction) % fleet_tab.size()
-		player.is_player = false
 		player.remove_child(player_nodes)
-		player.set_collision_layer_bit(8, false)
+		player._animation_player.play("become_ally")
 		player = fleet_tab[index]
-		player.is_player = true
 		player.add_child(player_nodes)
-		player.set_collision_layer_bit(8, true)
+		player._animation_player.play("become_player")
 		emit_signal("set_player")
 		
 func add_max_energy(value: int):

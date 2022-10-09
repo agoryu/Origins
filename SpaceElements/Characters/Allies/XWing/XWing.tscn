@@ -9,13 +9,13 @@
 radius = 24.0
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 384.0
+radius = 789.229
 
 [sub_resource type="CircleShape2D" id=3]
 radius = 39.6232
 
 [node name="XWing" type="KinematicBody2D" groups=["ally", "hunter", "xwing"]]
-collision_mask = 64
+collision_mask = 65
 script = ExtResource( 1 )
 speed = 320.0
 drag = 5.0

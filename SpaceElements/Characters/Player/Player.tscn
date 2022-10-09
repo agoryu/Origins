@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://SpaceElements/Characters/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://SpaceElements/Characters/CommonShipNode.tscn" type="PackedScene" id=2]
@@ -13,6 +13,57 @@ radius = 32.249
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 32, 32 )
+
+[sub_resource type="Animation" id=7]
+resource_name = "become_player"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:collision_layer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 128 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:collision_mask")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 64 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:is_player")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3, 0.5, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1.5, 1.5, 1.5, 1 ), Color( 1, 1, 1, 1 ), Color( 1.5, 1.5, 1.5, 1 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="CircleShape2D" id=6]
 radius = 168.76
@@ -30,6 +81,7 @@ max_damage = 30
 max_speed = 400
 min_energy_consume = 1
 max_life = 50
+is_player = true
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.2, 0.2 )
@@ -177,6 +229,9 @@ shape = SubResource( 5 )
 wait_time = 5.0
 
 [node name="CommonShipNode" parent="." instance=ExtResource( 2 )]
+
+[node name="AnimationPlayer" parent="CommonShipNode" index="6"]
+anims/become_player = SubResource( 7 )
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
 

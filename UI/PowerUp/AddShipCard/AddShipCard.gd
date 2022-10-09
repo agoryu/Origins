@@ -44,7 +44,8 @@ func _on_Card_button_up():
 	ship.energy_consume = _energy_consume.value
 	ship.speed = _speed.value
 	ship.set_cooldown(_cooldown.value)
-	ship.scale = Vector2.ONE + Vector2(float(rarity)/10.0, float(rarity)/10.0)
+	ship.scale = Vector2.ONE + Vector2(float(rarity) / 4.0, float(rarity) / 4.0)
+	print(ship.scale)
 	emit_signal("custom_selected")
 	
 func set_rarity(color: Color, rarity_value: int):

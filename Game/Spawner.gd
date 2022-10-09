@@ -15,4 +15,4 @@ func _on_EnergyChargeTimer_timeout():
 	$EnergyChargeTimer.spawn_element(spawn_location)
 	
 func update_allies(vector_scale: Vector2):
-	scale = vector_scale
+	scale = vector_scale * 3

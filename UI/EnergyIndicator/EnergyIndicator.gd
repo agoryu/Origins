@@ -1,6 +1,10 @@
 extends TextureProgress
 
 export var percent_alert_threshold = 15
+export var color_4 : Color = Color(1)
+export var color_3 : Color = Color(1)
+export var color_2 : Color = Color(1)
+export var color_1 : Color = Color(1)
 
 var is_alert = false
 
@@ -18,6 +22,7 @@ func _on_EnergyTimer_timeout():
 	elif is_alert and value > (percent_alert_threshold * max_value) / 100:
 		Game.stop_alert()
 		is_alert = false
+	switch_color()
 		
 func add_energy(energy: int):
 	value += energy
@@ -25,3 +30,13 @@ func add_energy(energy: int):
 func update_max_energy(max_energy: int):
 	max_value += max_energy
 	value += max_energy
+
+func switch_color():
+	if value <= max_value / 4:
+		tint_progress = color_1
+	elif value <= max_value / 2:
+		tint_progress = color_2
+	elif value <= (max_value / 4) * 3:
+		tint_progress = color_3
+	else:
+		tint_progress = color_4

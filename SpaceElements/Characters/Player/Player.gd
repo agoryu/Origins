@@ -16,7 +16,6 @@ func _ready():
 	FleetManager.fleet_tab.push_back(self)
 	FleetManager.energy_consume = energy_consume
 	_weapon = $Weapons
-	is_player = true
 	first_group = "player"
 
 func _physics_process(delta: float) -> void:

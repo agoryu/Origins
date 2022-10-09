@@ -15,15 +15,16 @@ export var max_speed = 50
 export var min_energy_consume = 4
 export var max_life = 20
 export var limit_distance = 350
+export var is_player = false setget set_is_player
 
 var _initial_speed = speed
 
 const MAX_LVL = 5
 
 var direction = Vector2.ZERO
-var is_player = false setget set_is_player
 var lvl : int = 0
 var first_group : String = ""
+var is_invincible = true
 
 func on_ready():
 	_initial_speed = speed
@@ -45,6 +46,8 @@ func add_shield_value(value: int):
 	_shield.visible = true
 	
 func impact_damage(value: int):
+	if is_invincible:
+		return
 	.impact_damage(value)
 	if _life.value <= 0:
 		if not is_player:
@@ -104,8 +107,9 @@ func get_ally_radius(ally: Ally) -> float:
 
 func find_player():
 	_navigation_agent.set_target_location(FleetManager.player.global_position)
+	if is_invincible:
+		is_invincible = false
 
 func move_velocity(velocity: Vector2):
-	print("move velocity")
 	_velocity = move_and_slide(velocity)
 	_sprite.rotation = lerp(_sprite.rotation, velocity.angle(), 10 * get_physics_process_delta_time())

@@ -25,12 +25,18 @@ var shoot_counter = 0
 func is_valid_target() -> bool:
 	return _target != null and is_instance_valid(_target)
 	
+func is_valid_priority(body: SpaceElement) -> bool:
+	return (_target as SpaceElement).priority_target <= body.priority_target
+	
 func find_target():
 	var collision_bodies = detection_zone.get_overlapping_bodies()
 	var distance_tmp = 5000
 	for body in collision_bodies:
 		var distance_collision_body = global_position.distance_to(body.global_position)
 		if (
+			not is_valid_target() or 
+			is_valid_priority(body)
+		) and (
 			distance_tmp > distance_collision_body and
 			is_target_not_use(body)
 		):
@@ -49,6 +55,8 @@ func move_on_target() -> int:
 	return -1
 	
 func is_target_not_use(target: SpaceElement):
+	if not is_valid_target():
+		return true
 	for ship in get_tree().get_nodes_in_group("hunter"):
 		if target == ship._target:
 			return false

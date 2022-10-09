@@ -16,7 +16,7 @@ func _physics_process(delta):
 	else:
 		move()
 
-func _on_TargetTimer_timeout():
+func _on_FindTargetTimer_timeout():
 	_state = STATE.WAIT_TARGET
 
 func _on_ShootTimer_timeout():

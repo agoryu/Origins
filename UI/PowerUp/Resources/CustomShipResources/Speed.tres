@@ -7,7 +7,7 @@
 script = ExtResource( 1 )
 rarity = 2
 custom_ship_type = 4
-min_value = 10
-max_value = 30
+min_value = 20
+max_value = 50
 icon = ExtResource( 2 )
 description = "Boost ship speed"

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Effects/HaloCircle/halo_circle.shader" type="Shader" id=1]
-[ext_resource path="res://SpaceElements/Characters/Allies/RadarShip/white_square.svg" type="Texture" id=2]
+[ext_resource path="res://Effects/HaloCircle/white_square.svg" type="Texture" id=2]
 [ext_resource path="res://Effects/HaloCircle/HaloCircle.gd" type="Script" id=3]
 
 [sub_resource type="ShaderMaterial" id=1]

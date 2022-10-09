@@ -5,6 +5,7 @@ class_name SpaceElement
 export var speed = 1000.0
 export var drag := 4.0
 export var damage_caused : int = 1
+export var priority_target = 0
 
 onready var _collision: CollisionShape2D = $CollisionShape2D
 

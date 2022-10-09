@@ -3,6 +3,6 @@
 [ext_resource path="res://SpaceElements/Characters/Enemies/Cylon/CylonTimer.gd" type="Script" id=1]
 
 [node name="CylonTimer" type="Timer"]
-wait_time = 120.0
+wait_time = 240.0
 autostart = true
 script = ExtResource( 1 )

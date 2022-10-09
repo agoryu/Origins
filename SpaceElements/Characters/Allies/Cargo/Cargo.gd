@@ -1,6 +1,6 @@
 extends Ally
 
-const ENERGY_GET : int = 25
+const ENERGY_GET : int = 50
 
 func _ready():
 	on_ready()
@@ -29,5 +29,4 @@ func _on_ShootTimer_timeout():
 
 
 func _on_NavigationAgent2D_velocity_computed(safe_velocity):
-	print("hola")
 	move_velocity(safe_velocity)

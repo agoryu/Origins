@@ -19,7 +19,7 @@ speed = 250.0
 energy_consume = 8
 min_cooldown = 10.0
 max_damage = 5
-max_speed = 300
+max_speed = 320
 max_life = 150
 limit_distance = 200
 

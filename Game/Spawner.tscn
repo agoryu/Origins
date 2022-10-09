@@ -28,7 +28,7 @@ rotation = 0.0281392
 wait_time = 20.0
 
 [node name="CylonTimer" parent="." instance=ExtResource( 2 )]
-wait_time = 240.0
+wait_time = 120.0
 
 [connection signal="timeout" from="AsteroidTimer" to="." method="_on_AsteroidTimer_timeout"]
 [connection signal="timeout" from="EnergyChargeTimer" to="." method="_on_EnergyChargeTimer_timeout"]
