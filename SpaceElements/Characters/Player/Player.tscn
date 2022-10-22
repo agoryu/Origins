@@ -81,7 +81,6 @@ max_damage = 30
 max_speed = 400
 min_energy_consume = 1
 max_life = 50
-is_player = true
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.2, 0.2 )
@@ -230,7 +229,7 @@ wait_time = 5.0
 
 [node name="CommonShipNode" parent="." instance=ExtResource( 2 )]
 
-[node name="AnimationPlayer" parent="CommonShipNode" index="6"]
+[node name="AnimationPlayer" parent="CommonShipNode" index="7"]
 anims/become_player = SubResource( 7 )
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]

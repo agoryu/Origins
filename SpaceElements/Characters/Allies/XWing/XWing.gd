@@ -6,7 +6,7 @@ onready var photon_shoot_constructor = preload("res://SpaceElements/Weapons/Phot
 func _ready():
 	on_ready()
 	_weapon = $Weapons
-	_state = STATE.FOLLOW_PLAYER
+	_state = STATE.WAIT_TARGET
 	first_group = "xwing"
 
 func _physics_process(delta):

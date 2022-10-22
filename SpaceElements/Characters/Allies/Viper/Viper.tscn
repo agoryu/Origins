@@ -27,7 +27,6 @@ max_damage = 4
 max_speed = 450
 min_energy_consume = 1
 limit_distance = 200
-is_player = true
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.03, 0.03 )
@@ -98,8 +97,13 @@ collision_mask = 0
 modulate = Color( 1, 0.0431373, 0.0431373, 1 )
 shape = SubResource( 3 )
 
+[node name="TargetTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
 [connection signal="timeout" from="CommonShipNode/ShootTimer" to="." method="_on_ShootTimer_timeout"]
 [connection signal="timeout" from="CommonShipNode/FindTargetTimer" to="." method="_on_FindTargetTimer_timeout"]
+[connection signal="timeout" from="TargetTimer" to="." method="_on_TargetTimer_timeout"]
 
 [editable path="CommonShipNode"]
 [editable path="CommonShipNode/Shield"]

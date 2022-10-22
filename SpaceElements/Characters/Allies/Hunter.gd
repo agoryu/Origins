@@ -2,7 +2,7 @@ extends Ally
 
 class_name Hunter
 
-export var distance_fire = 150
+export var distance_fire = 300
 export var nb_shoot = 4
 
 enum STATE {
@@ -101,5 +101,4 @@ func go_back():
 	if distance_player <= limit_distance:
 		_state = STATE.FOLLOW_PLAYER
 		_collision.disabled = false
-	speed = _initial_speed
 	move_ally()

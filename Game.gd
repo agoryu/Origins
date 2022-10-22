@@ -37,7 +37,7 @@ func add_xp(value: int):
 		warning_level += 1
 		xp -= max_xp_value
 		tree.paused = true
-		max_xp_value += xp_next_step
+		max_xp_value += xp_next_step / 2
 		xp_next_step += 1
 		emit_signal("level_up", xp, max_xp_value, warning_level)
 	else:

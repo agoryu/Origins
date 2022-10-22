@@ -47,7 +47,6 @@ func find_position() -> Area2D:
 	return fleet_points.get_child(0) as Area2D
 	
 func switch_ship(direction: int):
-	print(fleet_tab)
 	if fleet_tab.size() > 0:
 		var index = (fleet_tab.find(player) + direction) % fleet_tab.size()
 		player.remove_child(player_nodes)

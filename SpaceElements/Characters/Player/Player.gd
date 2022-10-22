@@ -17,6 +17,7 @@ func _ready():
 	FleetManager.energy_consume = energy_consume
 	_weapon = $Weapons
 	first_group = "player"
+	is_invincible = false
 
 func _physics_process(delta: float) -> void:
 	if is_player:

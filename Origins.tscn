@@ -85,3 +85,4 @@ navpoly = SubResource( 3 )
 
 [node name="Player" parent="Navigation2D" instance=ExtResource( 1 )]
 position = Vector2( 25000, 25000 )
+is_player = false

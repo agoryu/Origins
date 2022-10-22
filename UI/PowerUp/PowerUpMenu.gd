@@ -12,6 +12,9 @@ var resource_manager = preload("res://UI/PowerUp/Resources/ResourceManager.gd").
 var open : bool = false
 
 func level_up():
+	if open:
+		return
+		
 	animate()
 	for i in range(3):
 		var card = resource_manager.get_card(get_tree(), _card_box)

@@ -6,6 +6,7 @@ onready var _animation_player: AnimationPlayer = $CommonShipNode/AnimationPlayer
 onready var _shoot_timer: Timer = $CommonShipNode/ShootTimer
 onready var _navigation_agent : NavigationAgent2D = $CommonShipNode/NavigationAgent2D
 onready var _find_target_timer : Timer = $CommonShipNode/FindTargetTimer
+onready var _level_progress = $CommonShipNode/LevelProgress
 
 export var energy_consume = 1
 export var energy_reserve = 1
@@ -15,7 +16,7 @@ export var max_speed = 50
 export var min_energy_consume = 4
 export var max_life = 20
 export var limit_distance = 350
-export var is_player = false setget set_is_player
+export var is_player = false
 
 var _initial_speed = speed
 
@@ -83,12 +84,10 @@ func player_move():
 	direction = get_gamepad_direction()
 	move_in_direction(direction)
 
-func set_is_player(value: bool):
-	is_player = value
-
 func lvl_up():
 	if lvl + 1 <= MAX_LVL:
 		lvl += 1
+		_level_progress.value = lvl
 	if is_max_lvl():
 		FleetManager.max_lvl_ship()
 		

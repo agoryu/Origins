@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://UI/LevelProgress/level_progress.png" type="Texture" id=1]
+
+[sub_resource type="Theme" id=1]
+
+[node name="LevelProgress" type="TextureProgress"]
+margin_right = 40.0
+margin_bottom = 40.0
+theme = SubResource( 1 )
+max_value = 5.0
+texture_under = ExtResource( 1 )
+texture_progress = ExtResource( 1 )
+tint_under = Color( 0, 0, 0, 1 )
+tint_progress = Color( 1, 0, 0, 1 )

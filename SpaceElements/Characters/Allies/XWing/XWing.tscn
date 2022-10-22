@@ -15,7 +15,8 @@ radius = 789.229
 radius = 39.6232
 
 [node name="XWing" type="KinematicBody2D" groups=["ally", "hunter", "xwing"]]
-collision_mask = 65
+collision_layer = 128
+collision_mask = 64
 script = ExtResource( 1 )
 speed = 320.0
 drag = 5.0
@@ -120,7 +121,7 @@ position = Vector2( 11, 4 )
 position = Vector2( 0, -20 )
 
 [node name="TargetTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 3.0
 one_shot = true
 
 [node name="PhotonTimer" type="Timer" parent="."]

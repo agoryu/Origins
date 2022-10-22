@@ -7,7 +7,7 @@ onready var _gun_constructor = preload("res://SpaceElements/Weapons/Gun/Gun.tscn
 func _ready():
 	on_ready()
 	_weapon = $Weapons
-	_state = STATE.FOLLOW_PLAYER
+	_state = STATE.WAIT_TARGET
 	first_group = "viper"
 
 func _physics_process(delta):
@@ -15,9 +15,6 @@ func _physics_process(delta):
 		player_move()
 	else:
 		move()
-
-func _on_FindTargetTimer_timeout():
-	_state = STATE.WAIT_TARGET
 
 func _on_ShootTimer_timeout():
 	shoot_counter += 1
@@ -37,3 +34,7 @@ func lvl_up():
 	.lvl_up()
 	if lvl >= MAX_LVL:
 		_shoot_timer.one_shot = false
+
+
+func _on_TargetTimer_timeout():
+	_state = STATE.WAIT_TARGET

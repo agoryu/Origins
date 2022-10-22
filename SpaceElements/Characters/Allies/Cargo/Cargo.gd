@@ -25,8 +25,4 @@ func lvl_up():
 
 func _on_ShootTimer_timeout():
 	Game.add_energy(ENERGY_GET * (damage_added + damage_caused))
-	$AudioStreamPlayer2D.play()
-
-
-func _on_NavigationAgent2D_velocity_computed(safe_velocity):
-	move_velocity(safe_velocity)
+	$AnimationPlayer.play("add_energy")

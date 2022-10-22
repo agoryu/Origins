@@ -13,7 +13,8 @@ radius = 82.0549
 radius = 168.76
 
 [node name="Enterprise" type="KinematicBody2D" groups=["ally", "enterprise"]]
-collision_mask = 65
+collision_layer = 128
+collision_mask = 64
 script = ExtResource( 1 )
 speed = 280.0
 drag = 20.0

@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://SpaceElements/Characters/Allies/Cargo/Cargo.gd" type="Script" id=1]
 [ext_resource path="res://SpaceElements/Characters/CommonShipNode.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Effects/Shield/sparkle.png" type="Texture" id=3]
 [ext_resource path="res://SpaceElements/Characters/Allies/Cargo/Cargo.png" type="Texture" id=4]
 [ext_resource path="res://Bonus/EnergyCharge/energy.wav" type="AudioStream" id=5]
 [ext_resource path="res://SpaceElements/Characters/Allies/Enterprise/fire.png" type="Texture" id=6]
@@ -12,16 +13,93 @@ radius = 112.285
 [sub_resource type="CircleShape2D" id=2]
 radius = 224.143
 
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.697561, 0.669318 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.251136 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+emission_shape = 5
+emission_ring_radius = 200.0
+emission_ring_inner_radius = 50.0
+emission_ring_height = 1.0
+emission_ring_axis = Vector3( 0, 0, 1 )
+flag_disable_z = true
+direction = Vector3( 0, 0, 0 )
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel = -600.0
+scale = 0.15
+scale_curve = SubResource( 4 )
+color = Color( 0.0235294, 0.772549, 0.956863, 1 )
+
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Particles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "add_energy"
+tracks/0/type = "value"
+tracks/0/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Particles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
 [node name="Cargo" type="KinematicBody2D" groups=["ally", "cargo"]]
-collision_mask = 65
+collision_layer = 128
+collision_mask = 64
 script = ExtResource( 1 )
 speed = 250.0
+drag = 30.0
 energy_consume = 8
 min_cooldown = 10.0
 max_damage = 5
 max_speed = 320
 max_life = 150
-limit_distance = 200
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.1, 0.1 )
@@ -55,9 +133,6 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 5 )
-
 [node name="CommonShipNode" parent="." instance=ExtResource( 2 )]
 
 [node name="Shield" parent="CommonShipNode" index="0"]
@@ -87,6 +162,20 @@ collision_mask = 0
 modulate = Color( 1, 0.0431373, 0.0431373, 1 )
 z_index = 20
 shape = SubResource( 2 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+emitting = false
+amount = 24
+lifetime = 0.3
+process_material = SubResource( 5 )
+texture = ExtResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 6 )
+anims/add_energy = SubResource( 7 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
 
 [connection signal="timeout" from="CommonShipNode/ShootTimer" to="." method="_on_ShootTimer_timeout"]
 [connection signal="velocity_computed" from="CommonShipNode/NavigationAgent2D" to="." method="_on_NavigationAgent2D_velocity_computed"]
