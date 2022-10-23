@@ -7,7 +7,7 @@
 script = ExtResource( 1 )
 rarity = 0
 custom_ship_type = 2
-min_value = 2
-max_value = 8
+min_value = 10
+max_value = 20
 icon = ExtResource( 2 )
 description = "Add shield"

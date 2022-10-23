@@ -16,7 +16,8 @@ const WAIT_COLLISION_TIME = 10
 
 func impact_damage(value: int):
 	collision_body(value)
-
+	display_damage(value)
+	
 func collision_body(value_of_damage: int):
 	var shield_value = 0
 	if _shield != null:

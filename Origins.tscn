@@ -8,15 +8,15 @@
 [ext_resource path="res://Sound/Sound.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Navigation2D.gd" type="Script" id=7]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 25816, 15.5 )
-
 [sub_resource type="Environment" id=2]
 background_mode = 4
 glow_enabled = true
 glow_blend_mode = 0
 glow_bicubic_upscale = true
 adjustment_enabled = true
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 25816, 15.5 )
 
 [sub_resource type="NavigationPolygon" id=3]
 vertices = PoolVector2Array( 160, 688, 50304, 344, 50648, 49880, -96, 50104 )
@@ -26,6 +26,9 @@ outlines = [ PoolVector2Array( 160, 688, 160, 688, 50304, 344, 50648, 49880, -96
 [node name="Origins" type="Node2D"]
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 4 )]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 2 )
 
 [node name="Camera" parent="." instance=ExtResource( 2 )]
 position = Vector2( 25000, 25000 )
@@ -74,9 +77,6 @@ shape = SubResource( 1 )
 
 [node name="Sound" parent="." instance=ExtResource( 6 )]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 2 )
-
 [node name="Navigation2D" type="Navigation2D" parent="."]
 script = ExtResource( 7 )
 
@@ -85,4 +85,3 @@ navpoly = SubResource( 3 )
 
 [node name="Player" parent="Navigation2D" instance=ExtResource( 1 )]
 position = Vector2( 25000, 25000 )
-is_player = false

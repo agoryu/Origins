@@ -33,6 +33,7 @@ func _on_Asteroid_body_entered(body):
 func impact_damage(damage: int):
 	_life -= damage
 	_animation_player.play("impact")
+	display_damage(damage)
 	if damage_caused != 1 and _life <= 0 :
 		divide_asteroid()
 	if _life <= 0:
