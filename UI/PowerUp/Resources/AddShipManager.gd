@@ -7,7 +7,8 @@ var ship_resources: Array = [
 	preload("res://UI/PowerUp/Resources/ShipResources/Enterprise.tres"),
 	preload("res://UI/PowerUp/Resources/ShipResources/RadarShip.tres"),
 	preload("res://UI/PowerUp/Resources/ShipResources/XWing.tres"),
-	preload("res://UI/PowerUp/Resources/ShipResources/Cargo.tres")
+	preload("res://UI/PowerUp/Resources/ShipResources/Cargo.tres"),
+	preload("res://UI/PowerUp/Resources/ShipResources/Samus.tres")
 ]
 
 var ship_tab = []

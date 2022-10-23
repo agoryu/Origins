@@ -1,0 +1,92 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://SpaceElements/Characters/Allies/Samus/Samus.gd" type="Script" id=1]
+[ext_resource path="res://SpaceElements/Characters/CommonShipNode.tscn" type="PackedScene" id=2]
+[ext_resource path="res://SpaceElements/Characters/Allies/Samus/Samus.png" type="Texture" id=3]
+[ext_resource path="res://SpaceElements/Characters/Allies/Enterprise/fire.png" type="Texture" id=6]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 20.0
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 47.0956
+
+[node name="Samus" type="KinematicBody2D" groups=["ally", "samus"]]
+collision_layer = 128
+collision_mask = 64
+script = ExtResource( 1 )
+speed = 280.0
+energy_consume = 3
+energy_reserve = 15
+min_cooldown = 2.0
+max_speed = 350
+max_life = 50
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.05, 0.05 )
+texture = ExtResource( 3 )
+
+[node name="Fire" type="Node2D" parent="Sprite"]
+
+[node name="Fire1" type="Sprite" parent="Sprite/Fire"]
+position = Vector2( -60, 470 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 6 )
+
+[node name="Fire2" type="Sprite" parent="Sprite/Fire"]
+position = Vector2( 60, 470 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="CommonShipNode" parent="." instance=ExtResource( 2 )]
+
+[node name="Shield" parent="CommonShipNode" index="0"]
+position = Vector2( 0, 4.76837e-07 )
+scale = Vector2( 0.75, 0.75 )
+
+[node name="ShieldBar" parent="CommonShipNode/Shield" index="0"]
+margin_left = -31.0
+margin_top = -93.0
+margin_right = 31.0
+margin_bottom = -79.0
+
+[node name="Life" parent="CommonShipNode" index="2"]
+margin_top = -56.0
+margin_bottom = -42.0
+
+[node name="LevelProgress" parent="CommonShipNode" index="3"]
+margin_left = -21.0
+margin_top = -38.0
+margin_right = 1259.0
+margin_bottom = 282.0
+
+[node name="ShootTimer" parent="CommonShipNode" index="4"]
+wait_time = 15.0
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+
+[node name="ObjectArea" type="Area2D" parent="."]
+z_index = 50
+collision_layer = 129
+collision_mask = 0
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectArea"]
+modulate = Color( 1, 0.0431373, 0.0431373, 1 )
+shape = SubResource( 2 )
+
+[node name="Weapons" type="Node2D" parent="."]
+
+[node name="PhotonPosition" type="Position2D" parent="Weapons"]
+position = Vector2( 0, 25 )
+
+[connection signal="timeout" from="CommonShipNode/ShootTimer" to="." method="_on_ShootTimer_timeout"]
+
+[editable path="CommonShipNode"]
+[editable path="CommonShipNode/Shield"]

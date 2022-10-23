@@ -131,7 +131,7 @@ wait_time = 8.0
 
 [node name="CommonShipNode" parent="." instance=ExtResource( 2 )]
 
-[node name="ShootTimer" parent="CommonShipNode" index="3"]
+[node name="ShootTimer" parent="CommonShipNode" index="4"]
 one_shot = true
 autostart = false
 

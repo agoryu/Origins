@@ -99,6 +99,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://UI/PowerUp/PowerUpMenu.gd"
 }, {
+"base": "Ally",
+"class": "Samus",
+"language": "GDScript",
+"path": "res://SpaceElements/Characters/Allies/Samus/Samus.gd"
+}, {
 "base": "Sprite",
 "class": "Shield",
 "language": "GDScript",
@@ -168,6 +173,7 @@ _global_script_class_icons={
 "LaserShoot": "",
 "Player": "",
 "PowerupMenu": "",
+"Samus": "",
 "Shield": "",
 "ShuttlePod": "",
 "Sound": "",
