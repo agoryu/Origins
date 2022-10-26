@@ -229,6 +229,10 @@ wait_time = 5.0
 
 [node name="CommonShipNode" parent="." instance=ExtResource( 2 )]
 
+[node name="ShieldBar" parent="CommonShipNode/Shield" index="0"]
+margin_top = -84.0
+margin_bottom = -70.0
+
 [node name="AnimationPlayer" parent="CommonShipNode" index="7"]
 anims/become_player = SubResource( 7 )
 
@@ -237,6 +241,10 @@ anims/become_player = SubResource( 7 )
 [node name="ObjectArea" type="Area2D" parent="."]
 collision_layer = 129
 collision_mask = 0
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectArea"]
 modulate = Color( 1, 0.0431373, 0.0431373, 1 )
@@ -246,3 +254,4 @@ shape = SubResource( 6 )
 [connection signal="timeout" from="CommonShipNode/ShootTimer" to="." method="_on_ShootTimer_timeout"]
 
 [editable path="CommonShipNode"]
+[editable path="CommonShipNode/Shield"]

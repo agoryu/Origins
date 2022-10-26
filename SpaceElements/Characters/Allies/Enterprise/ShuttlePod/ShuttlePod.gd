@@ -10,8 +10,8 @@ var min_distance = 50
 func _ready():
 	_fire = $Sprite/Fire
 	_state = STATE.FOLLOW_PLAYER
-	_initial_speed = speed
 	first_group = "shuttlepod"
+	_shoot_timer = $ShootTimer
 
 func _physics_process(delta):
 	move()
@@ -25,6 +25,8 @@ func _on_ShootTimer_timeout():
 	shoot_counter += 1
 	
 func move_ally():
+	if _laser_beam.is_casting:
+		return
 	var distance = global_position.distance_to(_position.global_position)
 	
 	if distance > min_distance:

@@ -65,8 +65,8 @@ func _get_ship(tree) -> Ally:
 	if fleet.size() <= 0:
 		return null
 	while retry > 0:
-		var ship = fleet[randi() % fleet.size()]
-		if ship.lvl < ship.MAX_LVL:
+		var ship = fleet[randi() % fleet.size()] as Ally
+		if ship.lvl < ship.MAX_LVL and not ship.is_in_group("shuttlepod"):
 			return ship
 		retry -= 1
 	return null

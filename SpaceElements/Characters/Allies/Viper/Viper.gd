@@ -27,14 +27,12 @@ func _on_ShootTimer_timeout():
 		gun_shoot.damage_caused = damage_caused + damage_added
 		
 func set_cooldown(value: float):
-	.set_cooldown(value)
 	_target_timer.wait_time = value * 10.0
 
 func lvl_up():
 	.lvl_up()
 	if lvl >= MAX_LVL:
 		_shoot_timer.one_shot = false
-
 
 func _on_TargetTimer_timeout():
 	_state = STATE.WAIT_TARGET

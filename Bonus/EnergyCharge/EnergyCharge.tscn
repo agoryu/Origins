@@ -103,7 +103,7 @@ tracks/3/keys = {
 collision_layer = 8
 collision_mask = 129
 script = ExtResource( 1 )
-value = 100
+value = 250
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 2, 1.5, 1.5, 1 )

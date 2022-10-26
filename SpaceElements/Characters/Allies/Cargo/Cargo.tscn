@@ -149,7 +149,11 @@ margin_bottom = -51.4706
 margin_top = -144.0
 margin_bottom = -130.0
 
-[node name="ShootTimer" parent="CommonShipNode" index="3"]
+[node name="LevelProgress" parent="CommonShipNode" index="3"]
+margin_top = -128.0
+margin_bottom = 192.0
+
+[node name="ShootTimer" parent="CommonShipNode" index="4"]
 wait_time = 15.0
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
@@ -157,6 +161,10 @@ wait_time = 15.0
 [node name="ObjectArea" type="Area2D" parent="."]
 collision_layer = 129
 collision_mask = 0
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectArea"]
 modulate = Color( 1, 0.0431373, 0.0431373, 1 )

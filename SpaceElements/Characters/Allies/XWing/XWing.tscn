@@ -15,6 +15,7 @@ radius = 789.229
 radius = 39.6232
 
 [node name="XWing" type="KinematicBody2D" groups=["ally", "hunter", "xwing"]]
+z_index = 80
 collision_layer = 128
 collision_mask = 64
 script = ExtResource( 1 )
@@ -131,6 +132,10 @@ wait_time = 8.0
 
 [node name="CommonShipNode" parent="." instance=ExtResource( 2 )]
 
+[node name="ShieldBar" parent="CommonShipNode/Shield" index="0"]
+margin_top = -86.0
+margin_bottom = -72.0
+
 [node name="ShootTimer" parent="CommonShipNode" index="4"]
 one_shot = true
 autostart = false
@@ -149,3 +154,4 @@ shape = SubResource( 3 )
 [connection signal="timeout" from="CommonShipNode/ShootTimer" to="." method="_on_ShootTimer_timeout"]
 
 [editable path="CommonShipNode"]
+[editable path="CommonShipNode/Shield"]

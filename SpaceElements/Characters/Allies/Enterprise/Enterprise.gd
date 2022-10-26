@@ -27,6 +27,7 @@ func lvl_up():
 			shuttlepod.global_position = child.global_position
 			shuttlepod._position = child
 			shuttlepod.speed = speed
+			shuttlepod._initial_speed = speed
 			add_child(shuttlepod)
 
 func _on_ShootTimer_timeout():

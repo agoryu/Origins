@@ -1,6 +1,6 @@
 extends Ally
 
-const ENERGY_GET : int = 50
+const ENERGY_GET : int = 100
 
 func _ready():
 	on_ready()

@@ -85,7 +85,12 @@ margin_bottom = -76.4
 margin_top = -44.0
 margin_bottom = -30.0
 
-[node name="ShootTimer" parent="CommonShipNode" index="3"]
+[node name="LevelProgress" parent="CommonShipNode" index="3"]
+margin_top = -30.0
+margin_bottom = 290.0
+
+[node name="ShootTimer" parent="CommonShipNode" index="4"]
+wait_time = 0.1
 one_shot = true
 autostart = false
 
